@@ -1,4 +1,3 @@
-```markdown
 # SpinStep
 
 **SpinStep** is a lightweight, quaternion-driven traversal framework for trees and orientation-based data structures.
@@ -84,7 +83,3 @@ MIT — free to use, fork, and adapt.
 ## 💬 Feedback & Contributions
 
 PRs and issues are welcome! If you're using SpinStep in a cool project, let us know.
-
-```
-
----
