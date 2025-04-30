@@ -73,6 +73,22 @@ spinstep/
 ```
 
 ---
+🚀 To Build and Install Locally
+
+From the root of your project:
+
+```bash
+pip install .
+
+```
+
+Or to build a wheel:
+
+
+```
+python -m build
+
+```
 
 ## 📜 License
 
