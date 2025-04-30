@@ -60,6 +60,8 @@ This mimics rotational motion or attention in physical and virtual spaces — id
 - Animation graph traversal
 - Spatial AI and robotics
 
+---
+
 ## 🧭 What Would It Mean to “Rotate into Branches”?
 
 Let’s unpack it:
