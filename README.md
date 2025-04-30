@@ -68,12 +68,23 @@ This mimics rotational motion or attention in physical and virtual spaces — id
 spinstep/
 │
 ├── __init__.py
-├── traversal.py         # Core iterator logic
+├── node.py
+├── traversal.py         # Core Iterator logic
 ├── quaternion_utils.py  # Quaternion math helpers
+├── demo.py
+├── demo1-tree-traversal.py
+├── demo2-full-depth-traversal.py
+├── demo3-spatial-traversal.py
+README.md
+LICENSE
+pyproject.toml
+MANIFEST.in
+setup.cfg
+setup.py
 ```
 
 ---
-##🚀 To Build and Install Locally
+## 🚀 To Build and Install Locally
 
 From the root of your project:
 
