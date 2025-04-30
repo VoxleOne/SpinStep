@@ -1,7 +1,3 @@
-Here's a clean and professional `README.md` starter for your **SpinStep** project:
-
----
-
 ```markdown
 # SpinStep
 
