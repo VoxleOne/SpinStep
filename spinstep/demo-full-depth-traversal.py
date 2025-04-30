@@ -1,7 +1,9 @@
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
-Full Depth Traversal 
+# This version performs a depth-first traversal, rotating the current 
+# quaternion state at each level, and only visits branches that are 
+# within a defined angular threshold of the rotated orientation.
 
 class Node:
     def __init__(self, name, orientation, children=None):
