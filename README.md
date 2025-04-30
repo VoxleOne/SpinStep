@@ -74,6 +74,7 @@ Let’s unpack it:
 
 🔸 Use Case: Scene graphs, spatial indexing, directional AI traversal, robot path planning.
 
+
 ✅ 2. Quaternion-Based Traversal Heuristics
 
 - Instead of "next = left/right", you define:
@@ -86,6 +87,7 @@ Let’s unpack it:
 - This makes orientation and direction first-class traversal parameters.
 
 🔸 Use Case: Game engines (e.g., cameras rotating into nearby zones), 3D modeling (e.g., mesh walks), or procedural generation.
+
 
 ✅ 3. Multi-Dimensional Trees with Quaternion Keys
 
