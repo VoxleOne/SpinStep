@@ -1,3 +1,8 @@
+Here's a clean and professional `README.md` starter for your **SpinStep** project:
+
+---
+
+```markdown
 # SpinStep
 
 **SpinStep** is a lightweight, quaternion-driven traversal framework for trees and orientation-based data structures.
@@ -87,5 +92,3 @@ PRs and issues are welcome! If you're using SpinStep in a cool project, let us k
 ```
 
 ---
-
-Would you like this as a downloadable file or to expand into a full package scaffold?
