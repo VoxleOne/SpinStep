@@ -62,6 +62,7 @@ This mimics rotational motion or attention in physical and virtual spaces — id
 - Animation graph traversal  
 - Spatial AI and robotics  
 
+![A diagram Old School vs Quaternions](https://raw.githubusercontent.com/VoxLeone/SpinStep/main/docs/assets/spinstep-quaternion-diagram.png)
 ---
 
 ## 🧭 What Would It Mean to “Rotate into Branches”?
