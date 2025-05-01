@@ -139,7 +139,7 @@ setup.py
 First, clone the repository:
 
 ```bash
-git clone https://github.com/your-username/spinstep.git
+git clone https://github.com/VoxLeone/spinstep.git
 cd spinstep
 ```
 
