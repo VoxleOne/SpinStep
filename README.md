@@ -91,12 +91,13 @@ Let’s unpack it:
 
 ### ✅ 3. Multi-Dimensional Trees with Quaternion Keys
 
-- In a tree where nodes have orientation data, you could use quaternion distance (angle) to decide:
+In a tree where nodes have orientation data, you could use quaternion distance (angle) to decide:
+
 - Which branches to explore
 - When to stop
 - Think of this like a quaternion-aware k-d tree.
 
-✨ Visual Metaphor:
+### ✨ Visual Metaphor:
 
 Imagine walking through a tree not left/right, but by rotating in space:
 
