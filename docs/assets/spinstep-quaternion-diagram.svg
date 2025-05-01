@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle">SpinStep Traversal Framework</text>
+  <text x="400" y="70" font-family="Arial" font-size="16" text-anchor="middle">Traditional Position-Based vs. Quaternion Rotation-Based</text>
+  
+  <!-- Left side: Traditional traversal -->
+  <g transform="translate(200, 250)">
+    <!-- Title -->
+    <text x="0" y="-150" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle">Traditional Traversal</text>
+    <text x="0" y="-125" font-family="Arial" font-size="14" text-anchor="middle">(Position-Based Steps)</text>
+    
+    <!-- Graph nodes -->
+    <circle cx="-80" cy="0" r="20" fill="#6b9bd0" stroke="#333" stroke-width="2"/>
+    <circle cx="0" cy="-70" r="20" fill="#6b9bd0" stroke="#333" stroke-width="2"/>
+    <circle cx="80" cy="0" r="20" fill="#6b9bd0" stroke="#333" stroke-width="2"/>
+    <circle cx="0" cy="70" r="20" fill="#d06b9b" stroke="#333" stroke-width="2"/>
+    
+    <!-- Node labels -->
+    <text x="-80" y="0" font-family="Arial" font-size="14" text-anchor="middle" dominant-baseline="middle">A</text>
+    <text x="0" y="-70" font-family="Arial" font-size="14" text-anchor="middle" dominant-baseline="middle">B</text>
+    <text x="80" y="0" font-family="Arial" font-size="14" text-anchor="middle" dominant-baseline="middle">C</text>
+    <text x="0" y="70" font-family="Arial" font-size="14" text-anchor="middle" dominant-baseline="middle">D</text>
+    
+    <!-- Edges -->
+    <line x1="-80" y1="0" x2="0" y2="-70" stroke="#555" stroke-width="2"/>
+    <line x1="0" y1="-70" x2="80" y2="0" stroke="#555" stroke-width="2"/>
+    <line x1="80" y1="0" x2="0" y2="70" stroke="#555" stroke-width="2"/>
+    <line x1="0" y1="70" x2="-80" y2="0" stroke="#555" stroke-width="2"/>
+    
+    <!-- Path -->
+    <path d="M-80,0 L0,-70 L80,0" stroke="#ff6b00" stroke-width="3" fill="none" stroke-dasharray="5,3"/>
+    <polygon points="-85,-5 -85,5 -95,0" fill="#ff6b00" transform="rotate(45 -80 0)"/>
+    <polygon points="75,-5 75,5 85,0" fill="#ff6b00" transform="rotate(-45 80 0)"/>
+    
+    <!-- Explanatory text -->
+    <text x="0" y="120" font-family="Arial" font-size="14" text-anchor="middle">Moving from point to point</text>
+    <text x="0" y="140" font-family="Arial" font-size="14" text-anchor="middle">based on spatial distance</text>
+  </g>
+  
+  <!-- Right side: Quaternion traversal -->
+  <g transform="translate(600, 250)">
+    <!-- Title -->
+    <text x="0" y="-150" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle">SpinStep Traversal</text>
+    <text x="0" y="-125" font-family="Arial" font-size="14" text-anchor="middle">(Quaternion-Based Rotations)</text>
+    
+    <!-- Central sphere -->
+    <circle cx="0" cy="0" r="80" fill="#eef1f5" stroke="#333" stroke-width="1"/>
+    
+    <!-- Orientation axis -->
+    <line x1="0" y1="0" x2="0" y2="-60" stroke="#777" stroke-width="1" stroke-dasharray="4,2"/>
+    <line x1="0" y1="0" x2="60" y2="0" stroke="#777" stroke-width="1" stroke-dasharray="4,2"/>
+    <line x1="0" y1="0" x2="-40" y2="40" stroke="#777" stroke-width="1" stroke-dasharray="4,2"/>
+    
+    <!-- Quaternion rotation representation -->
+    <g transform="rotate(-30 0 0)">
+      <!-- Current orientation -->
+      <line x1="0" y1="0" x2="0" y2="-80" stroke="#6b9bd0" stroke-width="3"/>
+      <text x="12" y="-65" font-family="Arial" font-size="14">Current</text>
+      <circle cx="0" cy="-80" r="6" fill="#6b9bd0"/>
+    </g>
+    
+    <!-- Target orientation -->
+    <g transform="rotate(40 0 0)">
+      <!-- Target orientation -->
+      <line x1="0" y1="0" x2="0" y2="-80" stroke="#d06b9b" stroke-width="3"/>
+      <text x="12" y="-65" font-family="Arial" font-size="14">Target</text>
+      <circle cx="0" cy="-80" r="6" fill="#d06b9b"/>
+    </g>
+    
+    <!-- Rotation arc -->
+    <path d="M 0,-80 A 80,80 0 0,1 51,-62" stroke="#ff6b00" stroke-width="3" fill="none" transform="rotate(-30 0 0)"/>
+    <polygon points="46,-63 50,-68 54,-57" fill="#ff6b00" transform="translate(51 -62) rotate(35)"/>
+    
+    <!-- Explanatory text -->
+    <text x="0" y="120" font-family="Arial" font-size="14" text-anchor="middle">Moving by rotating orientation</text>
+    <text x="0" y="140" font-family="Arial" font-size="14" text-anchor="middle">based on angular proximity</text>
+  </g>
+  
+  <!-- Connecting arrow -->
+  <g transform="translate(400, 250)">
+    <line x1="-60" y1="0" x2="60" y2="0" stroke="#333" stroke-width="2"/>
+    <polygon points="55,-5 55,5 65,0" fill="#333"/>
+    <text x="0" y="-10" font-family="Arial" font-size="14" text-anchor="middle">Paradigm Shift</text>
+  </g>
+</svg>

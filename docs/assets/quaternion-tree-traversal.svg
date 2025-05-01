@@ -1,1 +1,155 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:#89CFF0;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#89CFF0;stop-opacity:0" />
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="600" fill="url(#bgGradient)" />
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff">Quaternion-Based Tree Traversal</text>
+  <text x="400" y="70" font-family="Arial" font-size="16" text-anchor="middle" fill="#aaccff">Navigating by orientation rather than position</text>
+  
+  <!-- Tree trunk base -->
+  <path d="M 400,500 C 380,480 370,450 380,400 C 390,350 380,320 400,300 C 420,320 410,350 420,400 C 430,450 420,480 400,500 Z" 
+        fill="#5d4037" stroke="#3e2723" stroke-width="2" />
+  
+  <!-- Main branches -->
+  <!-- Left branch system -->
+  <path d="M 400,320 C 350,300 320,260 310,210 C 305,180 310,160 320,150" 
+        fill="none" stroke="#5d4037" stroke-width="12" stroke-linecap="round" />
+  <path d="M 320,150 C 310,130 300,120 280,115" 
+        fill="none" stroke="#5d4037" stroke-width="8" stroke-linecap="round" />
+  <path d="M 320,150 C 330,130 340,120 350,110" 
+        fill="none" stroke="#5d4037" stroke-width="8" stroke-linecap="round" />
+  <path d="M 310,210 C 290,200 270,210 250,200" 
+        fill="none" stroke="#5d4037" stroke-width="8" stroke-linecap="round" />
+  <path d="M 310,210 C 325,190 320,170 335,160" 
+        fill="none" stroke="#5d4037" stroke-width="8" stroke-linecap="round" />
+  
+  <!-- Right branch system -->
+  <path d="M 400,320 C 450,300 480,260 490,210 C 495,180 490,160 480,150" 
+        fill="none" stroke="#5d4037" stroke-width="12" stroke-linecap="round" />
+  <path d="M 480,150 C 490,130 500,120 520,115" 
+        fill="none" stroke="#5d4037" stroke-width="8" stroke-linecap="round" />
+  <path d="M 480,150 C 470,130 460,120 450,110" 
+        fill="none" stroke="#5d4037" stroke-width="8" stroke-linecap="round" />
+  <path d="M 490,210 C 510,200 530,210 550,200" 
+        fill="none" stroke="#5d4037" stroke-width="8" stroke-linecap="round" />
+  <path d="M 490,210 C 475,190 480,170 465,160" 
+        fill="none" stroke="#5d4037" stroke-width="8" stroke-linecap="round" />
+  
+  <!-- Middle branch -->
+  <path d="M 400,300 C 400,260 405,220 395,180 C 390,160 400,140 400,120" 
+        fill="none" stroke="#5d4037" stroke-width="10" stroke-linecap="round" />
+  <path d="M 400,120 C 380,110 375,90 360,80" 
+        fill="none" stroke="#5d4037" stroke-width="6" stroke-linecap="round" />
+  <path d="M 400,120 C 420,110 425,90 440,80" 
+        fill="none" stroke="#5d4037" stroke-width="6" stroke-linecap="round" />
+  
+  <!-- Tree nodes (quaternion points) -->
+  <!-- Root node -->
+  <circle cx="400" cy="400" r="20" fill="#1e88e5" filter="url(#glow)" opacity="0.9" />
+  
+  <!-- Level 1 nodes -->
+  <circle cx="400" cy="320" r="18" fill="#26a69a" filter="url(#glow)" opacity="0.9" />
+  <circle cx="310" cy="210" r="14" fill="#26a69a" filter="url(#glow)" opacity="0.9" />
+  <circle cx="490" cy="210" r="14" fill="#26a69a" filter="url(#glow)" opacity="0.9" />
+  <circle cx="400" cy="180" r="14" fill="#26a69a" filter="url(#glow)" opacity="0.9" />
+  
+  <!-- Level 2 nodes -->
+  <circle cx="320" cy="150" r="12" fill="#7e57c2" filter="url(#glow)" opacity="0.8" />
+  <circle cx="480" cy="150" r="12" fill="#7e57c2" filter="url(#glow)" opacity="0.8" />
+  <circle cx="335" cy="160" r="12" fill="#7e57c2" filter="url(#glow)" opacity="0.8" />
+  <circle cx="465" cy="160" r="12" fill="#7e57c2" filter="url(#glow)" opacity="0.8" />
+  <circle cx="250" cy="200" r="12" fill="#7e57c2" filter="url(#glow)" opacity="0.8" />
+  <circle cx="550" cy="200" r="12" fill="#7e57c2" filter="url(#glow)" opacity="0.8" />
+  <circle cx="400" cy="120" r="12" fill="#7e57c2" filter="url(#glow)" opacity="0.8" />
+  
+  <!-- Level 3 nodes -->
+  <circle cx="280" cy="115" r="10" fill="#ec407a" filter="url(#glow)" opacity="0.7" />
+  <circle cx="350" cy="110" r="10" fill="#ec407a" filter="url(#glow)" opacity="0.7" />
+  <circle cx="450" cy="110" r="10" fill="#ec407a" filter="url(#glow)" opacity="0.7" />
+  <circle cx="520" cy="115" r="10" fill="#ec407a" filter="url(#glow)" opacity="0.7" />
+  <circle cx="360" cy="80" r="10" fill="#ec407a" filter="url(#glow)" opacity="0.7" />
+  <circle cx="440" cy="80" r="10" fill="#ec407a" filter="url(#glow)" opacity="0.7" />
+  
+  <!-- Quaternion orientation visualizations -->
+  <!-- From root to level 1 -->
+  <g transform="translate(400, 400)">
+    <circle cx="0" cy="0" r="30" fill="none" stroke="#1e88e5" stroke-width="1" stroke-dasharray="2,2" opacity="0.6" />
+    <line x1="0" y1="0" x2="0" y2="-30" stroke="#1e88e5" stroke-width="2" opacity="0.8" />
+  </g>
+  
+  <!-- Main quaternion traversal path -->
+  <path d="M 400,400 
+           C 380,370 385,340 400,320
+           C 415,300 420,280 400,180
+           C 390,160 395,140 400,120
+           C 405,100 420,90 440,80" 
+        fill="none" stroke="#ff9800" stroke-width="3" stroke-dasharray="5,3" />
+  
+  <!-- Rotation arcs visualization -->
+  <!-- Root to main branch -->
+  <path d="M 400,370 A 30,30 0 0,1 430,400" stroke="#ff9800" stroke-width="2" fill="none" />
+  <polygon points="428,395 435,401 429,405" fill="#ff9800" />
+  
+  <!-- Main branch first rotation -->
+  <path d="M 400,290 A 30,30 0 0,1 375,270" stroke="#ff9800" stroke-width="2" fill="none" />
+  <polygon points="380,270 371,267 375,275" fill="#ff9800" />
+  
+  <!-- Main branch second rotation -->
+  <path d="M 400,150 A 30,30 0 0,1 425,130" stroke="#ff9800" stroke-width="2" fill="none" />
+  <polygon points="420,130 430,125 425,135" fill="#ff9800" />
+  
+  <!-- Quaternion spheres along path -->
+  <circle cx="400" cy="350" r="15" fill="none" stroke="#ff9800" stroke-width="1" stroke-dasharray="3,2" />
+  <circle cx="400" cy="250" r="15" fill="none" stroke="#ff9800" stroke-width="1" stroke-dasharray="3,2" />
+  <circle cx="400" cy="150" r="15" fill="none" stroke="#ff9800" stroke-width="1" stroke-dasharray="3,2" />
+  
+  <!-- Direction indicators -->
+  <g transform="translate(400, 350)">
+    <line x1="0" y1="0" x2="0" y2="-15" stroke="#ff9800" stroke-width="2" />
+    <polygon points="-3,-10 3,-10 0,-18" fill="#ff9800" />
+  </g>
+  
+  <g transform="translate(400, 250)">
+    <line x1="0" y1="0" x2="0" y2="-15" stroke="#ff9800" stroke-width="2" />
+    <polygon points="-3,-10 3,-10 0,-18" fill="#ff9800" />
+  </g>
+  
+  <g transform="translate(400, 150)">
+    <line x1="0" y1="0" x2="10" y2="-12" stroke="#ff9800" stroke-width="2" />
+    <polygon points="5,-15 15,-12 8,-5" fill="#ff9800" />
+  </g>
+  
+  <!-- Legend -->
+  <rect x="570" y="450" width="200" height="120" rx="10" ry="10" fill="rgba(0,0,0,0.5)" stroke="#aaaaaa" stroke-width="1" />
+  <text x="580" y="470" font-family="Arial" font-size="14" fill="#ffffff" font-weight="bold">Legend</text>
+  
+  <circle cx="590" cy="490" r="8" fill="#1e88e5" filter="url(#glow)" opacity="0.9" />
+  <text x="605" y="495" font-family="Arial" font-size="12" fill="#ffffff">Root Node</text>
+  
+  <line x1="580" y1="510" x2="600" y2="510" stroke="#ff9800" stroke-width="3" stroke-dasharray="5,3" />
+  <text x="605" y="515" font-family="Arial" font-size="12" fill="#ffffff">Quaternion Path</text>
+  
+  <path d="M 580,530 A 10,10 0 0,1 600,530" stroke="#ff9800" stroke-width="2" fill="none" />
+  <polygon points="598,527 605,530 598,533" fill="#ff9800" />
+  <text x="605" y="535" font-family="Arial" font-size="12" fill="#ffffff">Rotation Direction</text>
+  
+  <circle cx="590" cy="550" r="7" fill="none" stroke="#ff9800" stroke-width="1" stroke-dasharray="3,2" />
+  <text x="605" y="555" font-family="Arial" font-size="12" fill="#ffffff">Orientation Sphere</text>
+</svg>
