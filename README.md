@@ -66,7 +66,7 @@ This mimics rotational motion or attention in physical and virtual spaces — id
 
 Let’s unpack it:
 
-✅ 1. Quaternion as a Branch Selector
+### ✅ 1. Quaternion as a Branch Selector
 
 - Imagine each node in a graph or tree encodes rotational states (quaternions).
 - Traversal is guided by a current quaternion state.
@@ -75,7 +75,7 @@ Let’s unpack it:
 🔸 Use Case: Scene graphs, spatial indexing, directional AI traversal, robot path planning.
 
 
-✅ 2. Quaternion-Based Traversal Heuristics
+### ✅ 2. Quaternion-Based Traversal Heuristics
 
 - Instead of "next = left/right", you define:
 
@@ -89,7 +89,7 @@ Let’s unpack it:
 🔸 Use Case: Game engines (e.g., cameras rotating into nearby zones), 3D modeling (e.g., mesh walks), or procedural generation.
 
 
-✅ 3. Multi-Dimensional Trees with Quaternion Keys
+### ✅ 3. Multi-Dimensional Trees with Quaternion Keys
 
 - In a tree where nodes have orientation data, you could use quaternion distance (angle) to decide:
 - Which branches to explore
