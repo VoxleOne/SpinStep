@@ -67,6 +67,7 @@ This mimics rotational motion or attention in physical and virtual spaces — id
 <div align="center">
   <img src="https://raw.githubusercontent.com/VoxLeone/SpinStep/main/docs/assets/spinstep-quaternion-diagram.png" alt="A 3D Graph concept image" style="max-width: 100% style="margin: 20px;" />
 </div>
+
 ---
 
 ## 🧭 What Would It Mean to “Rotate into Branches”?
