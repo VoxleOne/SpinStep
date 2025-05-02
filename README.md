@@ -7,9 +7,8 @@ By leveraging the power of 3D rotation math, SpinStep enables traversal based no
 ![A 3D Graph concept image](https://raw.githubusercontent.com/VoxLeone/SpinStep/main/docs/assets/quaternion-tree.png)
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/VoxLeone/SpinStep/main/docs/assets/quaternion-tree.png)" width="300" style="margin: 20px;" />
+  <img src="https://raw.githubusercontent.com/VoxLeone/SpinStep/main/docs/assets/quaternion-tree.png" alt="A 3D Graph concept image" style="max-width: 100% style="margin: 20px;" />
 </div>
-
 
 ---
 
