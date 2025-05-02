@@ -62,9 +62,7 @@ This mimics rotational motion or attention in physical and virtual spaces — id
 - Orientation trees  
 - 3D pose search  
 - Animation graph traversal  
-- Spatial AI and robotics  
-
-![A diagram Old School vs Quaternions](https://raw.githubusercontent.com/VoxLeone/SpinStep/main/docs/assets/spinstep-quaternion-diagram.png)
+- Spatial AI and robotics
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/VoxLeone/SpinStep/main/docs/assets/spinstep-quaternion-diagram.png" alt="A 3D Graph concept image" style="max-width: 100% style="margin: 20px;" />
