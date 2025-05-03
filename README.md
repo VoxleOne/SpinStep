@@ -129,9 +129,9 @@ spinstep/
 ├── traversal.py         # Core iterator logic
 ├── quaternion_utils.py  # Quaternion math helpers
 ├── demo.py
-├── demo1-tree-traversal.py
-├── demo2-full-depth-traversal.py
-├── demo3-spatial-traversal.py
+├── demo1_tree_traversal.py
+├── demo2_full_depth_traversal.py
+├── demo3_spatial_traversal.py
 README.md
 LICENSE
 pyproject.toml
