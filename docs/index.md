@@ -1,6 +1,6 @@
 # Welcome to the SpinStep Documentation
 
-This documentation provides deep insight into the motivation, technology, and future of the SpinStep engine.
+This documentation provides insight into the motivation, technology, and future of the SpinStep engine.
 
 ## Table of Contents
 
