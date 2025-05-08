@@ -23,6 +23,7 @@ In 3D graphs, especially on spherical surfaces:
 You need spherical distance metrics (like geodesic distance)
 
 Traversal across layers or around a sphere involves quaternion math or rotation matrices, which are costlier than 2D vectors
+---
 
 🔗 3. Connectivity
 
@@ -33,6 +34,7 @@ In your structure:
 Nodes may connect to many others (radially, tangentially, across layers)
 
 That increases the number of edges per node and therefore processing time for algorithms like search, pathfinding, or rendering
+---
 
 📊 4. Rendering Overhead
 
@@ -45,6 +47,7 @@ Depth sorting
 Lighting/shading (if applied)
 
 Interactive navigation (rotation, zoom, pan)
+---
 
 ⚖️ Summary:
 
@@ -55,4 +58,4 @@ Edge Complexity	Fixed	Variable, often dense
 Memory Use	Lower	Higher
 Visualization Load	Minimal	Moderate to Heavy
 That said, with modern hardware and good algorithms, moderately sized spherical graphs (hundreds to a few thousand nodes) are very manageable.
----
+
