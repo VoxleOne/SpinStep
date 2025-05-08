@@ -4,9 +4,9 @@ Spherical 3D graph structures are generally more computationally intensive than 
 
 ## 🧮 1. Dimensionality Explosion
 
-2D trees typically use (x, y) positions, which are simpler to calculate, store, and traverse.
+*2D trees typically use (x, y) positions, which are simpler to calculate, store, and traverse.
 
-In 3D, you deal with (x, y, z) coordinates, plus angular orientation, which increases:
+*In 3D, you deal with (x, y, z) coordinates, plus angular orientation, which increases:
 
 Node placement complexity
 
@@ -30,7 +30,7 @@ Traversal across layers or around a sphere involves quaternion math or rotation 
 
 A 2D tree may have a fixed number of children (e.g., binary tree → 2)
 
-In your structure:
+In this structure:
 
 Nodes may connect to many others (radially, tangentially, across layers)
 
