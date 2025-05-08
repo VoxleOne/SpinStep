@@ -1,10 +1,12 @@
-Example of concentric spherical graph with **edges** and a possible **traversal visualization**.  we can:
+# Visualization
+
+Example of concentric spherical graph with **edges** and a possible **traversal visualization**.  We can:
 
 1. **Connect each node to the trunk** (center node),
 2. **Connect nodes between layers** (e.g., closest node in next layer),
 3. Optionally **animate a traversal**, like BFS or DFS.
 
-Here's a code that adds **edges from each node to the center and to corresponding nodes on adjacent layers** for a visual traversal structure:
+Here's a code that adds edges from each node to the center and to corresponding nodes on adjacent layers for a visual traversal structure:
 
 ```python
 import numpy as np
