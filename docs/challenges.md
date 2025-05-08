@@ -1,6 +1,7 @@
 Spherical 3D graph structures are generally more computationally intensive than their 2D counterparts, for a few key reasons:
+---
 
-🧮 1. Dimensionality Explosion
+## 🧮 1. Dimensionality Explosion
 
 2D trees typically use (x, y) positions, which are simpler to calculate, store, and traverse.
 
@@ -13,8 +14,9 @@ Distance computations
 Memory usage
 
 Visualization and rendering cost
+---
 
-🔁 2. Traversal Complexity
+## 🔁 2. Traversal Complexity
 
 In 2D trees (like binary or quad trees), traversal follows simple patterns (e.g., left/right or cardinal directions).
 
