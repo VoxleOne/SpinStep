@@ -2,6 +2,7 @@
 
 Spherical 3D graph structures are generally more computationally intensive than their 2D counterparts, for a few key reasons:
 
+
 ## 🧮 1. Dimensionality Explosion
 
 
@@ -17,6 +18,7 @@ Spherical 3D graph structures are generally more computationally intensive than 
 
 + Visualization and rendering cost
 
+
 ## 🔁 2. Traversal Complexity
 
 
@@ -27,6 +29,7 @@ Spherical 3D graph structures are generally more computationally intensive than 
 + You need spherical distance metrics (like geodesic distance)
 
 + Traversal across layers or around a sphere involves quaternion math or rotation matrices, which are costlier than 2D vectors
+  
 
 ## 🔗 3. Connectivity
 
@@ -41,15 +44,16 @@ Spherical 3D graph structures are generally more computationally intensive than 
 ## 📊 4. Rendering Overhead
 
 
-3D visualization requires more from the GPU/CPU:
++ 3D visualization requires more from the GPU/CPU:
 
-Perspective transforms
++ Perspective transforms
 
-Depth sorting
++ Depth sorting
 
-Lighting/shading (if applied)
++ Lighting/shading (if applied)
 
-Interactive navigation (rotation, zoom, pan)
++ Interactive navigation (rotation, zoom, pan)
+  
 
 ## ⚖️ Summary:
 
