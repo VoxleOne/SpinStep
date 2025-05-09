@@ -1,3 +1,5 @@
+# Use Cases
+
 SpinStep is a kind of spatial or rotational graph structure, traversal method, or system that uses spherical geometry and rotation, involving quaternions.
 
 🔍 If SpinStep is a model of traversal / graph organization:
