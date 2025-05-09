@@ -8,7 +8,7 @@ This documentation provides insight into the motivation, technology, and future 
 2. [Challenges](02_technical_justification.md)
 3. [Basics](03_use_cases.md)
 4. [Use Cases](04_architecture.md)
-5. [CVisualization](05_challenges.md)
+5. [Visualization](05_challenges.md)
 6. [Pathways Forward](06_pathways_forward.md)
 7. [Glossary](glossary.md)
 8. [References](references.md)
