@@ -1,6 +1,6 @@
 # SpinStep
 
-**SpinStep** is a proof-of-concept, quaternion-driven traversal framework for trees and orientation-based data structures.
+**SpinStep** is a proof-of-concept quaternion-driven traversal framework for trees and orientation-based data structures.
 
 By leveraging the power of 3D rotation math, SpinStep enables traversal based not on position or order — but on orientation. This makes it ideal for spatial reasoning, robotics, 3D scene graphs, and anywhere quaternion math naturally applies.
 
