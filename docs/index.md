@@ -4,11 +4,11 @@ This documentation provides insight into the motivation, technology, and future 
 
 ## Table of Contents
 
-1. [Motivation](01_motivation.md)
-2. [Technical Justification](02_technical_justification.md)
-3. [Use Cases](03_use_cases.md)
-4. [System Architecture](04_architecture.md)
-5. [Challenges](05_challenges.md)
+1. [Rationale](01_motivation.md)
+2. [Challenges](02_technical_justification.md)
+3. [Basics](03_use_cases.md)
+4. [Use Cases](04_architecture.md)
+5. [CVisualization](05_challenges.md)
 6. [Pathways Forward](06_pathways_forward.md)
 7. [Glossary](glossary.md)
 8. [References](references.md)
