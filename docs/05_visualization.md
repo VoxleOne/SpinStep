@@ -85,9 +85,9 @@ plt.show()
 * **Edges between layers**: Simulates upward traversal or graph expansion.
 * Light `alpha` values keep the plot readable even with many lines.
   
-## Adding a third dimension
+## Adding a third dimension - FS Analogy
 
-In the SpinStep traversal framework, where movement is represented as rotations using quaternions rather than positional steps, a file system modeled as a concentric spherical graph introduces a unique analogy for a "directory." Let’s break this down and address the equivalent of a directory in this context, considering the provided code and visualization.
+In the SpinStep traversal framework, where movement is represented as rotations using quaternions rather than positional steps, a file system modeled as a concentric spherical graph introduces a unique analogy for a "directory." Let’s address the equivalent of a directory in this context, considering the provided code and visualization.
 
 ### Analogy of a Directory in a Spherical Graph File System
 In a traditional file system, a directory is a container that organizes files and other directories, forming a hierarchical structure. In a spherical graph where nodes are arranged on concentric spheres (layers) and connected to a central "trunk" node and adjacent layers, the equivalent of a directory could be conceptualized as:
