@@ -85,7 +85,7 @@ plt.show()
 * **Edges between layers**: Simulates upward traversal or graph expansion.
 * Light `alpha` values keep the plot readable even with many lines.
   
-## Adding a third di
+## Adding a third dimension
 
 In the SpinStep traversal framework, where movement is represented as rotations using quaternions rather than positional steps, a file system modeled as a concentric spherical graph introduces a unique analogy for a "directory." Let’s break this down and address the equivalent of a directory in this context, considering the provided code and visualization.
 
