@@ -6,7 +6,7 @@ Example of concentric spherical graph with **edges** and a possible **traversal 
 2. **Connect nodes between layers** (e.g., closest node in next layer),
 3. Optionally **animate a traversal**, like BFS or DFS.
 
-![3d graph](/assets/graph.png)
+![3d graph](assets/graph.png)
 
 Here's a code that adds edges from each node to the center and to corresponding nodes on adjacent layers for a visual traversal structure:
 
