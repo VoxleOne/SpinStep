@@ -98,9 +98,6 @@ plt.show()
 * Light `alpha` values keep the plot readable even with many lines.
 
 ---
-To see the animated traversal, you’ll need to **log in to ChatGPT** to enable the Python execution feature. But no worries—here’s the full code so you can run it yourself in a Jupyter notebook or any Python environment with `matplotlib`, `numpy`, and `scipy` installed:
-
----
 
 ### 🌀 Animated Traversal of Spherical Graph
 
