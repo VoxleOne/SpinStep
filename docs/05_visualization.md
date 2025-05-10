@@ -199,6 +199,251 @@ HTML(ani.to_jshtml())
 ani.save("spherical_traversal.mp4", writer="ffmpeg", fps=10)
 ```
 ---
+Let's extend the previous spherical graph example with:
+
+#### 1. Tangential Connections
+
+We'll connect each node to a few nearest neighbors on the same layer, simulating movement along the sphere's surface.
+
+#### 2. Traversal Logic
+
+We’ll implement a breadth-first search (BFS) from the center to any node, using both radial and tangential connections.
+
+Here's the complete code with both features included:
+
+```python
+
+import numpy as np
+from scipy.spatial.transform import Rotation as R
+from collections import defaultdict, deque
+import matplotlib.pyplot as plt
+
+def fibonacci_sphere(samples=100, radius=1.0):
+    points = []
+    offset = 2.0 / samples
+    increment = np.pi * (3.0 - np.sqrt(5.0))
+    for i in range(samples):
+        y = ((i * offset) - 1) + (offset / 2)
+        r = np.sqrt(1 - y * y)
+        phi = ((i % samples) * increment) % (2 * np.pi)
+        x = np.cos(phi) * r
+        z = np.sin(phi) * r
+        points.append((radius * x, radius * y, radius * z))
+    return np.array(points)
+
+def build_graph_with_tangents(num_layers=3, nodes_per_layer=100, radius_step=1.0, k_tangent=3):
+    graph = defaultdict(list)
+    positions = {}
+
+    # Generate layers
+    layer_nodes = {}
+    for layer in range(num_layers):
+        r = (layer + 1) * radius_step
+        nodes = fibonacci_sphere(samples=nodes_per_layer, radius=r)
+        layer_nodes[layer] = []
+        for idx, pos in enumerate(nodes):
+            node_id = f"L{layer}_N{idx}"
+            positions[node_id] = pos
+            layer_nodes[layer].append(node_id)
+
+    # Build edges: radial + tangential
+    for layer in range(num_layers):
+        for i, node_id in enumerate(layer_nodes[layer]):
+            pos = positions[node_id]
+
+            # Radial: connect to nearest node in layer-1
+            if layer > 0:
+                prev_ids = layer_nodes[layer - 1]
+                closest = min(prev_ids, key=lambda nid: np.linalg.norm(positions[nid] - pos))
+                graph[node_id].append(closest)
+                graph[closest].append(node_id)
+
+            # Tangential: connect to k nearest on same layer
+            others = layer_nodes[layer][:i] + layer_nodes[layer][i+1:]
+            dists = sorted([(nid, np.linalg.norm(positions[nid] - pos)) for nid in others], key=lambda x: x[1])
+            for nid, _ in dists[:k_tangent]:
+                graph[node_id].append(nid)
+                graph[nid].append(node_id)
+
+    return graph, positions
+
+def bfs(graph, start, goal):
+    """Breadth-first search to find shortest path from start to goal."""
+    visited = set()
+    queue = deque([(start, [start])])
+    while queue:
+        current, path = queue.popleft()
+        if current == goal:
+            return path
+        if current in visited:
+            continue
+        visited.add(current)
+        for neighbor in graph[current]:
+            if neighbor not in visited:
+                queue.append((neighbor, path + [neighbor]))
+    return None
+
+# --- Build and visualize the graph ---
+graph, positions = build_graph_with_tangents(num_layers=3, nodes_per_layer=50, radius_step=1.0, k_tangent=3)
+
+# Pick a path from center outward
+start_node = 'L0_N0'
+end_node = 'L2_N10'
+path = bfs(graph, start_node, end_node)
+
+# --- Plotting ---
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot all nodes
+for node_id, pos in positions.items():
+    ax.scatter(*pos, s=8, color='b', alpha=0.4)
+
+# Plot all edges
+for node_id, neighbors in graph.items():
+    for neighbor in neighbors:
+        p1, p2 = positions[node_id], positions[neighbor]
+        ax.plot([p1[0], p2[0]], [p1[1], p2[1]], [p1[2], p2[2]], color='gray', linewidth=0.3, alpha=0.3)
+
+# Highlight path
+if path:
+    for i in range(len(path) - 1):
+        p1, p2 = positions[path[i]], positions[path[i+1]]
+        ax.plot([p1[0], p2[0]], [p1[1], p2[1]], [p1[2], p2[2]], color='red', linewidth=2)
+    for node in path:
+        ax.scatter(*positions[node], color='red', s=20)
+
+ax.set_title(f"3D Spherical Graph with Radial + Tangential Connections\nPath: {start_node} → {end_node}")
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+ax.set_zlabel("Z")
+plt.tight_layout()
+plt.show()
+```
+
+### What This Does:
+
+Builds a 3-layer spherical graph.
+
+Each node connects:
+
+Radially (to nearest in previous layer)
+
+Tangentially (to 3 nearest neighbors on same layer)
+
+Performs BFS to find a path from an inner node to an outer node.
+
+Visualizes the graph in 3D, with the shortest path highlighted in red.
+        x = np.cos(phi) * r
+        z = np.sin(phi) * r
+        points.append((radius * x, radius * y, radius * z))
+    return np.array(points)
+
+def build_graph_with_tangents(num_layers=3, nodes_per_layer=100, radius_step=1.0, k_tangent=3):
+    graph = defaultdict(list)
+    positions = {}
+
+    # Generate layers
+    layer_nodes = {}
+    for layer in range(num_layers):
+        r = (layer + 1) * radius_step
+        nodes = fibonacci_sphere(samples=nodes_per_layer, radius=r)
+        layer_nodes[layer] = []
+        for idx, pos in enumerate(nodes):
+            node_id = f"L{layer}_N{idx}"
+            positions[node_id] = pos
+            layer_nodes[layer].append(node_id)
+
+    # Build edges: radial + tangential
+    for layer in range(num_layers):
+        for i, node_id in enumerate(layer_nodes[layer]):
+            pos = positions[node_id]
+
+            # Radial: connect to nearest node in layer-1
+            if layer > 0:
+                prev_ids = layer_nodes[layer - 1]
+                closest = min(prev_ids, key=lambda nid: np.linalg.norm(positions[nid] - pos))
+                graph[node_id].append(closest)
+                graph[closest].append(node_id)
+
+            # Tangential: connect to k nearest on same layer
+            others = layer_nodes[layer][:i] + layer_nodes[layer][i+1:]
+            dists = sorted([(nid, np.linalg.norm(positions[nid] - pos)) for nid in others], key=lambda x: x[1])
+            for nid, _ in dists[:k_tangent]:
+                graph[node_id].append(nid)
+                graph[nid].append(node_id)
+
+    return graph, positions
+
+def bfs(graph, start, goal):
+    """Breadth-first search to find shortest path from start to goal."""
+    visited = set()
+    queue = deque([(start, [start])])
+    while queue:
+        current, path = queue.popleft()
+        if current == goal:
+            return path
+        if current in visited:
+            continue
+        visited.add(current)
+        for neighbor in graph[current]:
+            if neighbor not in visited:
+                queue.append((neighbor, path + [neighbor]))
+    return None
+
+# --- Build and visualize the graph ---
+graph, positions = build_graph_with_tangents(num_layers=3, nodes_per_layer=50, radius_step=1.0, k_tangent=3)
+
+# Pick a path from center outward
+start_node = 'L0_N0'
+end_node = 'L2_N10'
+path = bfs(graph, start_node, end_node)
+
+# --- Plotting ---
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot all nodes
+for node_id, pos in positions.items():
+    ax.scatter(*pos, s=8, color='b', alpha=0.4)
+
+# Plot all edges
+for node_id, neighbors in graph.items():
+    for neighbor in neighbors:
+        p1, p2 = positions[node_id], positions[neighbor]
+        ax.plot([p1[0], p2[0]], [p1[1], p2[1]], [p1[2], p2[2]], color='gray', linewidth=0.3, alpha=0.3)
+
+# Highlight path
+if path:
+    for i in range(len(path) - 1):
+        p1, p2 = positions[path[i]], positions[path[i+1]]
+        ax.plot([p1[0], p2[0]], [p1[1], p2[1]], [p1[2], p2[2]], color='red', linewidth=2)
+    for node in path:
+        ax.scatter(*positions[node], color='red', s=20)
+
+ax.set_title(f"3D Spherical Graph with Radial + Tangential Connections\nPath: {start_node} → {end_node}")
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+ax.set_zlabel("Z")
+plt.tight_layout()
+plt.show()
+```
+
+### 🔍 What This Does:
+
+Builds a 3-layer spherical graph.
+
+Each node connects:
+
+Radially (to nearest in previous layer)
+
+Tangentially (to 3 nearest neighbors on same layer)
+
+Performs BFS to find a path from an inner node to an outer node.
+
+Visualizes the graph in 3D, with the shortest path highlighted in red.
+
+---
   
 ## Adding a third dimension - FS Analogy
 
