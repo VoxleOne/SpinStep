@@ -64,4 +64,5 @@ Traversal Cost	Low	Medium to High
 Edge Complexity	Fixed	Variable, often dense
 Memory Use	Lower	Higher
 Visualization Load	Minimal	Moderate to Heavy
+
 That said, with modern hardware and good algorithms, moderately sized spherical graphs (hundreds to a few thousand nodes) are very manageable.
