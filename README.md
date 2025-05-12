@@ -20,7 +20,7 @@ By leveraging the power of 3D rotation math, SpinStep enables traversal based no
 
 ---
 
-## 🔧 Example Use Case
+## Example Use Case
 
 ```python
 from spinstep import Node, QuaternionDepthIterator
@@ -39,7 +39,7 @@ for node in iterator:
 
 ---
 
-## 📦 Requirements
+## Requirements
 
 - Python 3.8+  
 - `numpy`  
@@ -53,7 +53,7 @@ pip install numpy scipy
 
 ---
 
-## 🧠 Concepts
+## Concepts
 
 SpinStep uses quaternion rotation to determine if a child node is reachable from a given orientation. Only children whose orientations lie within a defined angular threshold (default: 45°) of the current rotation state are traversed.
 
@@ -70,9 +70,9 @@ This mimics rotational motion or attention in physical and virtual spaces — id
 
 ---
 
-## 🧭 What Would It Mean to “Rotate into Branches”?
+## What Would It Mean to “Rotate into Branches”?
 
-### ✅ 1. Quaternion as a Branch Selector
+### 1. Quaternion as a Branch Selector
 
 - Each node in a graph or tree encodes a rotational state (quaternion)  
 - Traversal is guided by a current quaternion state  
@@ -82,7 +82,7 @@ This mimics rotational motion or attention in physical and virtual spaces — id
 
 ---
 
-### ✅ 2. Quaternion-Based Traversal Heuristics
+### 2. Quaternion-Based Traversal Heuristics
 
 Instead of:
 
@@ -103,14 +103,14 @@ next_node = rotate(current_orientation, branch_orientation)
 
 ---
 
-### ✅ 3. Multi-Dimensional Trees with Quaternion Keys
+### 3. Multi-Dimensional Trees with Quaternion Keys
 
 - Use quaternion distance (angle) to decide which branches to explore or when to stop  
 - Think of it like a quaternion-aware k-d tree  
 
 ---
 
-### ✨ Visual Metaphor
+### Visual Metaphor
 
 Imagine walking through a tree **not** left/right — but by **rotating** in space:
 
@@ -120,7 +120,7 @@ Imagine walking through a tree **not** left/right — but by **rotating** in spa
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 spinstep/
@@ -142,7 +142,7 @@ setup.py
 
 ---
 
-## 🚀 To Build and Install Locally
+## To Build and Install Locally
 
 First, clone the repository:
 
