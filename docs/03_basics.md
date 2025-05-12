@@ -2,7 +2,7 @@
 
 Let’s walk through a simple example of how to use quaternions to place nodes evenly on a sphere, and then use those rotations to move between them — all while building the structure of our spherical graph.
 
-### Setup: Sphere with Nodes at Radius r
+## Setup: Sphere with Nodes at Radius r
 
 Assume:
 
@@ -10,7 +10,7 @@ Assume:
 
     Our goal: Rotate this vector in various directions to generate other points on a sphere of radius r
 
-#### Step 1: Rotate Around Axes Using Quaternions
+### Step 1: Rotate Around Axes Using Quaternions
 
 To place a node at angle θ from the initial vector, do:
 
@@ -28,9 +28,9 @@ def rotate_vector(vector, axis, angle_deg):
 
     angle_deg: Angle of rotation
 
-#### Step 2: Generate Nodes on Sphere Surface
+### Step 2: Generate Nodes on Sphere Surface
 
-Here’s how you could generate points on a single spherical layer:
+Here’s how to generate points on a single spherical layer:
 
 def generate_sphere_nodes(num_lat, num_lon, radius=1.0):
     """Generate nodes over a sphere using latitude/longitude-like placement."""
@@ -48,7 +48,7 @@ def generate_sphere_nodes(num_lat, num_lon, radius=1.0):
 
 This gives us a structured grid of nodes on a spherical shell. We could then connect neighbors based on proximity or indexing.
 
-#### Step 3: Use Quaternions to Traverse Between Directions
+### Step 3: Use Quaternions to Traverse Between Directions
 
 To move from one direction to another:
 
@@ -74,7 +74,7 @@ def get_rotation_quaternion(v1, v2):
 
 Then apply this rotation to the structure to traverse or generate new orientations.
 
-🤝 Connecting It All: Spherical Graph
+Connecting It All: Spherical Graph
 
     Layers = spheres of increasing radius
 
