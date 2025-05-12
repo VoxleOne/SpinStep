@@ -1,4 +1,4 @@
-# 🔷 Quaternion Graph Neural Networks (QGNNs)
+# 🔷 QGNNs Integration
 
 Let’s explore how **SpinStep** conceptually relates to the **Quaternion Graph Neural Networks (QGNN)**. While they operate in different domains (SpinStep in traversal logic, QGNN in deep learning), they share foundational principles rooted in quaternion mathematics and graph structures.
 
