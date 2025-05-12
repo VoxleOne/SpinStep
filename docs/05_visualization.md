@@ -90,7 +90,7 @@ ax.set_xlabel("X")
 ax.set_ylabel("Y")
 ax.set_zlabel("Z")
 ax.legend()
-plt.tight_layout()
+plt.tight_lawet()
 plt.show()
 
 ```
@@ -193,7 +193,7 @@ HTML(ani.to_jshtml())
 
 ---
 
-📌 **Tip**: You can also export it as a `.mp4` or `.gif` by using:
+📌 **Tip**: we can also export it as a `.mp4` or `.gif` by using:
 
 ```python
 ani.save("spherical_traversal.mp4", writer="ffmpeg", fps=10)
@@ -257,7 +257,7 @@ The code could be extended to animate traversal (e.g., BFS or DFS):
 - Use Matplotlib’s `FuncAnimation` to update the plot, highlighting visited nodes and edges in sequence.
 
 ### Challenges and Considerations
-- **Node-to-File Mapping**: In a real file system, files have names and metadata. You’d need a way to map nodes (defined by `(x, y, z)`) to file names, perhaps using a dictionary or metadata stored at each node.
+- **Node-to-File Mapping**: In a real file system, files have names and metadata. we’d need a way to map nodes (defined by `(x, y, z)`) to file names, perhaps using a dictionary or metadata stored at each node.
 - **Quaternion Precision**: Since SpinStep uses quaternions, traversals must account for numerical precision in rotations to avoid drift when navigating between nodes.
 - **Scalability**: The code generates a fixed number of nodes per sphere (`num_lat * num_lon`). A real file system might require dynamic node creation as files are added.
 
