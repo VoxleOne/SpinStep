@@ -23,7 +23,7 @@ We can reason about the potential security advantages of an hypothetical 3D file
 
 ### Performance Penalties
 
-The SpinStep proposal likely incurs performance overhead due to its unconventional design. Based on the concept, here are some potential penalties:
+SpinStep incurs performance overhead due to its unconventional design. Here are some potential penalties:
 
 1. **Increased Computational Complexity**:
    - Navigating a 3D file system requires computing spatial relationships (e.g., distances, rotations, or transformations) rather than simple pointer dereferencing in a tree-based system. For example, resolving a file’s location in SpinStep might involve matrix operations or geometric calculations, which are more computationally intensive than traditional path resolution.
@@ -72,5 +72,3 @@ While the security benefits are compelling, there are caveats to consider:
 ### Conclusion
 
 The SpinStep 3D file system, as conceptualized, offers intriguing security advantages through spatial complexity, granular access control, resistance to traditional exploits, dynamic state management, and enhanced auditability. These benefits could offset performance penalties in high-security or niche applications where data protection is critical, such as secure data storage, intellectual property management, or spatial data workflows. However, the trade-offs depend on the implementation’s efficiency, user experience, and scalability. For general-purpose computing, the performance overhead and compatibility challenges might outweigh the security gains, but in targeted scenarios, SpinStep’s innovative approach could provide a compelling alternative to traditional file systems.
-
-If you’d like, I can dig deeper into specific aspects of SpinStep’s design (e.g., by analyzing the repository’s code or documentation) or explore how it compares to other experimental file systems. Let me know![](https://github.com/topics/vox?o=asc&s=stars)
