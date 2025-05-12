@@ -131,19 +131,17 @@ The traditional metaphor of movement — stepping from point A to point B — is
 
 By recasting traversal as rotation:
 
-    Continuity becomes primary, rather than incidental.
-
-    Orientation becomes stateful, not just representational.
-
-    Paths become expressive, encoding not just endpoints but the transitions between them.
++Continuity becomes primary, rather than incidental.
++Orientation becomes stateful, not just representational.
++Paths become expressive, encoding not just endpoints but the transitions between them.
 
 This has implications beyond navigation:
 
-    In perception: systems that prioritize what they are facing, not just where they are.
++In perception: systems that prioritize what they are facing, not just where they are.
 
-    In planning: agents that evolve strategies by rotating through configurations, not leaping across them.
++In planning: agents that evolve strategies by rotating through configurations, not leaping across them.
 
-    In representation: spaces where orientation is the organizing axis — not as metadata, but as structure.
++In representation: spaces where orientation is the organizing axis — not as metadata, but as structure.
 
 The choice to use quaternions is not a stylistic one. It is a geometric commitment — to treat rotation not as a byproduct of movement, but as its medium. This commitment introduces overhead, yes, but it also removes distortions that simpler abstractions introduce — distortions that grow more costly as systems scale or become embodied.
 
