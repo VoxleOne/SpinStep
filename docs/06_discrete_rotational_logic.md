@@ -143,7 +143,7 @@ Each `q_NOT` is a 180° quaternion around X. You now rotate between logic states
 
 ---
 
-## Visualization (Optional)
+## Visualization
 
 Visualize the system in 3D space:
 
