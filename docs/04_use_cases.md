@@ -30,7 +30,7 @@ In 3D motion planning (especially in aerial, underwater, or space robotics), Spi
 
 + SpinStep could be a layout algorithm for visualizing large networks or hierarchies with a focus on radial symmetry or emphasis from the center outward.
 
-5. Quantum or Symbolic Modeling
+## 5. Quantum or Symbolic Modeling
    
 + The name SpinStep evokes quantum spin or rotational symmetry.
 
