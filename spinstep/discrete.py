@@ -1,17 +1,36 @@
 import numpy as np
 from scipy.spatial.transform import Rotation as R
+from sklearn.neighbors import BallTree
 
 class DiscreteOrientationSet:
     def __init__(self, orientations):
         arr = np.array(orientations)
         if arr.ndim != 2 or arr.shape[1] != 4:
             raise ValueError("Each orientation must be a quaternion [x, y, z, w]")
-        # Normalize all quaternions and check for near-zero norm
         norms = np.linalg.norm(arr, axis=1)
         if np.any(norms < 1e-8):
             raise ValueError("Zero or near-zero quaternion in orientation set")
         arr = arr / norms[:, None]
         self.orientations = arr
+
+        # Precompute rotation vectors for BallTree
+        self.rotvecs = R.from_quat(arr).as_rotvec()
+        if len(arr) > 100:
+            self._balltree = BallTree(self.rotvecs)
+        else:
+            self._balltree = None
+
+    def query_within_angle(self, quat, angle):
+        """Return indices of orientations within the given angle of quat."""
+        rv = R.from_quat(quat).as_rotvec().reshape(1, -1)
+        if self._balltree is not None:
+            # BallTree in rotation vector space, Euclidean distance ≈ angle for small rotations
+            inds = self._balltree.query_radius(rv, r=angle)[0]
+        else:
+            # Brute force for small sets
+            dists = np.linalg.norm(self.rotvecs - rv, axis=1)
+            inds = np.where(dists < angle)[0]
+        return inds
 
     # ... rest unchanged ...
 
