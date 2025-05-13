@@ -10,9 +10,9 @@ It could be useful in domains that involve rotation, directionality, and layered
 
 In 3D motion planning (especially in aerial, underwater, or space robotics), SpinStep could model:
 
-+Smooth transitions between orientations
++ Smooth transitions between orientations
 
-+Layered movement around an origin (like a docking station or target)
++ Layered movement around an origin (like a docking station or target)
 
 ✅ 2. Virtual Worlds / Game Design
 You could use it to organize levels or node networks spatially around a player or origin point.
