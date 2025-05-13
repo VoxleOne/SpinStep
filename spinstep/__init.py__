@@ -1,2 +1,4 @@
 from .node import Node
 from .traversal import QuaternionDepthIterator
+from .discrete import DiscreteOrientationSet
+from .discrete_iterator import DiscreteQuaternionIterator
