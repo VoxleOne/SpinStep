@@ -2,16 +2,18 @@ import numpy as np
 from scipy.spatial.transform import Rotation as R
 
 class DiscreteOrientationSet:
-    """
-    Represents a set of discrete orientations (as quaternions) for traversal.
-    Useful for cube/icosahedral symmetry, grid sampling, or user-defined sets.
-    """
-
     def __init__(self, orientations):
-        """
-        orientations: (N, 4) array-like of quaternions [x, y, z, w]
-        """
-        self.orientations = np.array(orientations)
+        arr = np.array(orientations)
+        if arr.ndim != 2 or arr.shape[1] != 4:
+            raise ValueError("Each orientation must be a quaternion [x, y, z, w]")
+        # Normalize all quaternions and check for near-zero norm
+        norms = np.linalg.norm(arr, axis=1)
+        if np.any(norms < 1e-8):
+            raise ValueError("Zero or near-zero quaternion in orientation set")
+        arr = arr / norms[:, None]
+        self.orientations = arr
+
+    # ... rest unchanged ...
 
     @classmethod
     def from_cube(cls):
