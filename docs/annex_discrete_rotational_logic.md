@@ -34,8 +34,6 @@ q1 * q2 * q3 = identity
 
 where each `qi` is a discrete transformation, and the loop returns the system to its original state.
 
----
-
 ## 3. **State Machines in Orientation Space**
 
 A **state machine** can be represented as a **graph of states**, with transitions as **quaternion rotations** between orientations.
