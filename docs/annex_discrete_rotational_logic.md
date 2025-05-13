@@ -143,7 +143,7 @@ Each `q_NOT` is a 180° quaternion around X. You now rotate between logic states
 
 ---
 
-## 📐 Visualization (Optional)
+## Visualization (Optional)
 
 Visualize the system in 3D space:
 
@@ -154,7 +154,7 @@ Visualize the system in 3D space:
 
 ---
 
-## 🔁 Use Cases
+## Use Cases
 
 * Reversible symbolic logic systems (like negations, toggles)
 * Abstract inference machines where steps are **geometric**, not just syntactic
@@ -169,7 +169,7 @@ Awesome — let’s sketch out a **quaternion-driven graph traversal engine**, w
 
 ---
 
-## 🧭 High-Level Concept
+## High-Level Concept
 
 Each node in the graph has a quaternion value `q_node`.
 
@@ -186,7 +186,7 @@ The engine stores:
 
 ---
 
-## 🧱 Minimal Python Skeleton
+## Minimal Python Skeleton
 
 Here’s a simplified version of such an engine:
 
@@ -245,18 +245,15 @@ print("Apply NOT →", walker.traverse("NOT"))
 print("Apply PASS →", walker.traverse("PASS"))
 ```
 
----
-
-## 🧠 Features We You Can Add
+## Features We Can Add
 
 1. **State expansion** — support more than `TRUE`/`FALSE`: e.g. `MAYBE`, `UNKNOWN`, `INVERTED`, etc.
 2. **3D visualization** — plot quaternion orientations as points on a 3D sphere.
 3. **Graph weights** — transitions could be probabilistic or cost-based.
 4. **Dynamic learning** — embed a Quaternion GNN (QGNN) to adjust rotations from training data.
 5. **Cycle detection** — explore quaternion paths that return to the origin (logical tautologies?).
-To run Python code with visualization in ChatGPT, you'll need to [log in to ChatGPT](https://chat.openai.com) with a Pro account that has code interpreter access.
 
-In the meantime, here's the complete code you can run on your own machine to see a **quaternion-based logic graph traversal engine with 3D visualization**:
+Here's the code we can run to see a **quaternion-based logic graph traversal engine with 3D visualization**:
 
 ---
 
