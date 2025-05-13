@@ -50,6 +50,14 @@ Install dependencies via pip:
 ```bash
 pip install numpy scipy
 ```
+## Node Requirements
+
+- `.orientation`: Quaternion as `[x, y, z, w]`, always normalized.
+- `.children`: Iterable of nodes.
+- Node constructor and orientation set utilities always normalize quaternions and check for zero-norm.
+- `angle_threshold` parameters are always in radians.
+
+All core functions will raise `ValueError` or `AttributeError` if these invariants are violated.
 
 ---
 
