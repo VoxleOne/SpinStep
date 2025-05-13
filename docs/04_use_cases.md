@@ -14,47 +14,52 @@ In 3D motion planning (especially in aerial, underwater, or space robotics), Spi
 
 + Layered movement around an origin (like a docking station or target)
 
-✅ 2. Virtual Worlds / Game Design
-You could use it to organize levels or node networks spatially around a player or origin point.
+## 2. Virtual Worlds / Game Design
 
-Combat arenas, puzzle structures, or enemy wave designs could follow spherical layer logic.
++ You could use it to organize levels or node networks spatially around a player or origin point.
 
-✅ 3. Knowledge Navigation / Concept Mapping
-Representing knowledge as concentric layers (core concepts → deeper or branching ideas) connected by rotational shifts.
++ Combat arenas, puzzle structures, or enemy wave designs could follow spherical layer logic.
 
-Could be used in educational software or visual storytelling.
+## 3. Knowledge Navigation / Concept Mapping
 
-✅ 4. Data Visualization
-SpinStep could be a layout algorithm for visualizing large networks or hierarchies with a focus on radial symmetry or emphasis from the center outward.
++ Representing knowledge as concentric layers (core concepts → deeper or branching ideas) connected by rotational shifts.
 
-✅ 5. Quantum or Symbolic Modeling
-The name SpinStep evokes quantum spin or rotational symmetry.
++ Could be used in educational software or visual storytelling.
 
-If it uses discrete rotational steps, it might model certain symbolic logic, cyclical processes, or state machines in a novel way.
+## 4. Data Visualization
 
-////
++ SpinStep could be a layout algorithm for visualizing large networks or hierarchies with a focus on radial symmetry or emphasis from the center outward.
 
-there are a few highly specialized niches where quaternion-based traversal and spherical 3D trees are not only justifiable but offer unique advantages that can outweigh performance costs due to their geometric fidelity and rotational symmetry handling:
+5. Quantum or Symbolic Modeling
+   
++ The name SpinStep evokes quantum spin or rotational symmetry.
 
-🔬 1. Astronomical Simulations & Space Navigation
-Use case: Mapping and traversing star catalogs, celestial bodies, or orbital paths where orientation matters more than Cartesian proximity.
++ If it uses discrete rotational steps, it might model certain symbolic logic, cyclical processes, or state machines in a novel way.
 
-Why quaternions?: They avoid gimbal lock, preserve rotational continuity, and naturally represent spherical surfaces — perfect for navigating a spherical star field or space-time event graph.
+There are a few highly specialized niches where quaternion-based traversal and spherical 3D trees are not only justifiable but offer unique advantages that can outweigh performance costs due to their geometric fidelity and rotational symmetry handling:
 
-🤖 2. Robot Joint Planning in Constrained 3D Environments
-Use case: Articulated robots or drones navigating via attitude-based heuristics (pitch/yaw/roll instead of X/Y/Z).
+## 🔬 1. Astronomical Simulations & Space Navigation
++ Use case: Mapping and traversing star catalogs, celestial bodies, or orbital paths where orientation matters more than Cartesian proximity.
 
-Why?: Planning in SO(3) (3D rotation space) is often more intuitive for actuators that rotate, like robotic arms or gimbals. Quaternion traversal mimics how they naturally operate.
++ Why quaternions?: They avoid gimbal lock, preserve rotational continuity, and naturally represent spherical surfaces — perfect for navigating a spherical star field or space-time event graph.
 
-🧠 3. Neural Representations in Embodied AI
-Use case: AI agents that operate in simulated or real 3D environments, learning via sensory-motor inputs — especially in reinforcement learning with spatial memory.
+## 🤖 2. Robot Joint Planning in Constrained 3D Environments
 
-Why?: Representing spatial relationships via rotations instead of positions can lead to more topologically-aware policies, useful in orientation-critical tasks (e.g. gaze control, vestibular responses).
++ Use case: Articulated robots or drones navigating via attitude-based heuristics (pitch/yaw/roll instead of X/Y/Z).
 
-🎮 4. Procedural Generation in Spherical or Planet-Based Worlds
-Use case: Games or simulations with planets, spherical dungeons, or globe-based navigation.
++ Why?: Planning in SO(3) (3D rotation space) is often more intuitive for actuators that rotate, like robotic arms or gimbals. Quaternion traversal mimics how they naturally operate.
 
-Why?: Traditional quadtrees/Octrees break down on spheres. A quaternion-based tree enables natural subdivision of rotation space (e.g., using icosphere mapping or HEALPix-style trees).
+## 🧠 3. Neural Representations in Embodied AI
+
++ Use case: AI agents that operate in simulated or real 3D environments, learning via sensory-motor inputs — especially in reinforcement learning with spatial memory.
+
++ Why?: Representing spatial relationships via rotations instead of positions can lead to more topologically-aware policies, useful in orientation-critical tasks (e.g. gaze control, vestibular responses).
+
+## 🎮 4. Procedural Generation in Spherical or Planet-Based Worlds
+
++ Use case: Games or simulations with planets, spherical dungeons, or globe-based navigation.
+
++ Why?: Traditional quadtrees/Octrees break down on spheres. A quaternion-based tree enables natural subdivision of rotation space (e.g., using icosphere mapping or HEALPix-style trees).
 
 🧬 5. Protein Folding or Molecular Docking
 Use case: Modeling how molecules rotate and fit in binding sites.
