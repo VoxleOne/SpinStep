@@ -26,7 +26,7 @@ Quaternions are particularly good at modeling **cyclical or periodic systems**:
   * Biological or ecological cycles (e.g. predator-prey models)
   * Game state transitions with rotational symmetry (e.g. Rubik’s cube logic)
 
-You could define a cycle like:
+We could define a cycle like:
 
 ```
 q1 * q2 * q3 = identity
