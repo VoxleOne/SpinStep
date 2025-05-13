@@ -66,7 +66,7 @@ Building a **quaternion logic engine** where each rotation corresponds to a logi
 
 ---
 
-## 🧠 Quaternion Logic Engine: A Minimal Example
+## Quaternion Logic Engine: A Minimal Example
 
 Let’s define:
 
