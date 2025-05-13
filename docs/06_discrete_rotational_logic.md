@@ -257,7 +257,7 @@ Here's the code we can run to see a **quaternion-based logic graph traversal eng
 
 ---
 
-### ✅ Quaternion Logic Graph (Python)
+### Quaternion Logic Graph (Python)
 
 ```python
 import numpy as np
@@ -336,7 +336,7 @@ plt.show()
 
 ---
 
-### 🛠 Requirements
+### Requirements
 
 * Python 3.8+
 * `numpy-quaternion`: `pip install numpy-quaternion`
