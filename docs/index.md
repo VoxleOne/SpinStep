@@ -5,12 +5,19 @@ This documentation provides insight into the motivation, technology, and future 
 ## Table of Contents
 
 1. [Rationale](01_rationale.md)
-2. [Challenges](02_challenges.md)
+2. [Architecture](02_architecture.md)
 3. [Basics](03_basics.md)
 4. [Use Cases](04_use_cases.md)
 5. [Visualization](05_visualization.md)
-6. [Pathways Forward](06_pathways_forward.md)
-7. [Glossary](glossary.md)
-8. [References](references.md)
-9. [Contributing](contributing.md)
+6. [Discrete Traversal](06_discrete_traversal.md)
+7. [API Reference](api_reference.md)
+   
++ [CONTRIBUTING](CONTRIBUTING.md)
+  
+### ANNEXES
+
++ [Challenges](annex_challenges.md)
++ [Discrete Rotational Logics](annex_discrete_rotational_logics.md)
++ [Quaternion Graph Neural Networks](annex_qgnn.md)
++ [Quaternion Graph Security](annex_security.md)
 
