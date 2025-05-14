@@ -1,36 +1,56 @@
-import numpy as np
-from scipy.spatial.transform import Rotation as R
-from sklearn.neighbors import BallTree
+from spinstep.utils.array_backend import get_array_module
 
 class DiscreteOrientationSet:
-    def __init__(self, orientations):
-        arr = np.array(orientations)
+    def __init__(self, orientations, use_cuda=False):
+        xp = get_array_module(use_cuda)
+        arr = xp.array(orientations)
         if arr.ndim != 2 or arr.shape[1] != 4:
             raise ValueError("Each orientation must be a quaternion [x, y, z, w]")
-        norms = np.linalg.norm(arr, axis=1)
-        if np.any(norms < 1e-8):
+        norms = xp.linalg.norm(arr, axis=1)
+        if xp.any(norms < 1e-8):
             raise ValueError("Zero or near-zero quaternion in orientation set")
         arr = arr / norms[:, None]
         self.orientations = arr
+        self.xp = xp
+        self.use_cuda = use_cuda
 
-        # Precompute rotation vectors for BallTree
-        self.rotvecs = R.from_quat(arr).as_rotvec()
-        if len(arr) > 100:
-            self._balltree = BallTree(self.rotvecs)
-        else:
-            self._balltree = None
+        # Only for CPU/NumPy mode: BallTree for fast queries
+        self._balltree = None
+        if not use_cuda:
+            from scipy.spatial.transform import Rotation as R
+            from sklearn.neighbors import BallTree
+            self.rotvecs = R.from_quat(arr).as_rotvec()
+            if len(arr) > 100:
+                self._balltree = BallTree(self.rotvecs)
+            else:
+                self._balltree = None
 
     def query_within_angle(self, quat, angle):
         """Return indices of orientations within the given angle of quat."""
-        rv = R.from_quat(quat).as_rotvec().reshape(1, -1)
-        if self._balltree is not None:
-            # BallTree in rotation vector space, Euclidean distance ≈ angle for small rotations
-            inds = self._balltree.query_radius(rv, r=angle)[0]
+        if self.use_cuda:
+            # Brute force: batch math on GPU
+            # Convert quat to rotvec on CPU, then broadcast to GPU
+            import numpy as np
+            from scipy.spatial.transform import Rotation as R
+            rv = R.from_quat(np.array(quat)).as_rotvec().reshape(1, -1)
+            rv_gpu = self.xp.array(rv)
+            dists = self.xp.linalg.norm(self.orientations - rv_gpu, axis=1)
+            inds = self.xp.where(dists < angle)[0]
+            return inds
         else:
-            # Brute force for small sets
-            dists = np.linalg.norm(self.rotvecs - rv, axis=1)
-            inds = np.where(dists < angle)[0]
-        return inds
+            from scipy.spatial.transform import Rotation as R
+            rv = R.from_quat(quat).as_rotvec().reshape(1, -1)
+            if self._balltree is not None:
+                inds = self._balltree.query_radius(rv, r=angle)[0]
+            else:
+                dists = self.xp.linalg.norm(self.rotvecs - rv, axis=1)
+                inds = self.xp.where(dists < angle)[0]
+            return inds
+
+    def as_numpy(self):
+        if self.use_cuda:
+            return self.xp.asnumpy(self.orientations)
+        return self.orientations
 
     # ... rest unchanged ...
 
