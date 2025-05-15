@@ -1,6 +1,4 @@
-[build-system]
-requires = ["setuptools>=42", "wheel"]
-build-backend = "setuptools.build_meta"
+uild-backend = "setuptools.build_meta"
 
 # Empty project table to avoid metadata conflicts
 [project]
@@ -13,4 +11,4 @@ dynamic = ["dependencies", "readme", "license", "authors"]
 
 # Skip package discovery completely - just use what's in setup.py
 [tool.setuptools.dynamic]
-version = {attr = "spinStep.__version__"}
+version = {attr = "SpinStep.__version__"}
