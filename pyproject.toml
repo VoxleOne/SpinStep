@@ -1,25 +1,16 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# Empty project table to avoid metadata conflicts
 [project]
 name = "SpinStep"
 version = "0.1.0"
-description = "A quaternion-based tree traversal framework for orientation-aware data structures."
-authors = [
-    { name = "Eraldo Marques", email = "eraldo.bernardo@gmail.com" }
-]
-license = { text = "MIT" }  # Use this format for clarity
-readme = "README.md"
+description = "Quaternion-driven traversal framework"
 requires-python = ">=3.8"
+# Mark everything as dynamic to let setup.py handle it
+dynamic = ["dependencies", "readme", "license", "authors"]
 
-dependencies = [
-    "numpy>=1.22",
-    "scipy>=1.8"
-]
-
-[project.optional-dependencies]
-dev = [
-    "pytest",
-    "flake8"
-]
-
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+# Skip package discovery completely - just use what's in setup.py
+[tool.setuptools.dynamic]
+version = {attr = "spinStep.__version__"}
