@@ -1,15 +1,25 @@
-[build-system]
-requires = ["setuptools>=42", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "SpinStep"
 version = "0.1.0"
-description = "A quaternion-driven traversal framework for trees and orientation-based data structures"
+description = "A quaternion-based tree traversal framework for orientation-aware data structures."
 authors = [
-    {name = "Eraldo Marques", email = "eraldo.bernardo@gmail.com"}
+    { name = "Eraldo Marques", email = "eraldo.bernardo@gmail.com" }
 ]
+license = { text = "MIT" }  # Use this format for clarity
+readme = "README.md"
 requires-python = ">=3.8"
 
-[tool.setuptools]
-packages = ["SpinStep"]
+dependencies = [
+    "numpy>=1.22",
+    "scipy>=1.8"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "flake8"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
