@@ -1,25 +1,42 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "spinstep"
-version = "0.1.0"
-description = "A quaternion-based tree traversal framework for orientation-aware data structures."
+name = "spinStep"
+version = "0.1.0"  # You can adjust this version
+description = "SpinStep: Computational library with CUDA support"
 authors = [
-    { name = "Eraldo Marques", email = "eraldo.bernardo@gmail.com" }
+    {name = "Eraldo Marques", email = "eraldo.bernardo@gmail.com}
 ]
-license = { text = "MIT" }  # Use this format for clarity
 readme = "README.md"
 requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 
+# This section assumes your existing package structure
+# You can adjust dependencies based on your actual requirements
 dependencies = [
-    "numpy>=1.22",
-    "scipy>=1.8"
+    "numpy",
+    "scipy",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest",
-    "flake8"
+    "pytest-cov",
+]
+cuda = [
+    "cupy-cuda11x",  # Adjust CUDA version as needed
 ]
 
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+[tool.setuptools]
+# Use automatic discovery to avoid structure changes
+packages = "find:"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
