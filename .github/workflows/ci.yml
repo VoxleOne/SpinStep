@@ -2,7 +2,7 @@ name: SpinStep CI
 
 on:
   push:
-    branches: [main, dev, 'features/**']
+    branches: [main, dev, 'features/cuda']
   pull_request:
     branches: [main, dev]
 
