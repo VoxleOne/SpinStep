@@ -1,14 +1,14 @@
-uild-backend = "setuptools.build_meta"
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
 
-# Empty project table to avoid metadata conflicts
+# Most minimal configuration possible
 [project]
 name = "SpinStep"
-version = "0.1.0"
-description = "Quaternion-driven traversal framework"
+version = "0.0.0"  # Placeholder version
+description = "Work in progress"
 requires-python = ">=3.8"
-# Mark everything as dynamic to let setup.py handle it
-dynamic = ["dependencies", "readme", "license", "authors"]
 
-# Skip package discovery completely - just use what's in setup.py
-[tool.setuptools.dynamic]
-version = {attr = "SpinStep.__version__"}
+# Skip package discovery completely
+[tool.setuptools]
+py-modules = []  # Empty list - don't try to find any packages
