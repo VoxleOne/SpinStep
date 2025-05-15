@@ -7,7 +7,7 @@ name = "spinStep"
 version = "0.1.0"  # You can adjust this version
 description = "SpinStep: Computational library with CUDA support"
 authors = [
-    {name = "Eraldo Marques", email = "eraldo.bernardo@gmail.com}
+    {name = "Eraldo Marques", email = "eraldo.bernardo@gmail.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.8"
