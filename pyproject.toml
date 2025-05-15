@@ -1,64 +1,19 @@
-[build-system]
-requires = ["setuptools>=61", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "spinstep"
 version = "0.1.0"
-description = "A Python toolkit for batch and tree-based orientation math (SO(3), quaternions, etc)."
+description = "A quaternion-based tree traversal framework for orientation-aware data structures."
 authors = [
-    { name = "Eraldo B. Marques", email = "eraldo.bernardo@gmail.com" }
+    { name="Your Name", email="your@email.com" }
 ]
-license = { file = "LICENSE" }
+license = "MIT"
 readme = "README.md"
 requires-python = ">=3.8"
+
 dependencies = [
-    "numpy>=1.22",
-    "scipy>=1.8",
-    "scikit-learn>=1.0",
-    # Optional: If you want to recommend CuPy for CUDA users but not require it
-    # "cupy; extra == 'cuda'",
+    "numpy >= 1.22",
+    "scipy >= 1.8"
 ]
 
-[project.optional-dependencies]
-dev = [
-    "pytest",
-    "pytest-cov",
-    "black",
-    "mypy",
-    "flake8",
-    "isort",
-    "pre-commit",
-    "wheel",
-    "build",
-    "twine",
-    # Add any other dev/test tools you use here
-]
-docs = [
-    "mkdocs",
-    "mkdocs-material",
-    # Add other doc tools as needed
-]
-cuda = [
-    "cupy",
-]
-
-[tool.setuptools]
-packages = ["spinstep"]
-
-[tool.setuptools.packages.find]
-where = ["spinstep"]
-
-[tool.pytest.ini_options]
-minversion = "6.0"
-addopts = "-ra -q"
-testpaths = [
-    "tests",
-]
-
-[tool.black]
-line-length = 88
-target-version = ["py38", "py39", "py310"]
-
-[tool.isort]
-profile = "black"
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
