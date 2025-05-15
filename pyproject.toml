@@ -3,7 +3,7 @@ name = "spinstep"
 version = "0.1.0"
 description = "A quaternion-based tree traversal framework for orientation-aware data structures."
 authors = [
-    { name = "Your Name", email = "your@email.com" }
+    { name = "Eraldo Marques", email = "eraldo.bernardo@gmail.com" }
 ]
 license = { text = "MIT" }  # Use this format for clarity
 readme = "README.md"
