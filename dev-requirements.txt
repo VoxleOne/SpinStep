@@ -4,13 +4,13 @@ numba>=0.57
 cython>=0.29
 cupy-cuda12x  # Replace `12x` with your actual CUDA version (e.g. `cupy-cuda12`)
 
-# GPU tooling (optional)
+# Optional GPU tooling
 pycuda
 
 # Testing
 pytest
 
-# Code quality / tooling (optional)
+# Optional Code quality / tooling
 black
 ruff
 mypy
