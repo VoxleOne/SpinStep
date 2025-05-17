@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spinstep"
+version = "0.1.0"
+description = "Quaternion-based geometric traversal experiment"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.22",
+    "scipy>=1.10"
+]
+
+[project.optional-dependencies]
+dev = [
+    "matplotlib>=3.7",
+    "numba>=0.57",
+    "cython>=0.29",
+    "cupy-cuda12x",  # Replace with your CUDA version, e.g., cupy-cuda12
+    "pycuda",
+    "pytest",
+    "black",
+    "ruff",
+    "mypy"
+]
+
+[tool.setuptools]
+packages = ["spinstep"]  # Adjust if you use a different package structure
+
+[tool.black]
+line-length = 88
+
+[tool.mypy]
+strict = true
+
+[tool.ruff]
+line-length = 88
