@@ -10,7 +10,9 @@ This documentation provides insight into the motivation, technology, and future 
 4. [Use Cases](04_use_cases.md)
 5. [Visualization](05_visualization.md)
 6. [Discrete Traversal](06_discrete_traversal.md)
-7. [API Reference](api_reference.md)
+7. [CUDA Support](07_cuda_support.md)
+8. [Troubleshooting & FAQ](08_troubleshooting.md)
+9. [API Reference](09_API_reference.md)
    
 + [CONTRIBUTING](CONTRIBUTING.md)
   

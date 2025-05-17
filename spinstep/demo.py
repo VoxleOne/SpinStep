@@ -1,3 +1,7 @@
+# demo.py — MIT License
+# Author: Eraldo Marques <eraldo.bernardo@gmail.com> — Created: 2025-05-14
+# See LICENSE.txt for full terms. This header must be retained in redistributions.
+
 from spinstep.node import Node
 from spinstep.traversal import QuaternionDepthIterator
 from spinstep.quaternion_utils import quaternion_from_euler
@@ -6,8 +10,6 @@ from spinstep.quaternion_utils import quaternion_from_euler
 # .Defines a 3D orientation tree with yaw/pitch/roll variations.
 # .Applies a quaternion-based depth-first traversal.
 # .Only visits nodes that lie within a given angular threshold (like aiming a "cone" of rotation).
-
-    Only visits nodes that lie within a given angular threshold (like aiming a "cone" of rotation).
 
 def build_demo_tree():
     """Build a small tree with varied 3D orientations (yaw, pitch, roll)."""

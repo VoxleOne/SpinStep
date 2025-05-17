@@ -1,3 +1,7 @@
+# demo4_discrete_traversal.py — MIT License
+# Author: Eraldo Marques <eraldo.bernardo@gmail.com> — Created: 2025-05-14
+# See LICENSE.txt for full terms. This header must be retained in redistributions.
+
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 from spinstep.node import Node
