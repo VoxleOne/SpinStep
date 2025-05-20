@@ -4,7 +4,7 @@
 
 from spinstep.node import Node
 from spinstep.traversal import QuaternionDepthIterator
-from spinstep.quaternion_utils import quaternion_from_euler
+from spinstep.utils.quaternion_utils import quaternion_from_euler
 
 #What This Demo Does
 # .Defines a 3D orientation tree with yaw/pitch/roll variations.
