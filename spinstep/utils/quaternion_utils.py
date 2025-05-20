@@ -43,14 +43,6 @@ def rotation_matrix_to_quaternion(m):
     else: s=np.sqrt(1+m[2,2]-m[0,0]-m[1,1])*2; qz=0.25*s; qw=(m[1,0]-m[0,1])/s; qx=(m[0,2]+m[2,0])/s; qy=(m[1,2]+m[2,1])/s
     q=np.array([qx,qy,qz,qw]); n=np.linalg.norm(q); return q/n if n>1e-8 else np.array([0.,0.,0.,1.])
 
-def get_healpix_pixel_orientation(nside, ipix, nest=False):
-    theta,phi=hp.pix2ang(nside,ipix,nest=nest,lonlat=False); e_r=np.array(hp.pix2vec(nside,ipix,nest=nest))
-    if not (np.isclose(theta,0)or np.isclose(theta,np.pi)):
-        e_t=np.array([np.cos(theta)*np.cos(phi),np.cos(theta)*np.sin(phi),-np.sin(theta)]); e_p=np.array([-np.sin(phi),np.cos(phi),0])
-    elif np.isclose(theta,0): e_p=np.array([-np.sin(phi),np.cos(phi),0]); e_t=np.array([np.cos(phi),np.sin(phi),0])
-    else: e_p=np.array([-np.sin(phi),np.cos(phi),0]); e_t=np.array([-np.cos(phi),-np.sin(phi),0])
-    R_m=np.array([e_p,-e_t,e_r]).T; return rotation_matrix_to_quaternion(R_m)
-
 def get_relative_spin(nf,nt):
     qfc=quaternion_conjugate(nf.orientation); qr=quaternion_multiply(qfc,nt.orientation); n=np.linalg.norm(qr)
     return qr/n if n>1e-8 else np.array([0.,0.,0.,1.])
