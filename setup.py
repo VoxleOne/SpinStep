@@ -4,8 +4,8 @@ setup(
     name="spinstep",
     version="0.1.0",
     description="Quaternion-based tree traversal for orientation-aware structures.",
-    author="Your Name",
-    author_email="your@email.com",
+    author="Eraldo Marques",
+    author_email="eraldo.bernardo@gmail.com",
     license="MIT",
     packages=find_packages(),
     install_requires=[
