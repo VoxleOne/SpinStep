@@ -2,7 +2,7 @@
 matplotlib>=3.7
 numba>=0.57
 cython>=0.29
-cupy-cuda12x  # Replace `12x` with your actual CUDA version (e.g. `cupy-cuda12`)
+cupy
 
 # Optional GPU tooling
 pycuda
