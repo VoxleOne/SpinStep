@@ -4,7 +4,6 @@
 
 import numpy as np
 from scipy.spatial.transform import Rotation as Rfrom scipy.spatial.transform import Rotation as R
-import numpy as np # Added for np.pi and small number comparison
 
 class QuaternionDepthIterator:
     DEFAULT_DYNAMIC_THRESHOLD_FACTOR = 0.3 # Example: threshold is 30% of the step angle
