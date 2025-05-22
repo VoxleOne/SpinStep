@@ -7,7 +7,7 @@ from spinstep.utils.array_backend import get_array_module
 # import sys # Not needed for sys.path anymore for this issue
 
 class DiscreteOrientationSet:
-    def __init__(self, orientations, use_cuda=False):
+    def __init__(self, orientations, use_cuda=False): # Ensure this signature is correct
         print(f"[DiscreteOrientationSet __init__] Received orientations type: {type(orientations)}, use_cuda: {use_cuda}")
         if orientations is None:
             raise ValueError("Orientations cannot be None in DiscreteOrientationSet constructor")
