@@ -3,7 +3,7 @@
 # See LICENSE.txt for full terms. This header must be retained in redistributions.
 
 import numpy as np
-from scipy.spatial.transform import Rotation as Rfrom scipy.spatial.transform import Rotation as R
+from scipy.spatial.transform import Rotation as R
 
 class QuaternionDepthIterator:
     DEFAULT_DYNAMIC_THRESHOLD_FACTOR = 0.3 # Example: threshold is 30% of the step angle
