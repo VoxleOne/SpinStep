@@ -2,8 +2,15 @@
 # Author: Eraldo B. Marques <eraldo.bernardo@gmail.com> — Created: 2025-05-16
 # See LICENSE.txt for full terms.
 
-import numpy as np
 import pytest
+try:
+    import cupy
+    cupy.cuda.runtime.getDeviceCount() # Throws error if no device
+    cuda_available = True
+except (ImportError, cupy.cuda.runtime.CUDARuntimeError):
+    cuda_available = False
+
+import numpy as np
 from scipy.spatial.transform import Rotation as R
 
 # Import the modules under test
@@ -93,9 +100,9 @@ class TestDiscreteOrientationSet:
         # Query within large angle - should find all three
         results = orientation_set.query_within_angle([0, 0, 0, 1], np.pi/3)
         assert len(results) == 3
-    
-    @pytest.mark.skipif(not np.array([True]), reason="CUDA not available")
-    def test_cuda_support(self):
+
+    @pytest.mark.skipif(not cuda_available, reason="CUDA not available or no CUDA devices found")
+    def test_cuda_support(self):     
         try:
             cuda_set = DiscreteOrientationSet([[0, 0, 0, 1]], use_cuda=True)
             # If this succeeds, basic CUDA import worked
@@ -183,30 +190,38 @@ class TestDiscreteQuaternionIterator:
     def test_traversal(self):
         # With large angle threshold, should visit all nodes
         iterator = DiscreteQuaternionIterator(
-            self.root, 
+            self.root,
             self.orientation_set,
             angle_threshold=np.pi/2,  # Very permissive
             max_depth=3
         )
-        
+
         visited_nodes = list(iterator)
         visited_ids = [node.id for node in visited_nodes]
-        
+
         # Should have visited all nodes in some order
-        for node_id in ["root", "A", "B", "C", "D", "E", "F"]:
+        # (Assuming 'A', 'B', 'C', 'D', 'E', 'F' are direct or indirect children
+        # and reachable with the orientation_set and permissive angle)
+        expected_node_ids_large_threshold = ["root", "A", "B", "C", "D", "E", "F"]
+        for node_id in expected_node_ids_large_threshold:
             assert node_id in visited_ids
-        
-        # With tiny threshold, should only visit root
+        assert len(visited_ids) == len(expected_node_ids_large_threshold) # Ensures no extra nodes
+
+        # With tiny threshold (but perfect match for 'A' still exists)
         iterator = DiscreteQuaternionIterator(
-            self.root, 
+            self.root,
             self.orientation_set,
             angle_threshold=np.pi/64,  # Very restrictive
             max_depth=3
         )
-        
-        visited_nodes = list(iterator)
-        assert len(visited_nodes) == 1
-        assert visited_nodes[0].id == "root"
+
+        visited_nodes_tiny_threshold = list(iterator)
+        visited_ids_tiny_threshold = [node.id for node in visited_nodes_tiny_threshold]
+
+        # Expect root and node_a due to perfect match in orientation_set for the root-to-A step
+        assert len(visited_ids_tiny_threshold) == 2
+        assert self.root.id in visited_ids_tiny_threshold
+        assert self.node_a.id in visited_ids_tiny_threshold # self.node_a from setup_method
     
     def test_max_depth(self):
         # With max_depth=1, should only visit root and its direct children
