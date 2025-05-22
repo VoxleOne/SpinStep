@@ -7,7 +7,7 @@ import pytest
 from scipy.spatial.transform import Rotation as R
 
 # Import the modules under test
-from spinstep.orientations.discrete import DiscreteOrientationSet
+from spinstep.discrete import DiscreteOrientationSet
 from spinstep.discrete_iterator import DiscreteQuaternionIterator
 
 # Simple node class for testing
