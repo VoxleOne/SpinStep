@@ -1,10 +1,11 @@
-print("!!!!!!!!!!!!!! EXECUTING THIS CLEANED VERSION OF discrete.py !!!!!!!!!!!!!!")
-print(f"!!!!!!!!!!!!!! Date: { '2025-05-22 14:50:00 UTC (approx)' } !!!!!!!!!!!!!!")
+# discrete.py — MIT License
+# Author: Eraldo B. Marques <eraldo.bernardo@gmail.com> — Created: 2025-05-14
+# See LICENSE.txt for full terms. This header must be retained in redistributions.
 
 import numpy as np
-from scipy.spatial.transform import Rotation as R # Module-level import should be sufficient now
+from scipy.spatial.transform import Rotation as R
 from spinstep.utils.array_backend import get_array_module
-# import sys # Not needed for sys.path anymore for this issue
+
 
 class DiscreteOrientationSet:
     def __init__(self, orientations, use_cuda=False): # Ensure this signature is correct
