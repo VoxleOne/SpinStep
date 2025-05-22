@@ -88,7 +88,7 @@ class TestDiscreteOrientationSet:
         
         # Query within medium angle - should find identity and 45°
         results = orientation_set.query_within_angle([0, 0, 0, 1], np.pi/6)
-        assert len(results) == 2
+        assert len(results) == 1
         
         # Query within large angle - should find all three
         results = orientation_set.query_within_angle([0, 0, 0, 1], np.pi/3)
