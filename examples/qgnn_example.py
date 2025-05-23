@@ -403,7 +403,7 @@ class SphericalCNN(nn.Module):
         elif x.numel() == 0 and self.final_features_dim == 0: # Both are zero, FC is likely trivial
              x = torch.zeros(x.shape[0], 1, device=x.device, dtype=x.dtype) # for FC with 1 in_feature
         
-        x = x.view(x.size(0), -1) # Flatten
+        x = x.reshape(x.size(0), -1) # Flatten
         
         # Handle case for FC layer if input features became unexpectedly zero
         if self.fc.in_features == 1 and x.shape[1] == 0 : # FC expects 1, got 0
