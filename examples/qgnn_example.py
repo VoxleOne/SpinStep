@@ -417,6 +417,100 @@ class SphericalCNN(nn.Module):
 
         x = self.fc(x)
         return x
+#***********BENCHMARK**************
+# ... (all your existing imports like numpy, torch, nn, R_scipy should be at the top)
+# ... (all your existing class definitions like get_array_module, DiscreteOrientationSet, 
+#      SphericalConvLayer, SphericalPoolLayer, SphericalCNN should be above this point)
+
+def benchmarkable_cnn_operation(config_override=None, device_str_override=None, batch_size_override=None):
+    # This function is intended for benchmarking. Minimize prints.
+    
+    default_cnn_config = {
+        'use_cuda': False, # Default to False, can be overridden
+        'in_channels': 1, 
+        'layer0_lon': 8, 'layer0_lat': 3, 'layer0_width_deg': 50,
+        'kernel1_rows': 2, 'kernel1_cols': 2, 'kernel1_spacing_deg': 15, 'conv1_out_channels': 4,
+        'layer1_lon': 6, 'layer1_lat': 2, 'layer1_width_deg': 40,
+        'pool_kernel1_rows': 2, 'pool_kernel1_cols': 1, 'pool_kernel1_spacing_deg': 18, 'pool1_type': 'max',
+        'layer2_lon': 3, 'layer2_lat': 1, 'layer2_width_deg': 30,
+        'angular_threshold_deg': 30.0, # The value that worked from our previous debugging
+        'num_classes': 2
+    }
+    cnn_config = default_cnn_config.copy() # Start with defaults
+    if config_override:
+        cnn_config.update(config_override) # Apply overrides
+    
+    # Determine device for PyTorch
+    if device_str_override:
+        device = torch.device(device_str_override)
+    else:
+        device = torch.device("cuda" if cnn_config['use_cuda'] and torch.cuda.is_available() else "cpu")
+
+    # Ensure use_cuda in config matches the actual device being used, especially if CUDA isn't available
+    if device.type == 'cpu':
+        cnn_config['use_cuda'] = False
+    elif device.type == 'cuda':
+        cnn_config['use_cuda'] = True
+
+
+    model = SphericalCNN(config=cnn_config).to(device) # Assumes SphericalCNN is defined above
+    
+    batch_size_to_use = batch_size_override if batch_size_override is not None else 2
+    num_input_nodes = len(model.layer0_dos)
+    in_channels = cnn_config['in_channels']
+
+    if num_input_nodes == 0:
+        # For benchmarking, it's better to raise an error than print,
+        # as prints might be suppressed or go unnoticed.
+        raise ValueError("Input layer (layer0_dos) has 0 nodes. Check CNN configuration for benchmark.")
+    
+    dummy_input = torch.randn(batch_size_to_use, num_input_nodes, in_channels).to(device)
+    
+    # The core operation to benchmark: model forward pass
+    with torch.no_grad(): # Important for inference benchmarking
+        output = model(dummy_input)
+    
+    return output
+
+# --- Original Example Usage (or modified for benchmarking function) ---
+# The if __name__ == "__main__": block should come AFTER the function definition above.
+# You can either keep your original __main__ block or update it to use the new function.
+# Here's the version that uses the new function:
+if __name__ == "__main__":
+    print("Spherical CNN Example (Direct Run using benchmarkable_cnn_operation)")
+    
+    try:
+        print("Attempting direct run with default CPU config...")
+        output_cpu = benchmarkable_cnn_operation(device_str_override="cpu")
+        print("Direct run with CPU successful!")
+        print(f"Output tensor shape: {output_cpu.shape}")
+        # Ensure output is not empty before trying to access elements
+        if output_cpu.numel() > 0:
+             print(f"Output values (first batch, first item): {output_cpu[0,0]}")
+        else:
+             print("Output tensor is empty.")
+
+
+        if torch.cuda.is_available():
+            print("\nAttempting direct run with CUDA config...")
+            # For CUDA, ensure 'use_cuda': True is effectively set in the config passed to SphericalCNN
+            output_cuda = benchmarkable_cnn_operation(device_str_override="cuda") # This will set cnn_config['use_cuda']=True
+            print("Direct run with CUDA successful!")
+            print(f"Output tensor shape: {output_cuda.shape}")
+            if output_cuda.numel() > 0:
+                print(f"Output values (first batch, first item): {output_cuda[0,0]}")
+            else:
+                print("CUDA Output tensor is empty.")
+        else:
+            print("\nCUDA not available, skipping CUDA direct run example.")
+
+    except Exception as e:
+        print(f"Error during direct run: {e}")
+        import traceback
+        traceback.print_exc()
+
+
+#***********END BENCHMARK*******************
 
 # --- Example Usage ---
 if __name__ == "__main__":
