@@ -1,4 +1,4 @@
-# SpinStep - [Read the Docs](https://github.com/VoxLeone/SpinStep/tree/main/docs)
+# SpinStep - [Read the Docs](https://github.com/VoxLeone/SpinStep/tree/main/docs/index.md)
 
 **SpinStep** is a proof-of-concept quaternion-driven traversal framework for trees and orientation-based data structures.
 
