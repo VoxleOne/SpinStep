@@ -5,7 +5,7 @@
 By leveraging the power of 3D rotation math, SpinStep enables traversal based not on position or order — but on orientation. This makes it ideal for spatial reasoning, robotics, 3D scene graphs, and anywhere quaternion math naturally applies.
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/VoxLeone/SpinStep/main/docs/assets/quaternion-tree.png" alt="A 3D Graph concept image" style="max-width: 100% style="margin: 20px;" />
+  <img src="https://raw.githubusercontent.com/VoxLeone/SpinStep/docs/assets/quaternion-tree.png" alt="A 3D Graph concept image" style="max-width: 100% style="margin: 20px;" />
 </div>
 
 ---
