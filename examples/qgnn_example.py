@@ -14,7 +14,7 @@ def get_array_module(use_cuda=False):
             return np
     return np
 
-# --- SpinStep's DiscreteOrientationSet (incorporating our new methods) ---
+# --- SpinStep's DiscreteOrientationSet code (incorporating new methods) ---
 class DiscreteOrientationSet:
     def __init__(self, orientations, use_cuda=False):
         xp = get_array_module(use_cuda)
