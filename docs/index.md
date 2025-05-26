@@ -21,7 +21,7 @@ This documentation provides insight into the motivation, technology, and future 
 + [CONTRIBUTING](CONTRIBUTING.md)
     </td>
     <td style="width: 50%; background-color: #eee; text-align: center; vertical-align: middle; height: 150px;">
-      <img src="docs/assets/img/classical-vs-quaternion-traversal.png" alt="An artistic concept of a spherical graph" style="max-width: 100%;">
+      <img src="../docs/assets/img/classical-vs-quaternion-traversal.png" alt="An artistic concept of a spherical graph" style="max-width: 100%;">
     </td>
   </tr>
   <tr>
