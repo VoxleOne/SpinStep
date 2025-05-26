@@ -19,9 +19,9 @@ This documentation provides insight into the motivation, technology, and future 
       9. [API Reference](09_API_reference.md)
    
 + [CONTRIBUTING](CONTRIBUTING.md)
-      </td>
+    </td>
     <td style="width: 50%; background-color: #eee; text-align: center; vertical-align: middle; height: 150px;">
-      <img src="https://via.placeholder.com/100" alt="Image" style="max-width: 100%;">
+      <img src="docs/assets/img/classical-vs-quaternion-traversal.png" alt="An artistic concept of a spherical graph" style="max-width: 100%;">
     </td>
   </tr>
   <tr>
