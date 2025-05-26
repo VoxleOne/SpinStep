@@ -1,7 +1,3 @@
-Absolutely — this is a rich and thoughtful technical narrative, and with just the right formatting polish, it will shine as a centerpiece in your `index.md`. Here's a **refined, structured, and professional** version of your content for use in `benchmark/index.md`:
-
----
-
 # 🌀 A Spherical Convolutional Neural Network
 
 Our goal was ambitious yet focused: to construct a **Convolutional Neural Network (CNN)** capable of operating directly on **spherical data**. This required a harmonious blend of:
