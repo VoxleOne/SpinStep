@@ -44,11 +44,12 @@ for node in iterator:
 - Python 3.8+  
 - `numpy`  
 - `scipy`  
-
+- `scikit-learn`
+  
 Install dependencies via pip:
 
 ```bash
-pip install numpy scipy
+pip install numpy scipy scikit-learn
 ```
 ## Node Requirements
 
