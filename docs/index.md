@@ -20,7 +20,7 @@ This documentation provides insight into the motivation, technology, and future 
    
 + [CONTRIBUTING](CONTRIBUTING.md)
     </td>
-    <td style="width: 100%; background-color: #eee; text-align: center; vertical-align: middle; height: 100px;">
+    <td style="width: 5%; background-color: #eee; text-align: center; vertical-align: middle; height: 100px;">
       <img src="../docs/assets/img/docs-bg1.png" alt="An artistic concept of a spherical graph" style="max-width: 100%;">
     </td>
   </tr>
