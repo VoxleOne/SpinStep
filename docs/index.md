@@ -40,6 +40,3 @@ This documentation provides insight into the motivation, technology, and future 
     </td>
   </tr>
 </table>
-
-
-  
