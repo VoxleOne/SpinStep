@@ -32,7 +32,11 @@ This documentation provides insight into the motivation, technology, and future 
       <a href="annex_security.md">• Quaternion Graph Security</a>
     </td>
     <td style="background-color: #f8f8f8; text-align: center; vertical-align: middle; padding: 16px;">
-      <em>Optional content or image here</em>
+       <strong>Annexes</strong><br>
+      <a href="annex_challenges.md">• Challenges</a><br>
+      <a href="annex_discrete_rotational_logics.md">• Discrete Rotational Logics</a><br>
+      <a href="annex_qgnn.md">• Quaternion Graph Neural Networks</a><br>
+      <a href="annex_security.md">• Quaternion Graph Security</a>
     </td>
   </tr>
 </table>
