@@ -19,13 +19,13 @@ This documentation provides insight into the motivation, technology, and future 
       9. [API Reference](09_API_reference.md)
    
 + [CONTRIBUTING](CONTRIBUTING.md)
-    </td>
-    <td style="width: 5%; background-color: #eee; text-align: center; vertical-align: middle; height: 100px;">
+    </td>https://github.com/VoxLeone/SpinStep/blob/main/docs/index.md
+    <td style="width: 50%; background-color: #eee; text-align: center; vertical-align: middle; height: 150px;">
       <img src="../docs/assets/img/docs-bg1.png" alt="An artistic concept of a spherical graph" style="max-width: 100%;">
     </td>
   </tr>
   <tr>
-    <td style="background-color: #eee; text-align: center; vertical-align: middle; height: 150px;">
+    <td style="width:50%; background-color: #eee; text-align: center; vertical-align: middle; height: 150px;">
      ### ANNEXES
 
      + [Challenges](annex_challenges.md)
