@@ -6,7 +6,7 @@ Iimportant points to consider for the robustness and scalability of the project.
 
 When we talk about "large-scale graphs" in this context, I imagine scenarios where the number of nodes in our `DiscreteOrientationSet` objects becomes extremely large (e.g., millions or tens of millions, approaching resolutions used in detailed geophysical models, astronomical surveys, or complex molecular structures).
 
-**Implications for the Current Design:**
+### Implications for the Current Design:
 
 *   **`DiscreteOrientationSet` Storage & Initialization:**
     *   Storing millions of quaternions (each 4 floats) is generally feasible in memory, especially on GPUs.
