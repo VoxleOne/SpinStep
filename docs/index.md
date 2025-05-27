@@ -35,7 +35,7 @@ This documentation provides insight into the motivation, technology, and future 
       <table style="width: 100%;">
         <tr>
           <td style="width: 50%; text-align: center; vertical-align: top;">
-            <strong>Fully functional Spherica CNN</strong><br>
+            <strong>Fully Functional Spherical CNN</strong><br>
             <a href="https://github.com/VoxLeone/SpinStep">README.md</a><br>
             <a href="benchmark/qgnn.py">Edge Cases</a>
           </td>
