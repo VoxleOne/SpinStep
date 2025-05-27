@@ -34,12 +34,12 @@ This documentation provides insight into the motivation, technology, and future 
     <td style="background-color: #f8f8f8; padding: 16px;">
       <table style="width: 100%;">
         <tr>
-          <td style="width: 50%; vertical-align: top; text-align: center;">
+          <td style="width: 50%; text-align: center; vertical-align: top;">
             <strong>Quick Links</strong><br>
             <a href="https://github.com/VoxLeone/SpinStep">GitHub Repo</a><br>
             <a href="benchmark/qgnn.py">QGNN Benchmark</a>
           </td>
-          <td style="width: 50%; vertical-align: top; text-align: center;">
+          <td style="width: 50%; text-align: center; vertical-align: top;">
             <strong>Related Projects</strong><br>
             <a href="https://github.com/VoxLeone">Other Repos</a><br>
             <a href="https://pytorch.org">PyTorch</a>
@@ -49,4 +49,3 @@ This documentation provides insight into the motivation, technology, and future 
     </td>
   </tr>
 </table>
-
