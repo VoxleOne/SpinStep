@@ -24,7 +24,7 @@ This documentation provides insight into the motivation, technology, and future 
     </td>
   </tr>
   <tr>
-    <td style="background-color: #f8f8f8; vertical-align: top; padding: 16px;">
+    <td style="background-color: #f8f8f8; vertical-align: top; padding: 5px;">
       <strong>Annexes</strong><br>
       <a href="annex_challenges.md">• Challenges</a><br>
       <a href="annex_discrete_rotational_logics.md">• Discrete Rotational Logics</a><br>
