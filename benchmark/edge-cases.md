@@ -1,4 +1,6 @@
-Iimportant points to consider for the robustness and scalability of the project. Addressing these "liminal cases" is crucial for understanding the boundaries of the current design and for planning future enhancements.
+# Edge Cases
+
+Iimportant points to consider for the robustness and scalability of the project. Addressing these cases is crucial for understanding the boundaries of the current design and for planning future enhancements.
 
 ## 1. Large-Scale Graphs (Very High-Resolution Spherical Data)
 
