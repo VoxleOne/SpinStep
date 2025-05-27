@@ -26,7 +26,7 @@ When we talk about "large-scale graphs" in this context, I imagine scenarios whe
     *   For *arbitrary* large-scale graphs (e.g., social networks, citation graphs, or highly irregular point clouds embedded on a sphere), this specific geometric prior might be less appropriate. The concept of a "latitude band" might not even apply.
     *   "Local flat kernels" assume some degree of local planarity or regularity. On highly irregular graphs, defining a consistent "local patch" this way might be problematic.
 
-**Potential Directions & Considerations for Large-Scale Graphs:**
+### Potential Directions & Considerations for Large-Scale Graphs:
 
 *   **Advanced Spatial Indexing (GPU):** For GPU, explore more sophisticated spatial indexing structures beyond brute-force, such as k-d trees adapted for GPU, or grid-based methods (e.g., hashing grid cells) to quickly cull distant points before brute-force checks.
 *   **Sparse Operations:** If the graph is sparse (many nodes, but each only interacts with a few others), sparse tensor representations and operations in PyTorch could be beneficial. This would require a way to define the graph connectivity explicitly rather than relying solely on proximity queries.
