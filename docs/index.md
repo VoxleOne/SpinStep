@@ -31,12 +31,22 @@ This documentation provides insight into the motivation, technology, and future 
       <a href="annex_qgnn.md">• Quaternion Graph Neural Networks</a><br>
       <a href="annex_security.md">• Quaternion Graph Security</a>
     </td>
-    <td style="background-color: #f8f8f8; text-align: center; vertical-align: middle; padding: 16px;">
-       <strong>Annexes</strong><br>
-      <a href="annex_challenges.md">• Challenges</a><br>
-      <a href="annex_discrete_rotational_logics.md">• Discrete Rotational Logics</a><br>
-      <a href="annex_qgnn.md">• Quaternion Graph Neural Networks</a><br>
-      <a href="annex_security.md">• Quaternion Graph Security</a>
+    <td style="background-color: #f8f8f8; padding: 16px;">
+      <table style="width: 100%;">
+        <tr>
+          <td style="width: 50%; vertical-align: top; text-align: center;">
+            <strong>Quick Links</strong><br>
+            <a href="https://github.com/VoxLeone/SpinStep">GitHub Repo</a><br>
+            <a href="benchmark/qgnn.py">QGNN Benchmark</a>
+          </td>
+          <td style="width: 50%; vertical-align: top; text-align: center;">
+            <strong>Related Projects</strong><br>
+            <a href="https://github.com/VoxLeone">Other Repos</a><br>
+            <a href="https://pytorch.org">PyTorch</a>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
 </table>
+
