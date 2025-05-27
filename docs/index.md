@@ -6,7 +6,7 @@ This documentation provides insight into the motivation, technology, and future 
 
 <table>
   <tr>
-    <td style="width: 50%; background-color: #f8f8f8; vertical-align: top; padding: 16px;">
+    <td style="width: 50%; background-color: #f8f8f8; vertical-align: top; padding: 5px;">
       <strong>Documentation</strong><br>
       <a href="01_rationale.md">1. Rationale</a><br>
       <a href="02_architecture.md">2. Architecture</a><br>
