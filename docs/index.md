@@ -31,7 +31,7 @@ This documentation provides insight into the motivation, technology, and future 
       <a href="annex_qgnn.md">• Quaternion Graph Neural Networks</a><br>
       <a href="annex_security.md">• Quaternion Graph Security</a>
     </td>
-    <td style="background-color: #f8f8f8; padding: 16px;">
+    <td style="background-color: #f8f8f8; padding: 5px;">
       <table style="width: 100%;">
         <tr>
           <td style="width: 50%; text-align: center; vertical-align: top;">
