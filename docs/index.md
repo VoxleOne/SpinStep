@@ -35,13 +35,13 @@ This documentation provides insight into the motivation, technology, and future 
       <table style="width: 100%;">
         <tr>
           <td style="width: 50%; text-align: center; vertical-align: top;">
-            <strong>Quick Links</strong><br>
-            <a href="https://github.com/VoxLeone/SpinStep">GitHub Repo</a><br>
-            <a href="benchmark/qgnn.py">QGNN Benchmark</a>
+            <strong>Fully functional Spherica CNN</strong><br>
+            <a href="https://github.com/VoxLeone/SpinStep">README.md</a><br>
+            <a href="benchmark/qgnn.py">Edge Cases</a>
           </td>
           <td style="width: 50%; text-align: center; vertical-align: top;">
-            <strong>Related Projects</strong><br>
-            <a href="https://github.com/VoxLeone">Other Repos</a><br>
+            <strong>Runnable Files</strong><br>
+            <a href="https://github.com/VoxLeone">Edge Cases</a><br>
             <a href="https://pytorch.org">PyTorch</a>
           </td>
         </tr>
