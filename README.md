@@ -208,7 +208,7 @@ To build a wheel distribution:
 ```bash
 python -m build
 ```
-## [Benchmark {Link}](
+## [Benchmark - Link](benchmark/INSTRUCTIONS.md)
 ---
 
 ## 📜 License
