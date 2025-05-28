@@ -209,13 +209,11 @@ To build a wheel distribution:
 python -m build
 ```
 ---
-## [Benchmark - Link](benchmark/INSTRUCTIONS.md)
+## [Benchmark Instruction](benchmark/INSTRUCTIONS.md)
 
 ## 📜 License
 
 MIT — free to use, fork, and adapt.
-
----
 
 ## 💬 Feedback & Contributions
 
