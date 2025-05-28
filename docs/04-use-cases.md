@@ -66,7 +66,7 @@ Use case: Modeling how molecules rotate and fit in binding sites.
 
 Why?: Molecules often rotate freely in 3D space, and valid configurations depend on angle thresholds, making quaternion-based spatial filtering more chemically meaningful.
 
-# 🧭 Spherical Graph Construction Summary
+## 🧭 Spherical Graph Construction Summary
 
 | **Step** | **Purpose** | **Function / Code Snippet** | **Notes** |
 |----------|-------------|-----------------------------|-----------|
