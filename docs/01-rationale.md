@@ -9,18 +9,19 @@ This illustration contrasts:
 
 Left Side - Traditional Traversal:
 
-Shows nodes connected in a graph structure (A, B, C, D)
-Movement follows a position-based approach
-Path follows linear steps from point to point
-Traversal is determined by spatial distance between nodes
++ Shows nodes connected in a graph structure (A, B, C, D)
++ Movement follows a position-based approach
++ Path follows linear steps from point to point
++ Traversal is determined by spatial distance between nodes
+
 Right Side - SpinStep Quaternion Traversal:
 
-Shows movement as rotations rather than steps
-Uses a quaternion-based orientation system
-The current orientation rotates toward the target orientation
-Traversal selects paths based on angular proximity rather than positional distance
++ Shows movement as rotations rather than steps
++ Uses a quaternion-based orientation system
++ The current orientation rotates toward the target orientation
++ Traversal selects paths based on angular proximity rather than positional distance
 
-The key insight illustrated is that SpinStep represents a paradigm shift from thinking about traversal as "stepping from point A to B" to thinking about it as "rotating from one orientation to another" using quaternion mathematics. This creates a fundamentally different way of navigating through spaces or data structures.
+The key insight illustrated is that SpinStep represents a departure from thinking about traversal as "stepping from point A to B" to thinking about it as "rotating from one orientation to another" using quaternion mathematics. This creates a fundamentally different way of navigating through spaces or data structures.
 
 ## Application Domains: Orientation as Primary Constraint
 
