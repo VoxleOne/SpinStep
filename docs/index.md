@@ -34,15 +34,15 @@ This documentation provides insight into the motivation, technology, and future 
    <td style="background-color: #f8f8f8; padding: 1em; text-align: center; vertical-align: top;">
   <div style="margin-bottom: 1em;">
     <strong>Fully Functional Spherical CNN</strong><br>
-    <a href="README.md">README.md</a><br>
-    <a href="edge-cases.md">Edge Cases</a><br>
-    <a href="references.md">References</a><br>
+    <a href="benchmark/README.md">README.md</a><br>
+    <a href="benchmark/edge-cases.md">Edge Cases</a><br>
+    <a href="benchmark/references.md">References</a><br>
   </div>
   <div>
     <strong>Runnable Files</strong><br>
-    <a href="INSTRUCTIONS.md">Benchmark Instructions</a><br>
-    <a href="qgnn_example.py">Self-Contained CNN (Slow - see instructions)</a>
-    <a href="test_qgnn_benchmark.py">The Benchmark File</a>
+    <a href="benchmark/INSTRUCTIONS.md">Benchmark Instructions</a><br>
+    <a href="benchmark/qgnn_example.py">Self-Contained CNN (Slow - see instructions)</a>
+    <a href="benchmark/test_qgnn_benchmark.py">The Benchmark File</a>
   </div>
 </td>
 
