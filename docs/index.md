@@ -19,7 +19,7 @@ This documentation provides insight into the motivation, technology, and future 
       <a href="09-API-reference.md">9. API Reference</a><br>
       <a href="CONTRIBUTING.md">CONTRIBUTING</a>
     </td>
-    <td style="width: 50%; background-color: #f8f8f8; text-align: center; vertical-align: middle; padding: 16px;">
+    <td style="width: 50%; background-color: #f8f8f8; text-align: center; vertical-align: middle; padding: 5px;">
       <img src="assets/img/docs-bg1.png" alt="An artistic concept of a spherical graph" style="max-width: 100%; height: auto;">
     </td>
   </tr>
@@ -34,15 +34,15 @@ This documentation provides insight into the motivation, technology, and future 
    <td style="background-color: #f8f8f8; padding: 1em; text-align: center; vertical-align: top;">
   <div style="margin-bottom: 1em;">
     <strong>Fully Functional Spherical CNN</strong><br>
-    <a href="https://github.com/VoxLeone/SpinStep">README.md</a><br>
-    <a href="benchmark/qgnn.py">Edge Cases</a><br>
-    <a href="benchmark/qgnn.py">Edge Cases</a><br>
-    <a href="benchmark/qgnn.py">Edge Cases</a>
+    <a href="README.md">README.md</a><br>
+    <a href="edge-cases.md">Edge Cases</a><br>
+    <a href="references.md">Edge Cases</a><br>
   </div>
   <div>
     <strong>Runnable Files</strong><br>
-    <a href="https://github.com/VoxLeone">Edge Cases</a><br>
-    <a href="https://pytorch.org">PyTorch</a>
+    <a href="INSTRUCTIONS.md">Benchmark Instructions</a><br>
+    <a href="qgnn_example.py">Self-Contained CNN (Slow - see instructions)</a>
+    <a href="test_qgnn_benchmark.py">The Benchmark File</a>
   </div>
 </td>
 
