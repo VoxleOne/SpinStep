@@ -66,11 +66,19 @@ Use case: Modeling how molecules rotate and fit in binding sites.
 
 Why?: Molecules often rotate freely in 3D space, and valid configurations depend on angle thresholds, making quaternion-based spatial filtering more chemically meaningful.
 
-🌌 Summary
-Domain	Why Quaternions Matter
-Astrophysics / Cosmology	Spherical space, rotational coordinates
-Robotics	Actuator alignment, joint planning
-Embodied AI	Spatial attention, rotation-invariant learning
-Planetary/Procedural Games	Natural spherical subdivision
-Molecular Biology	Docking, folding, 3D angular constraints
+# 🧭 Spherical Graph Construction Summary
+
+| **Step** | **Purpose** | **Function / Code Snippet** | **Notes** |
+|----------|-------------|-----------------------------|-----------|
+| **1. Rotate Vector** | Rotate a vector around an axis using quaternions | `rotate_vector(vector, axis, angle_deg)` | Uses `scipy.spatial.transform.Rotation`; works in any 3D axis |
+| **2. Generate Nodes** | Create a grid of nodes on a sphere surface | `generate_sphere_nodes(num_lat, num_lon, radius)` | Latitude/longitude-style placement, skips poles |
+| **3. Compute Quaternion Rotation** | Find rotation from vector `v1` to `v2` | `get_rotation_quaternion(v1, v2)` | Handles special cases for 180° and 0° rotations |
+| **4. Apply Rotations** | Traverse or generate orientations on the sphere | Apply quaternion `q.apply(vector)` | Enables dynamic direction changes on sphere |
+| **5. Build Graph** | Connect nodes to form layers and edges | Radial: same direction across layers<br> Tangential: nearby nodes on layer | Proximity or quaternion steps determine edges |
+
+---
+
+> 💡 Use these steps to build a scalable, quaternion-based 3D graph with both radial and tangential connectivity.
+
+
 If your domain involves spherical topology, orientation-sensitive decisions, or angle-based heuristics, quaternions give a conceptual and geometric clarity that's hard to replicate with position-only trees.
