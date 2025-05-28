@@ -31,23 +31,20 @@ This documentation provides insight into the motivation, technology, and future 
       <a href="annex-qgnn.md">• Quaternion Graph Neural Networks</a><br>
       <a href="annex-security.md">• Quaternion Graph Security</a>
     </td>
-    <td style="background-color: #f8f8f8; padding: 5px;">
-      <table style="width: 100%; vertical-align: top">
-        <tr>
-          <td style="width: 50%; text-align: center; vertical-align: top;">
-            <strong>Fully Functional Spherical CNN</strong><br>
-            <a href="https://github.com/VoxLeone/SpinStep">README.md</a><br>
-            <a href="benchmark/qgnn.py">Edge Cases</a>
-            <a href="benchmark/qgnn.py">Edge Cases</a>
-            <a href="benchmark/qgnn.py">Edge Cases</a>
-          </td>
-          <td style="width: 50%; text-align: center; vertical-align: top;">
-            <strong>Runnable Files</strong><br>
-            <a href="https://github.com/VoxLeone">Edge Cases</a><br>
-            <a href="https://pytorch.org">PyTorch</a>
-          </td>
-        </tr>
-      </table>
-    </td>
+   <td style="background-color: #f8f8f8; padding: 1em; text-align: center; vertical-align: top;">
+  <div style="margin-bottom: 1em;">
+    <strong>Fully Functional Spherical CNN</strong><br>
+    <a href="https://github.com/VoxLeone/SpinStep">README.md</a><br>
+    <a href="benchmark/qgnn.py">Edge Cases</a><br>
+    <a href="benchmark/qgnn.py">Edge Cases</a><br>
+    <a href="benchmark/qgnn.py">Edge Cases</a>
+  </div>
+  <div>
+    <strong>Runnable Files</strong><br>
+    <a href="https://github.com/VoxLeone">Edge Cases</a><br>
+    <a href="https://pytorch.org">PyTorch</a>
+  </div>
+</td>
+
   </tr>
 </table>
