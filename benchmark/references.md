@@ -1,9 +1,5 @@
 + # References for further reading
 
-## Spherical CNNs
-
-https://arxiv.org/abs/1801.10130
-
 ## Convolutional Networks for Spherical Signals
 
 https://arxiv.org/abs/1709.04893
@@ -11,6 +7,10 @@ https://arxiv.org/abs/1709.04893
 ## Efficient Generalized Spherical CNNS
 
 https://arxiv.org/abs/2010.11661
+
+## Spherical CNNs
+
+https://arxiv.org/abs/1801.10130
 
 ## Spherical Transformer: Adapting Spherical Signal to Convolutional Networks
 
