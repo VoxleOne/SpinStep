@@ -38,6 +38,8 @@ This documentation provides insight into the motivation, technology, and future 
             <strong>Fully Functional Spherical CNN</strong><br>
             <a href="https://github.com/VoxLeone/SpinStep">README.md</a><br>
             <a href="benchmark/qgnn.py">Edge Cases</a>
+            <a href="benchmark/qgnn.py">Edge Cases</a>
+            <a href="benchmark/qgnn.py">Edge Cases</a>
           </td>
           <td style="width: 50%; text-align: center; vertical-align: top;">
             <strong>Runnable Files</strong><br>
