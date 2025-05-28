@@ -131,17 +131,7 @@ The CNN layers exclusively use `DiscreteOrientationSet` as their interface to ge
 
 ---
 
-## 💡 A Creative Spark: Quaternions for Secure Indexing
-
-An exciting tangent explored using **quaternions for database indexing**, hinting at:
-
-* Data obfuscation through rotational mappings
-* Transformation-based access control
-* Cryptographic or security-focused extensions of geometric indexing
-
----
-
-## 🎯 Conclusion
+## 🎯 Wrap-up
 
 This project was a true blend of geometry, machine learning, and low-level implementation. The `SphericalCNN` demonstrates:
 
