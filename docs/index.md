@@ -36,7 +36,7 @@ This documentation provides insight into the motivation, technology, and future 
     <strong>Fully Functional Spherical CNN</strong><br>
     <a href="README.md">README.md</a><br>
     <a href="edge-cases.md">Edge Cases</a><br>
-    <a href="references.md">Edge Cases</a><br>
+    <a href="references.md">References</a><br>
   </div>
   <div>
     <strong>Runnable Files</strong><br>
