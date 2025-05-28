@@ -209,7 +209,7 @@ To build a wheel distribution:
 python -m build
 ```
 ---
-## [Benchmark Instruction](benchmark/INSTRUCTIONS.md)
+## [Benchmark Instructions](benchmark/INSTRUCTIONS.md)
 
 ## 📜 License
 
