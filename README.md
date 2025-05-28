@@ -134,17 +134,54 @@ Imagine walking through a tree **not** left/right — but by **rotating** in spa
 ```
 spinstep/
 ├── __init__.py
+├── discrete.py
+├── discrete_iterator.py
 ├── node.py
-├── traversal.py         # Core iterator logic
-├── quaternion_utils.py  # Quaternion math helpers
-├── demo.py
+├── traversal.py
+└── utils/
+    ├── array_backend.py
+    ├── quaternion_math.py
+    └── quaternion_utils.py
+
+benchmark/
+├── edge-cases.md
+├── INSTRUCTIONS.md
+├── qgnn_example.py
+├── README.md
+├── references.md
+└── test_qgnn_benchmark.py
+
+demos/
 ├── demo1_tree_traversal.py
 ├── demo2_full_depth_traversal.py
 ├── demo3_spatial_traversal.py
-README.md
+├── demo4_discrete_traversal.py
+└── demo.py
+
+examples/
+└── gpu_orientation_matching.py
+
+tests/
+├── test_discrete_traversal.py
+└── test_spinstep.py
+
+docs/
+├── assets/
+│   ├── img/
+│   │   └── (...)         # Images go here
+│   └── notebooks/
+│       └── (...)         # Jupyter notebooks or rendered outputs
+├── CONTRIBUTING.md
+└── index.md
+
+# Root files
+CHANGELOG.md
 LICENSE
-pyproject.toml
 MANIFEST.in
+pyproject.toml
+README.md
+requirements.txt
+dev-requirements.txt
 setup.cfg
 setup.py
 ```
