@@ -1,4 +1,4 @@
-# References for further reading
++ # References for further reading
 
 ## Spherical CNNs
 
