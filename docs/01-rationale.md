@@ -3,7 +3,10 @@
 The SpinStep traversal framework concept uses quaternions to represent movement as rotations rather than positional steps.
 Bellow an SVG illustration that visualizes this concept. Here's a diagram showing the difference between traditional point-to-point traversal and the quaternion-based rotational approach:
 
-![Comparison Diagram](assets/img/classical-vs-quaternion-traversal2.png)
+<p align="center">
+  <img src="assets/img/classical-vs-quaternion-traversal2.png" alt="Comparison Diagram" />
+</p>
+
 
 This illustration contrasts:
 
