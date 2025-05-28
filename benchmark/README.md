@@ -120,7 +120,7 @@ We provided a standalone example in `spherical_cnn_example.py` showing:
 
 ---
 
-## 🧩 Node vs. Orientation Sets
+## Node vs. Orientation Sets
 
 We made a distinction between:
 
@@ -129,7 +129,7 @@ We made a distinction between:
 
 The CNN layers exclusively use `DiscreteOrientationSet` as their interface to geometry.
 
-## Flat vs Spherical
+## Flat vs. Spherical
 
 Okay, let's explain this to someone familiar with standard "flat" CNNs -- like those used for computer vision -- but new to our spherical approach.
 
