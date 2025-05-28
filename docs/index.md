@@ -32,7 +32,7 @@ This documentation provides insight into the motivation, technology, and future 
       <a href="annex-security.md">• Quaternion Graph Security</a>
     </td>
     <td style="background-color: #f8f8f8; padding: 5px;">
-      <table style="width: 100%;">
+      <table style="width: 100%; vertical-align: center">
         <tr>
           <td style="width: 50%; text-align: center; vertical-align: top;">
             <strong>Fully Functional Spherical CNN</strong><br>
