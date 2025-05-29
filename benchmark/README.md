@@ -205,7 +205,7 @@ The `SphericalConvLayer` and `SphericalPoolLayer` are our custom building blocks
 
 ## 🎯 Wrap-up
 
-This project was a true blend of geometry, machine learning, and low-level implementation. The `SphericalCNN` demonstrates:
+This project is a true blend of geometry, machine learning, and low-level implementation. The `SphericalCNN` demonstrates:
 
 * Quaternion-driven spatial logic
 * Custom CNN layer design rooted in geometric meaning
