@@ -137,4 +137,4 @@ for node in it:
 - [Troubleshooting & FAQ](07_troubleshooting.md)
 
 ---
-[⬅️ 08. Rationale](01-rationale.md) | [🏠 Home](index.md) 
+[⬅️ 08. Troubleshooting](01-troubleshooting.md) | [🏠 Home](index.md) 
