@@ -268,3 +268,6 @@ In a spherical graph file system using the SpinStep framework:
 - **Edges** to the trunk represent paths to the root, and inter-layer edges represent navigation to subdirectories.
 - **Traversal** (e.g., BFS or DFS) mimics exploring directories, with each step encoded as a quaternion rotation.
 - The provided code visualizes this structure, with spheres as directories, nodes as files, and edges as navigational paths. Extend it with animations or metadata to simulate file system operations.
+
+---
+[⬅️ 04. Use Cases](04-use-cases.md) | [🏠 Home](index.md) | [06. Discrete Traversal ➡️](06-discrete-traversal.md)
