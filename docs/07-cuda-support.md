@@ -29,3 +29,6 @@ If CuPy or a compatible GPU is not found, SpinStep will fall back to CPU (NumPy)
 ## Example
 
 See [`examples/gpu_orientation_matching.py`](../examples/gpu_orientation_matching.py)
+
+---
+[⬅️ 06. Discrete Traversal](06-discrete-traversal.md) | [🏠 Home](index.md) | [08. Troubleshooting ➡️](08-troubleshooting.md)
