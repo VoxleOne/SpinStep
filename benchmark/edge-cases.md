@@ -70,3 +70,6 @@ These are quaternions that can cause numerical instability or have ambiguous int
 3.  **NaN/Inf:** Strongly recommend adding explicit checks for NaN/Inf components in input quaternions passed to `DiscreteOrientationSet` and potentially at other critical data input points, raising errors if found.
 
 Addressing these liminal cases thoroughly often involves trade-offs between robustness, performance, and implementation complexity. For the current stage of the project, acknowledging them and having a plan for how they *could* be handled is a good step. For production-level systems, more rigorous handling would be essential.
+
+---
+| [🏠 Home](index.md) |
