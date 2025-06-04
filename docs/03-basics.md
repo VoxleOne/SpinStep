@@ -94,7 +94,10 @@ Apply this rotation to transition between orientations or directions on the sphe
 - **Layers**: Spheres of increasing radius
 - **Nodes on each sphere**: Use `generate_sphere_nodes(...)`
 - **Edges**:
-  - **Radial**: From layer `n` to layer `n+1` at the same direction
-  - **Tangential**: Between nearby nodes on the same sphere using quaternion rotations
+- **Radial**: From layer `n` to layer `n+1` at the same direction
+- **Tangential**: Between nearby nodes on the same sphere using quaternion rotations
         Global rotations: Use get_rotation_quaternion(...) to move in 3D directions
+
+---
+[⬅️ 02. Architecture](02-architecture.md) | [🏠 Home](index.md) | [04. Use Cases ➡️](04-use-cases.md)
 
