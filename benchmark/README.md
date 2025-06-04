@@ -214,3 +214,4 @@ This project is a true blend of geometry, machine learning, and low-level implem
 > The `DiscreteOrientationSet` is not just a utility — it is the **geometric soul** of the network.
 
 ---
+| [🏠 Home](index.md) |
