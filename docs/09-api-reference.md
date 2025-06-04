@@ -135,3 +135,6 @@ for node in it:
 - [Orientation Sets](05_orientation_sets.md)
 - [Discrete Traversal Guide](06_discrete_traversal.md)
 - [Troubleshooting & FAQ](07_troubleshooting.md)
+
+---
+[⬅️ 08. Rationale](01-rationale.md) | [🏠 Home](index.md) 
