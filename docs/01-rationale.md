@@ -145,3 +145,6 @@ This has implications beyond navigation:
 The choice to use quaternions is not a stylistic one. It is a geometric commitment — to treat rotation not as a byproduct of movement, but as its medium. This commitment introduces overhead, yes, but it also removes distortions that simpler abstractions introduce — distortions that grow more costly as systems scale or become embodied.
 
 What SpinStep proposes is not a solution to a problem, but a recasting of the problem space itself. Where traversal is no longer a matter of “going to,” but of “becoming aligned with.” This is not a metaphor; it is a change in representational substrate — and as such, it rewrites what the system can perceive, express, and achieve.
+---
+[🏠 Home](index.md) | [02. Architecture.md ➡️](02-architecture.md)
+
