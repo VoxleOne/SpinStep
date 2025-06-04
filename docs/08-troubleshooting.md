@@ -18,3 +18,4 @@
 - For symmetry groups, applying all group elements in sequence should bring you (numerically) back to a group element—verifying group structure.
 
 ---
+[⬅️ 07. CUDA Support](07-cuda-support.md) | [🏠 Home](index.md) | [09. API Reference ➡️](09-api-reference.md)
