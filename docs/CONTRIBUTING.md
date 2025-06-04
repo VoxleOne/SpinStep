@@ -49,3 +49,6 @@ We welcome pull requests, issues, and suggestions.
 - We follow the [Contributor Covenant](https://www.contributor-covenant.org/) Code of Conduct.
 
 Thank you for helping make SpinStep better!
+
+---
+| [🏠 Home](index.md) |
