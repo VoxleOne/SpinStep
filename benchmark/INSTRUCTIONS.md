@@ -111,3 +111,6 @@ This will run the `benchmarkable_cnn_operation` with default CPU settings and th
 *   The `benchmarkable_cnn_operation` itself is designed to minimize console output. The main source of verbose output during benchmarks originates from the underlying model classes in `qgnn_example.py`.
 *   The `DiscreteOrientationSet` class includes optimizations (like `BallTree` for CPU). If `scikit-learn` is not installed, these optimizations will be skipped (this usually prints a warning, contributing to the educational output).
 *   For the most consistent benchmark results (even with print statements), ensure your environment is stable and no other resource-intensive processes are running in the background.
+
+---
+| [🏠 Home](index.md) |
