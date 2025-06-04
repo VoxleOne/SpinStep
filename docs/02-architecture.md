@@ -85,3 +85,5 @@ for node in iterator:
 For deeper rationale and use cases, see [docs/01_rationale.md](01_rationale.md) and [docs/04_use_cases.md](04_use_cases.md).
 
 ---
+[⬅️ 01. Rationale](01-rationale.md) | [🏠 Home](index.md) | [03. Basics ➡️](03-basics.md)
+
