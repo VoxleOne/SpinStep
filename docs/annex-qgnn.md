@@ -55,4 +55,4 @@ For example:
 Think of **SpinStep** as a **vehicle that can rotate and move in 3D**, and **QGNN** as the **GPS and terrain analysis AI** that learns where it's best to go and why.
 
 ---
-
+| [🏠 Home](index.md) |
