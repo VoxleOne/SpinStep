@@ -82,3 +82,6 @@ Why?: Molecules often rotate freely in 3D space, and valid configurations depend
 
 
 If your domain involves spherical topology, orientation-sensitive decisions, or angle-based heuristics, quaternions give a conceptual and geometric clarity that's hard to replicate with position-only trees.
+
+---
+[⬅️ 03. Basics](03-basics.md) | [🏠 Home](index.md) | [05. Visualization ➡️](05-visualization.md)
