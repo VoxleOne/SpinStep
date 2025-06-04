@@ -8,7 +8,7 @@ Example of concentric spherical graph with **edges** and a possible **traversal 
 
 ---
 
-![3d graph](assets/IMG/graph.png)
+![3d graph](assets/img/graph.png)
 
 ---
 
