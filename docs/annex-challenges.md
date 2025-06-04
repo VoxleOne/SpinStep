@@ -57,3 +57,6 @@ Spherical 3D graph structures are generally more computationally intensive than 
 ---
 
 That said, with modern hardware and good algorithms, moderately sized spherical graphs (hundreds to a few thousand nodes) are very manageable.
+
+---
+| [🏠 Home](index.md) |
