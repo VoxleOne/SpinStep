@@ -7,24 +7,33 @@ Bellow an SVG illustration that visualizes this concept. Here's a diagram showin
   <img src="assets/img/classical-vs-quaternion-traversal2.png" alt="Comparison Diagram" />
 </p>
 This illustration contrasts:
-<table border="1">
-  <tr>
-    <td>
-      Left Side - Traditional Traversal:
-
-+ Shows nodes connected in a graph structure (A, B, C, D)
-+ Movement follows a position-based approach
-+ Path follows linear steps from point to point
-+ Traversal is determined by spatial distance between nodes
-  </td>
-    <td>Right Side - SpinStep Quaternion Traversal:
-
-+ Shows movement as rotations rather than steps
-+ Uses a quaternion-based orientation system
-+ The current orientation rotates toward the target orientation
-+ Traversal selects paths based on angular proximity rather than positional distance
-  </td>
-  </tr>
+<table>
+  <thead>
+    <tr>
+      <th>Traditional Traversal (Position-Based)</th>
+      <th>Quaternion Traversal (Orientation-Based)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <ul>
+          <li>Shows nodes connected in a graph structure (A, B, C, D)</li>
+          <li>Movement follows a position-based approach</li>
+          <li>Path follows linear steps from point to point</li>
+          <li>Traversal is determined by spatial distance between nodes</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Shows movement as rotations rather than steps</li>
+          <li>Uses a quaternion-based orientation system</li>
+          <li>The current orientation rotates toward the target orientation</li>
+          <li>Traversal selects paths based on angular proximity rather than positional distance</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 
