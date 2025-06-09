@@ -72,6 +72,7 @@ This mimics rotational motion or attention in physical and virtual spaces — id
 - 3D pose search  
 - Animation graph traversal  
 - Spatial AI and robotics
+---
 
 <div align="center">
   <img src="docs/assets/img/classical-vs-quaternion-traversal2.png" alt="A 3D Graph concept image" style="max-width: 100% style="margin: 20px;" />
