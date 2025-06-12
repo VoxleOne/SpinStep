@@ -11,7 +11,7 @@
 # used as a dependency or component in this module's implementation.
 
 import numpy as np
-from .utils.quaternion_utils import _calculate_node_orientation_from_vector_and_angles
+from spinstep.utils.quaternion_utils import _calculate_node_orientation_from_vector_and_angles
 
 _TIER_TO_N_POINTS_MAP = {
     0: 12, 1: 48, 2: 192, 3: 768, 4: 3072,
