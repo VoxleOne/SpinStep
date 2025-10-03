@@ -91,7 +91,7 @@ Unlike position vectors, quaternions drift under repeated operations. Normalizat
 #### Interfacing with Legacy Systems
 The real cost often lies not in using quaternions, but in translating them — to matrices for rendering, to Euler angles for UI display, to axis-angle for physics engines. These conversions aren’t free. But they're transitional. As quaternion-native thinking proliferates, more systems will internalize orientation as a first-class citizen, reducing the need for constant translation and interpolation between mismatched representations.
 
-## Why the Cost is Not Only Worth It — But Inevitable
+## Why the Cost is Not Only Worth It, But Inevitable
 
 #### Correctness Over Shortcutting
 In domains where orientation defines behavior, like robotics, spacecraft, articulated motion, quaternions are not optional. They're the only mathematically consistent way to represent rotation in 3D without gimbal lock, degeneracy, or aliasing. Attempting to bypass them with cheaper abstractions invariably results in workaround-laden architectures that leak complexity at every edge.
