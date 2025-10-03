@@ -2,7 +2,7 @@
 
 SpinStep is a kind of spatial or rotational graph structure, traversal method, or system that uses spherical geometry and rotation, involving quaternions.
 
-🔍 If SpinStep is a model of traversal / graph organization:
+If SpinStep is a model of traversal / graph organization:
 
 It could be useful in domains that involve rotation, directionality, and layered progression, like:
 
@@ -38,35 +38,35 @@ In 3D motion planning (especially in aerial, underwater, or space robotics), Spi
 
 There are a few highly specialized niches where quaternion-based traversal and spherical 3D trees are not only justifiable but offer unique advantages that can outweigh performance costs due to their geometric fidelity and rotational symmetry handling:
 
-## 🔬 1. Astronomical Simulations & Space Navigation
+## 1. Astronomical Simulations & Space Navigation
 + Use case: Mapping and traversing star catalogs, celestial bodies, or orbital paths where orientation matters more than Cartesian proximity.
 
-+ Why quaternions?: They avoid gimbal lock, preserve rotational continuity, and naturally represent spherical surfaces — perfect for navigating a spherical star field or space-time event graph.
++ Why quaternions?: They avoid gimbal lock, preserve rotational continuity, and naturally represent spherical surfaces. Perfect for navigating a spherical star field or space-time event graph.
 
-## 🤖 2. Robot Joint Planning in Constrained 3D Environments
+## 2. Robot Joint Planning in Constrained 3D Environments
 
 + Use case: Articulated robots or drones navigating via attitude-based heuristics (pitch/yaw/roll instead of X/Y/Z).
 
 + Why?: Planning in SO(3) (3D rotation space) is often more intuitive for actuators that rotate, like robotic arms or gimbals. Quaternion traversal mimics how they naturally operate.
 
-## 🧠 3. Neural Representations in Embodied AI
+## 3. Neural Representations in Embodied AI
 
 + Use case: AI agents that operate in simulated or real 3D environments, learning via sensory-motor inputs — especially in reinforcement learning with spatial memory.
 
 + Why?: Representing spatial relationships via rotations instead of positions can lead to more topologically-aware policies, useful in orientation-critical tasks (e.g. gaze control, vestibular responses).
 
-## 🎮 4. Procedural Generation in Spherical or Planet-Based Worlds
+## 4. Procedural Generation in Spherical or Planet-Based Worlds
 
 + Use case: Games or simulations with planets, spherical dungeons, or globe-based navigation.
 
 + Why?: Traditional quadtrees/Octrees break down on spheres. A quaternion-based tree enables natural subdivision of rotation space (e.g., using icosphere mapping or HEALPix-style trees).
 
-🧬 5. Protein Folding or Molecular Docking
+## 5. Protein Folding or Molecular Docking
 Use case: Modeling how molecules rotate and fit in binding sites.
 
 Why?: Molecules often rotate freely in 3D space, and valid configurations depend on angle thresholds, making quaternion-based spatial filtering more chemically meaningful.
 
-## 🧭 Spherical Graph Construction Summary
+## Spherical Graph Construction Summary
 
 | **Step** | **Purpose** | **Function / Code Snippet** | **Notes** |
 |----------|-------------|-----------------------------|-----------|
