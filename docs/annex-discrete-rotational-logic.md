@@ -1,7 +1,7 @@
 ## 🌀 Quaternions for Discrete Rotational Logic
 
 Using **quaternions for discrete rotational steps** opens up a fascinating new lens for modeling **symbolic logic, cyclical systems, and state machines**, especially those that benefit from *non-linear transitions, reversible paths, or orientation-preserving structure*. 
-In a discrete system, instead of continuously rotating in 3D space, you step through **predefined orientations** — think of it like moving around a cube, tetrahedron, or more abstract “orientation graph.”
+In a discrete system, instead of continuously rotating in 3D space, you step through **predefined orientations**. Think of it like moving around a cube, tetrahedron, or more abstract “orientation graph.”
 
 ## 1. **Symbolic Logic as Rotational States**
 
