@@ -103,7 +103,7 @@ plt.show()
 
 ---
 
-### 🌀 Animated Traversal of Spherical Graph
+### Animated Traversal of Spherical Graph
 
 ```python
 import numpy as np
@@ -193,7 +193,7 @@ HTML(ani.to_jshtml())
 
 ---
 
-📌 **Tip**: we can also export it as a `.mp4` or `.gif` by using:
+**Tip**: we can also export it as a `.mp4` or `.gif` by using:
 
 ```python
 ani.save("spherical_traversal.mp4", writer="ffmpeg", fps=10)
