@@ -1,6 +1,6 @@
 # Basic Example
 
-Let’s walk through a simple example of how to use **quaternions** to place nodes evenly on a sphere, and then use those rotations to move between them — all while building the structure of our spherical graph.
+Let’s walk through a simple example of how to use **quaternions** to place nodes evenly on a sphere, and then use those rotations to move between them, all while building the structure of our spherical graph.
 
 ## Setup: Sphere with Nodes at Radius *r*
 
