@@ -1,6 +1,6 @@
 # SpinStep Architecture
 
-SpinStep is an extensible Python library for traversal of orientation-based trees and graphs using quaternion mathematics. Its architecture is designed to support both continuous and discrete rotational traversal, making it adaptable for a wide range of domains—robotics, graphics, AI, molecular modeling, and beyond.
+SpinStep is an extensible Python library for traversal of orientation-based trees and graphs using quaternion mathematics. Its architecture is designed to support both continuous and discrete rotational traversal, making it adaptable for a wide range of domains: robotics, graphics, AI, molecular modeling, and beyond.
 
 ---
 
@@ -52,7 +52,7 @@ SpinStep is designed for extension:
    - `QuaternionDepthIterator` for continuous, fixed-step traversal
    - `DiscreteQuaternionIterator` for group/grid-based traversal
 3. **Configure Parameters:** Set the rotation step, angle threshold, and/or discrete orientation set.
-4. **Traverse:** Iterate over nodes as needed for your application—search, planning, generation, etc.
+4. **Traverse:** Iterate over nodes as needed for your application (search, planning, generation, etc).
 
 ---
 
