@@ -2,7 +2,7 @@
 
 **SpinStep** is a proof-of-concept quaternion-driven traversal framework for trees and orientation-based data structures.
 
-By leveraging the power of 3D rotation math, SpinStep enables traversal based not on position or order — but on orientation. This makes it ideal for spatial reasoning, robotics, 3D scene graphs, and anywhere quaternion math naturally applies.
+By leveraging the power of 3D rotation math, SpinStep enables traversal based not on position or order, but on orientation. This makes it ideal for spatial reasoning, robotics, 3D scene graphs, and anywhere quaternion math naturally applies.
 
 <div align="center">
   <img src="docs/assets/img/quaternion-tree.png" alt="A 3D Graph concept image" width="750" />
@@ -66,7 +66,7 @@ All core functions will raise `ValueError` or `AttributeError` if these invarian
 
 SpinStep uses quaternion rotation to determine if a child node is reachable from a given orientation. Only children whose orientations lie within a defined angular threshold (default: 45°) of the current rotation state are traversed.
 
-This mimics rotational motion or attention in physical and virtual spaces — ideal for:
+This mimics rotational motion or attention in physical and virtual spaces. Ideal for:
 
 - Orientation trees  
 - 3D pose search  
