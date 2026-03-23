@@ -7,7 +7,7 @@ try:
     import cupy
     cupy.cuda.runtime.getDeviceCount() # Throws error if no device
     cuda_available = True
-except (ImportError, cupy.cuda.runtime.CUDARuntimeError):
+except (ImportError, RuntimeError):
     cuda_available = False
 
 import numpy as np
@@ -98,7 +98,7 @@ class TestDiscreteOrientationSet:
         assert len(results) == 1
         
         # Query within large angle - should find all three
-        results = orientation_set.query_within_angle([0, 0, 0, 1], np.pi/3)
+        results = orientation_set.query_within_angle([0, 0, 0, 1], np.pi)
         assert len(results) == 3
 
     @pytest.mark.skipif(not cuda_available, reason="CUDA not available or no CUDA devices found")

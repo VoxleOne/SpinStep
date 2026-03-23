@@ -8,6 +8,6 @@ def get_array_module(use_cuda=False):
             import cupy as cp
             return cp
         except ImportError:
-            print("[SpinStep] CuPy not found, falling back to NumPy.")
+            pass
     import numpy as np
     return np

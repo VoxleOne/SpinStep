@@ -40,23 +40,13 @@ class QuaternionDepthIterator:
 
             for child in node.children:
                 target_orientation = R.from_quat(child.orientation)
-                # Calculate the angle between the expected (rotated_state) and actual child orientation
-                # (A.inv() * B).magnitude() gives the angle between rotations A and B
                 try:
-                    # Ensure target_orientation is not a zero quaternion if not already normalized in Node
-                    if np.allclose(child.orientation, [0,0,0,0]): # Or however you check for invalid orientations
-                        # Skip this child or handle appropriately
+                    if np.allclose(child.orientation, [0,0,0,0]):
                         continue
-                    
-                    # The angle calculation should be robust.
-                    # If state or target_orientation could be invalid, ensure they are handled.
-                    # R.from_quat should handle normalization if quaternions are valid.
+
                     angle_difference_rotation = rotated_state.inv() * target_orientation
-                    angle = angle_difference_rotation.magnitude() # This is in radians
-                except ValueError as e:
-                    # This might happen if a quaternion is invalid (e.g., zero norm)
-                    # before being passed to R.from_quat, though Node class should prevent this.
-                    print(f"Warning: Could not calculate angle for child {child.name}. Error: {e}")
+                    angle = angle_difference_rotation.magnitude()
+                except ValueError:
                     continue
 
 
