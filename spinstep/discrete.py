@@ -22,7 +22,7 @@ class DiscreteOrientationSet:
         norms = xp.linalg.norm(arr, axis=1)
         # Handle cases where all norms are zero to avoid division by zero if norms is scalar 0.
         if xp.all(norms < 1e-8):
-            raise ValueError("All input orientations are zero or near-zero vectors.")
+            raise ValueError("All input orientations are zero or near-zero vectors. Quaternions must have non-zero magnitude.")
         else: # Proceed with normalization for non-zero vectors
             valid_norms_mask = norms > 1e-8
             # Ensure arr[valid_norms_mask] is not empty before division
@@ -142,7 +142,12 @@ class DiscreteOrientationSet:
         return cls(quats)
 
     def as_numpy(self):
-        """Convert orientations to a NumPy array (transfers from GPU if needed)."""
+        """Convert orientations to a NumPy array.
+
+        Returns:
+            np.ndarray: The orientations as a NumPy array. If stored as a
+            CuPy array on GPU, transfers to CPU first.
+        """
         if hasattr(self.orientations, 'get'):  # CuPy array
             return self.orientations.get()
         return np.asarray(self.orientations)

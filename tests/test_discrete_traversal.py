@@ -7,7 +7,7 @@ try:
     import cupy
     cupy.cuda.runtime.getDeviceCount() # Throws error if no device
     cuda_available = True
-except (ImportError, Exception):
+except (ImportError, RuntimeError):
     cuda_available = False
 
 import numpy as np
