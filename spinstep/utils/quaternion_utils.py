@@ -48,6 +48,10 @@ def get_relative_spin(nf,nt):
     return qr/n if n>1e-8 else np.array([0.,0.,0.,1.])
 
 def get_unique_relative_spins(nodes, nside, nest, threshold=1e-3):
+    try:
+        import healpy as hp
+    except ImportError:
+        raise ImportError("healpy is required for get_unique_relative_spins(). Install it with: pip install healpy")
     spins, NPIX = [], hp.nside2npix(nside)
     for i in range(NPIX):
         nf=nodes[i]; nidx=hp.get_all_neighbours(nside,i,nest=nest)
@@ -60,5 +64,4 @@ def get_unique_relative_spins(nodes, nside, nest, threshold=1e-3):
                     dot=np.abs(np.dot(q,s_q)); dot=np.clip(dot,-1,1); angle=2*np.arccos(dot)
                     if angle<threshold: is_uniq=False; break
                 if is_uniq: spins.append(q)
-    print(f"Found {len(spins)} unique relative spins (approx threshold: {threshold*180/np.pi:.2f} deg).")
     return spins

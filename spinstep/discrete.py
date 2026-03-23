@@ -8,13 +8,11 @@ from spinstep.utils.array_backend import get_array_module
 
 
 class DiscreteOrientationSet:
-    def __init__(self, orientations, use_cuda=False): # Ensure this signature is correct
-        print(f"[DiscreteOrientationSet __init__] Received orientations type: {type(orientations)}, use_cuda: {use_cuda}")
+    def __init__(self, orientations, use_cuda=False):
         if orientations is None:
             raise ValueError("Orientations cannot be None in DiscreteOrientationSet constructor")
         
         # Ensure R is available in __init__ if needed
-        # print(f"[DiscreteOrientationSet __init__] R is: {R}") 
 
         xp = get_array_module(use_cuda)
         arr = xp.array(orientations) # This is where orientations is used
@@ -23,20 +21,15 @@ class DiscreteOrientationSet:
         
         norms = xp.linalg.norm(arr, axis=1)
         # Handle cases where all norms are zero to avoid division by zero if norms is scalar 0.
-        if xp.all(norms < 1e-8): # Check if all norms are effectively zero
-            # If all orientations are zero vectors, they remain zero vectors.
-            # Or, raise an error if zero quaternions are not allowed.
-            # For now, let's assume they remain as is, or consider raising ValueError.
-             print("[DiscreteOrientationSet __init__] Warning: All input orientations are zero or near-zero vectors.")
+        if xp.all(norms < 1e-8):
+            raise ValueError("All input orientations are zero or near-zero vectors.")
         else: # Proceed with normalization for non-zero vectors
             valid_norms_mask = norms > 1e-8
             # Ensure arr[valid_norms_mask] is not empty before division
             if xp.any(valid_norms_mask):
                  arr[valid_norms_mask] = arr[valid_norms_mask] / norms[valid_norms_mask][:, None]
             else:
-                # This case means all norms were < 1e-8 but not caught by xp.all above (e.g. mixed small/zero)
-                # Behavior might need refinement if this state is problematic.
-                print("[DiscreteOrientationSet __init__] Warning: All input orientations are effectively zero after filtering valid norms.")
+                pass
 
 
         self.orientations = arr
@@ -65,7 +58,6 @@ class DiscreteOrientationSet:
 
 
     def query_within_angle(self, quat, angle):
-        # print(f"[DiscreteOrientationSet query_within_angle] R is: {R}")
         query_quat_np = np.asarray(quat)
         if query_quat_np.shape == (4,):
              query_rv = R.from_quat(query_quat_np).as_rotvec().reshape(1, -1)
@@ -113,10 +105,8 @@ class DiscreteOrientationSet:
 
     @classmethod
     def from_cube(cls):
-        print("[DiscreteOrientationSet from_cube] Creating group...")
-        group = R.create_group('O') 
-        print("[DiscreteOrientationSet from_cube] Group created. Calling constructor.")
-        return cls(group.as_quat()) # This should pass the quaternions to __init__
+        group = R.create_group('O')
+        return cls(group.as_quat())
 
     @classmethod
     def from_icosahedron(cls):
@@ -150,6 +140,12 @@ class DiscreteOrientationSet:
         # Let's assume vecs * np.pi is the intended rotation vector.
         quats = R.from_rotvec(vecs * np.pi).as_quat()
         return cls(quats)
+
+    def as_numpy(self):
+        """Convert orientations to a NumPy array (transfers from GPU if needed)."""
+        if hasattr(self.orientations, 'get'):  # CuPy array
+            return self.orientations.get()
+        return np.asarray(self.orientations)
 
     def __len__(self):
         if hasattr(self, 'orientations') and self.orientations is not None:
