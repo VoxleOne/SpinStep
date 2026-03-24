@@ -59,7 +59,7 @@ There are a few highly specialized niches where quaternion-based traversal and s
 
 + Use case: Games or simulations with planets, spherical dungeons, or globe-based navigation.
 
-+ Why?: Traditional quadtrees/Octrees break down on spheres. A quaternion-based tree enables natural subdivision of rotation space (e.g., using icosphere mapping or HEALPix-style trees).
++ Why? Traditional quadtrees/Octrees break down on spheres. A quaternion-based tree enables natural subdivision of rotation space (e.g., using icosphere mapping or HEALPix-style trees).
 
 ## 5. Protein Folding or Molecular Docking
 Use case: Modeling how molecules rotate and fit in binding sites.
@@ -78,7 +78,7 @@ Why?: Molecules often rotate freely in 3D space, and valid configurations depend
 
 ---
 
-> 💡 Use these steps to build a scalable, quaternion-based 3D graph with both radial and tangential connectivity.
+> Use these steps to build a scalable, quaternion-based 3D graph with both radial and tangential connectivity.
 
 
 If your domain involves spherical topology, orientation-sensitive decisions, or angle-based heuristics, quaternions give a conceptual and geometric clarity that's hard to replicate with position-only trees.
