@@ -80,7 +80,7 @@ If traversal through space can be rotational, why not traversal through decision
 It’s true, quaternion-based systems demand more. More computation, more precision, more attention to numerical stability. But what they offer in return is not just motion, but fidelity: to orientation, to continuity, to the way real-world systems behave.
 
 #### Mathematical Complexity
-Quaternion arithmetic (multiplication, normalization, spherical linear interpolation - slerp) isn’t trivial. These operations involve more floating-point math than basic vector addition or scalar interpolation. But this added complexity is structurally meaningful: every operation preserves rotational integrity in a way that simpler methods cannot. You’re paying for conservation — of angle, of axis, of smoothness.
+Quaternion arithmetic (multiplication, normalization, spherical linear interpolation - slerp) isn’t trivial. These operations involve more floating-point math than basic vector addition or scalar interpolation. But this added complexity is structurally meaningful: every operation preserves rotational integrity in a way that simpler methods cannot. You’re paying for conservation - of angle, of axis, of smoothness.
 
 #### Representational Overhead
 A quaternion carries four components (w, x, y, z), a seemingly minor increase over a 3D vector, but one that compounds across millions of instances. This affects memory bandwidth, cache behavior, and processing cost. Still, the fourth dimension isn’t redundancy, it’s closure. It allows the system to model full 3D rotations without singularities or ambiguity, something Euler angles or matrices can’t guarantee without side effects.
@@ -119,7 +119,7 @@ SpinStep’s strength is not merely in metaphor or modeling. It directly aligns 
 Traditional waypoint navigation assumes movement through a series of Cartesian positions. But in pursuit dynamics, for example, what matters is *directional alignment over time*. SpinStep enables a guidance system to treat interception as a problem of rotational convergence, adjusting pitch, yaw, and roll via smooth quaternion interpolation. This creates more efficient intercept paths, reduces control surface oscillations, and respects the vehicle’s rotational constraints. In essence, the path is not plotted; it is **oriented into**.
 
 **Autonomous Vehicles**
-While autonomous navigation pipelines often emphasize obstacle maps and shortest paths, vehicle control is ultimately a problem of orientation: steering angles, curvature constraints, body roll. A quaternion-based traversal engine could reframe route planning around **minimally disruptive orientation flows**, producing routes that feel more human, less mechanical. Particularly in passenger-facing contexts, this shift matters: smoothness is not cosmetic, it’s **experiential fidelity**.
+While autonomous navigation pipelines often emphasize obstacle maps and shortest paths, vehicle control is ultimately a problem of orientation: steering angles, curvature constraints, body roll. A quaternion-based traversal engine could reframe route planning around **minimally disruptive orientation flows**, producing routes that feel more human, less mechanical. Particularly in passenger-facing contexts, this shift matters: it’s **experiential fidelity**.
 
 **Spacecraft Attitude Control**
 Here, the fit is almost tautological. Quaternions are already the de facto standard for modeling spacecraft attitude, not just because they work, but because they’re **necessary**. SpinStep builds upon this base, offering not just a representation of rotation, but a **strategy for traversing orientation space efficiently**. Trajectories can be optimized for minimal angular velocity changes, fuel-efficient control sequences, and avoidance of unstable orientations. This isn’t just simulation; it’s mission-critical optimization.
@@ -132,7 +132,7 @@ Whether in rehabilitation, fitness, or sports training, guiding human movement t
 
 ### Guidance as Traversal in Orientation Space
 
-What unites these systems is a core insight: **they do not move by translating in space. They move by turning into alignment with objectives**. SpinStep abstracts this common structure into a navigational framework grounded in quaternion logic. In doing so, it doesn’t just model guidance, it **becomes it**.
+What unites these systems is a core insight: **they do not move by translating in space. They move by turning into alignment with objectives**. SpinStep abstracts this common structure into a navigational framework grounded in quaternion logic. In doing so, it doesn’t just model guidance; guidance is embodied, it **becomes it**.
 
 > The elegance lies in congruence:
 > the algorithm traverses orientation space
