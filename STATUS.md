@@ -238,7 +238,7 @@ These are **not** part of the public API but provide essential building blocks:
 | # | Suggestion | Rationale |
 |---|------------|-----------|
 | M1 | **Breadth-first traversal iterator** | Currently only depth-first is available. BFS would serve level-order use cases (e.g., layer-by-layer 3D scene processing). |
-| M2 | **A\* / best-first orientation search** | Priority-queue traversal ordered by angular proximity to a target orientation. Essential for path-planning in robotics. |
+| M2 | **A* / best-first orientation search** | Priority-queue traversal ordered by angular proximity to a target orientation. Essential for path-planning in robotics. |
 | M3 | **Interpolation (SLERP) stepping** | Allow smooth interpolation between orientations instead of discrete jumps. Useful for animation and smooth camera paths. |
 | M4 | **Export utility functions in public API** | Functions like `quaternion_from_euler`, `quaternion_distance`, and `rotate_quaternion` are broadly useful; expose them as `spinstep.utils.*` or in `__init__.py`. |
 | M5 | **Visualization module** | Matplotlib / Plotly helpers to visualize orientation trees, traversal paths, and orientation distributions on the sphere. |
