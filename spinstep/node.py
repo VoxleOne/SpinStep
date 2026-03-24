@@ -2,6 +2,8 @@
 # Author: Eraldo Marques <eraldo.bernardo@gmail.com> — Created: 2025-05-14
 # See LICENSE.txt for full terms. This header must be retained in redistributions.
 
+"""Tree node with quaternion-based orientation."""
+
 from __future__ import annotations
 
 from typing import List, Optional, Sequence, Union

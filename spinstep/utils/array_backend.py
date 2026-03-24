@@ -2,6 +2,8 @@
 # Author: Eraldo B. Marques <eraldo.bernardo@gmail.com> — Created: 2025-05-14
 # See LICENSE.txt for full terms. This header must be retained in redistributions.
 
+"""NumPy / CuPy array backend selection."""
+
 from __future__ import annotations
 
 from types import ModuleType

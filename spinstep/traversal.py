@@ -2,6 +2,8 @@
 # Author: Eraldo Marques <eraldo.bernardo@gmail.com> — Created: 2025-05-14
 # See LICENSE.txt for full terms. This header must be retained in redistributions.
 
+"""Continuous quaternion-driven depth-first tree traversal."""
+
 from __future__ import annotations
 
 from typing import Iterator, List, Optional, Tuple
@@ -65,11 +67,11 @@ class QuaternionDepthIterator:
             rotated_state = state * self.rotation_step
 
             for child in node.children:
-                target_orientation = R.from_quat(child.orientation)
                 try:
                     if np.allclose(child.orientation, [0, 0, 0, 0]):
                         continue
 
+                    target_orientation = R.from_quat(child.orientation)
                     angle_difference_rotation = rotated_state.inv() * target_orientation
                     angle = angle_difference_rotation.magnitude()
                 except ValueError:

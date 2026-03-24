@@ -49,21 +49,22 @@ library is functional, well-typed, and has no import-time side effects.
 
 ### Test Suite
 
-* **Framework:** pytest (17 tests in `tests/`).
-* **Results:** 13 passing, 4 skipped (CuPy/CUDA not available in CI).
-* **Covered:** `DiscreteOrientationSet` (init, factories, queries, GPU path),
+* **Framework:** pytest (50 tests in `tests/`).
+* **Results:** 46 passing, 4 skipped (CuPy/CUDA not available in CI).
+* **Covered:** `Node`, `QuaternionDepthIterator` (continuous traversal),
+  `DiscreteOrientationSet` (init, factories, queries, GPU path),
   `DiscreteQuaternionIterator` (creation, traversal, depth limits), integration
-  pipeline.
-* **Not covered:** `QuaternionDepthIterator` (continuous traversal) — tests are
-  commented out.  Utility functions in `spinstep/utils/` are untested
-  directly.
+  pipeline, utility functions (`quaternion_utils`, `quaternion_math`,
+  `array_backend`).
+* **Not covered:** `get_unique_relative_spins` (requires optional `healpy`
+  dependency).
 
 ### Code Quality
 
 | Metric | Status |
 |--------|--------|
 | Type hints | 100 % (all public functions/methods) |
-| Docstrings | ≈ 71 % (magic methods mostly missing) |
+| Docstrings | ≈ 90 % (module + class + public function docstrings) |
 | Side effects at import | None (lazy imports for cupy, sklearn, healpy) |
 | Linting config | `ruff` and `black` configured (88-char lines) |
 | Type checking config | `mypy` strict mode configured |
@@ -72,11 +73,7 @@ library is functional, well-typed, and has no import-time side effects.
 
 | # | Severity | Description |
 |---|----------|-------------|
-| 1 | Medium | `QuaternionDepthIterator` has **no test coverage** (tests commented out) |
-| 2 | Low | `requirements.txt` pins `scikit-learn ≥ 1.5` while `pyproject.toml` pins `≥ 1.2` |
-| 3 | Low | `healpy` is used by `get_unique_relative_spins()` but is not declared in optional dependencies |
-| 4 | Low | README states "Python 3.8+" but `pyproject.toml` requires `≥ 3.9` |
-| 5 | Low | `DiscreteQuaternionIterator` multiplies `magnitude()` by 2 — may over-estimate angular distances |
+| 1 | Low | `healpy` is used by `get_unique_relative_spins()` but has no direct tests (optional dependency) |
 
 ---
 

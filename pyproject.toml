@@ -31,6 +31,9 @@ dependencies = [
 gpu = [
     "cupy-cuda12x",
 ]
+healpy = [
+    "healpy",
+]
 dev = [
     "pytest",
     "black",

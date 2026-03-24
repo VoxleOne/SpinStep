@@ -41,7 +41,7 @@ for node in iterator:
 
 ## Requirements
 
-- Python 3.8+  
+- Python 3.9+  
 - `numpy`  
 - `scipy`  
 - `scikit-learn`
@@ -183,8 +183,6 @@ pyproject.toml
 README.md
 requirements.txt
 dev-requirements.txt
-setup.cfg
-setup.py
 ```
 
 ---

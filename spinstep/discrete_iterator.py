@@ -2,6 +2,8 @@
 # Author: Eraldo Marques <eraldo.bernardo@gmail.com> — Created: 2025-05-14
 # See LICENSE.txt for full terms. This header must be retained in redistributions.
 
+"""Discrete quaternion-driven depth-first tree traversal."""
+
 from __future__ import annotations
 
 from typing import Iterator, List, Set, Tuple
@@ -89,12 +91,9 @@ class DiscreteQuaternionIterator:
                                 )
 
                                 angle_rad = (
-                                    2
-                                    * (
-                                        potential_next_world_orientation.inv()
-                                        * child_actual_world_orientation
-                                    ).magnitude()
-                                )
+                                    potential_next_world_orientation.inv()
+                                    * child_actual_world_orientation
+                                ).magnitude()
 
                                 if angle_rad < self.angle_threshold:
                                     self.stack.append(
