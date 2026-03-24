@@ -21,19 +21,27 @@ class Node:
     and an optional list of child nodes.  The orientation is automatically
     normalised on construction.
 
-    Parameters
-    ----------
-    name:
-        Human-readable identifier for this node.
-    orientation:
-        Quaternion as ``[x, y, z, w]``.  Must have non-zero norm.
-    children:
-        Optional initial child nodes.
+    Args:
+        name: Human-readable identifier for this node.
+        orientation: Quaternion as ``[x, y, z, w]``.  Must have non-zero norm.
+        children: Optional initial child nodes.
 
-    Raises
-    ------
-    ValueError
-        If *orientation* is not a 4-element vector or has near-zero norm.
+    Raises:
+        ValueError: If *orientation* is not a 4-element vector or has
+            near-zero norm.
+
+    Attributes:
+        name: Node identifier string.
+        orientation: Normalised quaternion as a NumPy array of shape ``(4,)``.
+        children: List of child :class:`Node` instances.
+
+    Example::
+
+        from spinstep import Node
+
+        root = Node("root", [0, 0, 0, 1])
+        child = Node("child", [0.2588, 0, 0, 0.9659])
+        root.children.append(child)
     """
 
     name: str

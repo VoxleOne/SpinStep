@@ -25,12 +25,25 @@ class DiscreteOrientationSet:
     :class:`~sklearn.neighbors.BallTree` is used for large sets; an optional
     CUDA path is available via CuPy.
 
-    Parameters
-    ----------
-    orientations:
-        Array of shape ``(N, 4)`` — one quaternion per row.
-    use_cuda:
-        When *True*, store orientations on the GPU using CuPy.
+    Args:
+        orientations: Array of shape ``(N, 4)`` — one quaternion per row.
+        use_cuda: When ``True``, store orientations on the GPU using CuPy.
+
+    Raises:
+        ValueError: If *orientations* is ``None``, not of shape ``(N, 4)``,
+            or all quaternions are zero vectors.
+
+    Attributes:
+        orientations: Normalised quaternion array of shape ``(N, 4)``.
+        use_cuda: Whether GPU storage is enabled.
+        xp: The array module in use (``numpy`` or ``cupy``).
+
+    Example::
+
+        from spinstep import DiscreteOrientationSet
+
+        cube = DiscreteOrientationSet.from_cube()       # 24 orientations
+        icosa = DiscreteOrientationSet.from_icosahedron()  # 60 orientations
     """
 
     def __init__(
@@ -90,16 +103,12 @@ class DiscreteOrientationSet:
     ) -> np.ndarray:
         """Return indices of orientations within *angle* radians of *quat*.
 
-        Parameters
-        ----------
-        quat:
-            Query quaternion ``[x, y, z, w]`` or batch of shape ``(N, 4)``.
-        angle:
-            Maximum angular distance in radians.
+        Args:
+            quat: Query quaternion ``[x, y, z, w]`` or batch of shape
+                ``(N, 4)``.
+            angle: Maximum angular distance in radians.
 
-        Returns
-        -------
-        numpy.ndarray
+        Returns:
             Integer indices into :attr:`orientations`.
         """
         query_quat_np = np.asarray(quat)
@@ -161,10 +170,11 @@ class DiscreteOrientationSet:
     def from_custom(cls, quat_list: ArrayLike) -> "DiscreteOrientationSet":
         """Create orientation set from a user-supplied list of quaternions.
 
-        Parameters
-        ----------
-        quat_list:
-            Array of shape ``(N, 4)`` — quaternions ``[x, y, z, w]``.
+        Args:
+            quat_list: Array of shape ``(N, 4)`` — quaternions ``[x, y, z, w]``.
+
+        Returns:
+            A new :class:`DiscreteOrientationSet`.
         """
         return cls(quat_list)
 
@@ -172,10 +182,11 @@ class DiscreteOrientationSet:
     def from_sphere_grid(cls, n_points: int = 100) -> "DiscreteOrientationSet":
         """Create orientation set by Fibonacci-sphere sampling.
 
-        Parameters
-        ----------
-        n_points:
-            Number of orientations to generate.
+        Args:
+            n_points: Number of orientations to generate.
+
+        Returns:
+            A new :class:`DiscreteOrientationSet`.
         """
         if n_points <= 0:
             return cls(np.empty((0, 4)))
@@ -196,11 +207,10 @@ class DiscreteOrientationSet:
     def as_numpy(self) -> np.ndarray:
         """Convert orientations to a NumPy array.
 
-        Returns
-        -------
-        numpy.ndarray
-            The orientations as a NumPy array.  If stored as a CuPy array
-            on GPU, transfers to CPU first.
+        If stored as a CuPy array on GPU, transfers to CPU first.
+
+        Returns:
+            The orientations as a NumPy array of shape ``(N, 4)``.
         """
         if hasattr(self.orientations, "get"):  # CuPy array
             return self.orientations.get()

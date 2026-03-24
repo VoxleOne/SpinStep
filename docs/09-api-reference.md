@@ -1,140 +1,188 @@
 # SpinStep API Reference
 
-This document details the main public API of the SpinStep library.  
-For usage examples, see the [Examples & Tutorials](examples.md).
+This document details the public API of the SpinStep library.
 
 ---
 
 ## Table of Contents
 
-- [spinstep.node.Node](#spinstepnodenode)
-- [spinstep.discrete.DiscreteOrientationSet](#spinstepdiscretediscreteorientationset)
-- [spinstep.discrete_iterator.DiscreteQuaternionIterator](#spinstepdiscrete_iteratordiscretequaternioniterator)
-- [spinstep.continuous.QuaternionDepthIterator](#spinstepcontinuousquaterniondepthiterator)
+- [spinstep.node.Node](#node)
+- [spinstep.traversal.QuaternionDepthIterator](#quaterniondepthiterator)
+- [spinstep.discrete.DiscreteOrientationSet](#discreteorientationset)
+- [spinstep.discrete_iterator.DiscreteQuaternionIterator](#discretequaternioniterator)
 - [Exceptions](#exceptions)
 
 ---
 
-## spinstep.node.Node
+## Node
 
 ```python
+from spinstep import Node
+
 class Node:
-    def __init__(self, name: str, orientation: Sequence[float], children: Optional[Iterable["Node"]] = None)
+    def __init__(
+        self,
+        name: str,
+        orientation: ArrayLike,
+        children: Optional[Sequence[Node]] = None,
+    ) -> None
 ```
 
-- **name** (`str`): Node identifier (any string).
-- **orientation** (`[x, y, z, w]`): Quaternion representing the orientation. Automatically normalized.
-- **children** (`Iterable[Node]`, optional): List or iterable of child nodes.
+A tree node with a quaternion-based orientation.
 
-#### Attributes
+**Args:**
 
-- **name**: Node name.
-- **orientation**: Normalized quaternion (`numpy.ndarray`, shape `(4,)`).
-- **children**: List of child nodes.
+- **name** (`str`): Human-readable identifier.
+- **orientation** (`[x, y, z, w]`): Quaternion. Automatically normalised. Must be non-zero.
+- **children** (`Sequence[Node]`, optional): Initial child nodes.
+
+**Attributes:**
+
+- **name** (`str`): Node identifier.
+- **orientation** (`numpy.ndarray`, shape `(4,)`): Normalised quaternion.
+- **children** (`list[Node]`): Child nodes.
+
+**Raises:**
+
+- `ValueError`: If orientation is not a 4-element vector or has near-zero norm.
 
 ---
 
-## spinstep.discrete.DiscreteOrientationSet
-
-A container for a set of discrete orientations (quaternions).
+## QuaternionDepthIterator
 
 ```python
+from spinstep import QuaternionDepthIterator
+
+class QuaternionDepthIterator:
+    def __init__(
+        self,
+        start_node: Node,
+        rotation_step_quat: ArrayLike,
+        angle_threshold: Optional[float] = None,
+    ) -> None
+```
+
+Depth-first tree iterator driven by a continuous quaternion rotation step.
+
+**Args:**
+
+- **start_node** (`Node`): Root node of the tree.
+- **rotation_step_quat** (`[x, y, z, w]`): Quaternion rotation applied at each step.
+- **angle_threshold** (`float`, optional): Maximum angular distance in radians for a child to be visited. When `None`, defaults to 30% of the step angle (minimum 1°).
+
+**Class Variables:**
+
+- `DEFAULT_DYNAMIC_THRESHOLD_FACTOR` (`float`): `0.3`
+
+**Iterator Protocol:**
+
+Implements `__iter__` and `__next__`. Yields `Node` instances in depth-first order.
+
+---
+
+## DiscreteOrientationSet
+
+```python
+from spinstep import DiscreteOrientationSet
+
 class DiscreteOrientationSet:
-    def __init__(self, orientations: Sequence[Sequence[float]])
+    def __init__(
+        self,
+        orientations: ArrayLike,
+        use_cuda: bool = False,
+    ) -> None
 ```
 
-#### Constructor
+A set of discrete quaternion orientations with spatial querying.
 
-- **orientations**: List or array of normalized quaternions (`[x, y, z, w]`).
+**Args:**
 
-#### Class Methods
+- **orientations**: Array of shape `(N, 4)` — one quaternion `[x, y, z, w]` per row.
+- **use_cuda** (`bool`): When `True`, store on GPU via CuPy.
 
-- `from_cube()`: Returns a set of cube group orientations (24 elements).
-- `from_icosahedron()`: Returns a set of icosahedral group orientations (60 elements).
-- `from_custom(orientations)`: Create from user-specified list of quaternions.
-- `from_sphere_grid(N: int)`: Approximate a uniform grid of `N` orientations on the sphere.
+**Attributes:**
 
-#### Methods
+- **orientations**: Normalised quaternion array of shape `(N, 4)`.
+- **use_cuda** (`bool`): Whether GPU storage is active.
+- **xp**: The array module in use (`numpy` or `cupy`).
 
-- `query_within_angle(quat: Sequence[float], angle: float) -> np.ndarray`:  
-  Returns indices of orientations within `angle` (radians) of `quat`.
+### Methods
 
-#### Attributes
+#### `query_within_angle(quat, angle) -> numpy.ndarray`
 
-- **orientations**: Array of normalized quaternions (shape `(n,4)`).
+Return indices of orientations within `angle` radians of `quat`.
+
+- **quat**: Query quaternion `[x, y, z, w]` or batch `(N, 4)`.
+- **angle** (`float`): Maximum angular distance in radians.
+- **Returns**: Integer index array.
+
+#### `as_numpy() -> numpy.ndarray`
+
+Convert orientations to a NumPy array (transfers from GPU if needed).
+
+#### `__len__() -> int`
+
+Return the number of orientations.
+
+### Factory Class Methods
+
+#### `from_cube() -> DiscreteOrientationSet`
+
+24 orientations from the octahedral symmetry group.
+
+#### `from_icosahedron() -> DiscreteOrientationSet`
+
+60 orientations from the icosahedral symmetry group.
+
+#### `from_custom(quat_list) -> DiscreteOrientationSet`
+
+Create from a user-supplied array of quaternions `(N, 4)`.
+
+#### `from_sphere_grid(n_points=100) -> DiscreteOrientationSet`
+
+Fibonacci-sphere sampling of `n_points` orientations.
 
 ---
 
-## spinstep.discrete_iterator.DiscreteQuaternionIterator
-
-Depth-first traversal over a tree of Nodes using a discrete orientation set.
+## DiscreteQuaternionIterator
 
 ```python
+from spinstep import DiscreteQuaternionIterator
+
 class DiscreteQuaternionIterator:
     def __init__(
         self,
         start_node: Node,
         orientation_set: DiscreteOrientationSet,
-        angle_threshold: float = np.pi/8,
-        max_depth: int = 100
-    )
+        angle_threshold: float = np.pi / 8,
+        max_depth: int = 100,
+    ) -> None
 ```
 
-- **start_node**: The root `Node` to start traversal from.
-- **orientation_set**: Instance of `DiscreteOrientationSet`.
-- **angle_threshold**: Maximum allowed angular distance (in radians) to consider two orientations "matching."
-- **max_depth**: Maximum recursion depth.
+Depth-first tree iterator using a discrete set of orientation steps.
 
-#### Usage
+**Args:**
 
-```python
-it = DiscreteQuaternionIterator(root_node, orientation_set, angle_threshold=0.2)
-for node in it:
-    print(node.name)
-```
+- **start_node** (`Node`): Root node of the tree.
+- **orientation_set** (`DiscreteOrientationSet`): Candidate rotation steps.
+- **angle_threshold** (`float`): Maximum angular distance in radians. Default: `π/8` (22.5°).
+- **max_depth** (`int`): Maximum traversal depth. Default: `100`.
 
----
+**Raises:**
 
-## spinstep.continuous.QuaternionDepthIterator
+- `AttributeError`: If `start_node` lacks `.orientation` or `.children`.
 
-Depth-first traversal for continuous (non-discrete) orientation search.
+**Iterator Protocol:**
 
-```python
-class QuaternionDepthIterator:
-    def __init__(
-        self,
-        start_node: Node,
-        angle_threshold: float = np.pi/8,
-        max_depth: int = 100
-    )
-```
-
-- **start_node**: The root `Node`.
-- **angle_threshold**: Maximum allowed angular distance (in radians) for matching.
-- **max_depth**: Maximum recursion depth.
-
-#### Usage
-
-```python
-it = QuaternionDepthIterator(root_node, angle_threshold=0.1)
-for node in it:
-    print(node.name)
-```
+Implements `__iter__` and `__next__`. Yields `Node` instances in depth-first order. Tracks visited nodes to avoid cycles.
 
 ---
 
 ## Exceptions
 
-- **ValueError**: Raised for invalid or non-normalized quaternions, or malformed orientation sets.
+- **ValueError**: Raised for invalid quaternions (zero-norm, wrong shape) or malformed orientation sets.
 - **AttributeError**: Raised if a node lacks required `.orientation` or `.children` attributes.
 
 ---
 
-## See Also
-
-- [Orientation Sets](05_orientation_sets.md)
-- [Discrete Traversal Guide](06_discrete_traversal.md)
-- [Troubleshooting & FAQ](07_troubleshooting.md)
-
----
-[⬅️ 08. Troubleshooting](08-troubleshooting.md) | [🏠 Home](index.md) 
+[⬅️ Troubleshooting](08-troubleshooting.md) | [🏠 Home](index.md)
