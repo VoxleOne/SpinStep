@@ -5,30 +5,48 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "spinstep"
 version = "0.1.0"
-description = "Quaternion-based geometric traversal experiment"
-authors = [{ name = "Your Name", email = "you@example.com" }]
+description = "Quaternion-based tree traversal for orientation-aware structures."
+authors = [{ name = "Eraldo Marques", email = "eraldo.bernardo@gmail.com" }]
 readme = "README.md"
+license = "MIT"
 requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
 dependencies = [
     "numpy>=1.22",
-    "scipy>=1.10"
+    "scipy>=1.10",
+    "scikit-learn>=1.2",
 ]
 
 [project.optional-dependencies]
+gpu = [
+    "cupy-cuda12x",
+]
 dev = [
-    "matplotlib>=3.7",
-    "numba>=0.57",
-    "cython>=0.29",
-    "cupy-cuda12x",  # Replace with your CUDA version, e.g., cupy-cuda12
-    "pycuda",
     "pytest",
     "black",
     "ruff",
-    "mypy"
+    "mypy",
 ]
 
-[tool.setuptools]
-packages = ["spinstep"]  # Adjust if you use a different package structure
+[project.urls]
+Repository = "https://github.com/VoxleOne/SpinStep"
+
+[tool.setuptools.packages.find]
+include = ["spinstep*"]
+exclude = ["benchmark*", "demos*", "examples*", "tests*", "docs*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [tool.black]
 line-length = 88

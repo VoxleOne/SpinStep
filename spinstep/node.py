@@ -2,10 +2,46 @@
 # Author: Eraldo Marques <eraldo.bernardo@gmail.com> — Created: 2025-05-14
 # See LICENSE.txt for full terms. This header must be retained in redistributions.
 
+from __future__ import annotations
+
+from typing import List, Optional, Sequence, Union
+
 import numpy as np
+from numpy.typing import ArrayLike
+
 
 class Node:
-    def __init__(self, name, orientation, children=None):
+    """A tree node with a quaternion-based orientation.
+
+    Each node stores a name, a unit quaternion orientation ``[x, y, z, w]``,
+    and an optional list of child nodes.  The orientation is automatically
+    normalised on construction.
+
+    Parameters
+    ----------
+    name:
+        Human-readable identifier for this node.
+    orientation:
+        Quaternion as ``[x, y, z, w]``.  Must have non-zero norm.
+    children:
+        Optional initial child nodes.
+
+    Raises
+    ------
+    ValueError
+        If *orientation* is not a 4-element vector or has near-zero norm.
+    """
+
+    name: str
+    orientation: np.ndarray
+    children: List["Node"]
+
+    def __init__(
+        self,
+        name: str,
+        orientation: ArrayLike,
+        children: Optional[Sequence["Node"]] = None,
+    ) -> None:
         arr = np.array(orientation, dtype=float)
         if arr.shape != (4,):
             raise ValueError(f"Orientation must be a quaternion [x,y,z,w], got shape {arr.shape}")
@@ -15,3 +51,6 @@ class Node:
         self.orientation = arr / norm
         self.name = name
         self.children = list(children) if children else []
+
+    def __repr__(self) -> str:
+        return f"Node({self.name!r}, orientation={self.orientation.tolist()})"

@@ -1,2 +1,8 @@
 include README.md
 include LICENSE
+include CHANGELOG.md
+recursive-exclude benchmark *
+recursive-exclude demos *
+recursive-exclude examples *
+recursive-exclude tests *
+recursive-exclude docs *
