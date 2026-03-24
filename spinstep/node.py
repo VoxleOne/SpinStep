@@ -6,6 +6,8 @@
 
 from __future__ import annotations
 
+__all__ = ["Node"]
+
 from typing import List, Optional, Sequence
 
 import numpy as np

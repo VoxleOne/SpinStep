@@ -1,6 +1,7 @@
 include README.md
 include LICENSE
 include CHANGELOG.md
+include spinstep/py.typed
 recursive-exclude benchmark *
 recursive-exclude demos *
 recursive-exclude examples *
