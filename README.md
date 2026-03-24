@@ -10,7 +10,7 @@ By leveraging the power of 3D rotation math, SpinStep enables traversal based no
 
 ---
 
-## ✨ Features
+## Features
 
 - Quaternion-based stepping and branching  
 - Full support for yaw, pitch, and roll rotations  
@@ -213,7 +213,7 @@ python -m build
 ## [Benchmark Instructions](benchmark/INSTRUCTIONS.md)
 ---
 
-## 📜 License
+## License
 
 MIT — free to use, fork, and adapt.
 
