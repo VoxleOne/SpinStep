@@ -82,7 +82,7 @@ for node in iterator:
 - **General-purpose:** Works for kinematic chains, scene graphs, spatial search, and more.
 - **Mathematically robust:** By using quaternions, SpinStep avoids gimbal lock and enables smooth, consistent orientation operations.
 
-For deeper rationale and use cases, see [docs/01_rationale.md](01_rationale.md) and [docs/04_use_cases.md](04_use_cases.md).
+For deeper rationale and use cases, see [docs/01-rationale.md](01-rationale.md) and [docs/04-use-cases.md](04-use-cases.md).
 
 ---
 [⬅️ 01. Rationale](01-rationale.md) | [🏠 Home](index.md) | [03. Basics ➡️](03-basics.md)
