@@ -84,8 +84,10 @@ library is functional, well-typed, and has no import-time side effects.
 
 ### CI/CD
 
-* The CI workflow file has been moved to `.github/workflows_disabled` (plain
-  text file, not an active workflow).
+* The CI workflow content is stored in `.github/workflows_disabled`, a single
+  file outside the `.github/workflows/` directory.  Because GitHub Actions only
+  recognises workflow files inside `.github/workflows/`, no CI runs on push or
+  PR.
 * No active GitHub Actions workflows exist in `.github/workflows/`.
 * The disabled workflow still includes Python 3.8 in its test matrix, which is
   not supported by the project (`requires-python = ">=3.9"`).
@@ -115,7 +117,7 @@ The library exports four classes via `spinstep/__init__.py`:
 
 | # | Severity | Description |
 |---|----------|-------------|
-| 1 | **Medium** | CI workflow is disabled (`.github/workflows_disabled` is a plain file, not an active workflow). No automated testing runs on push or PR. |
+| 1 | **Medium** | CI workflow is disabled — the workflow YAML lives in `.github/workflows_disabled` instead of `.github/workflows/`, so GitHub Actions does not recognise it.  No automated testing runs on push or PR. |
 | 2 | **Medium** | Disabled CI workflow still lists Python 3.8 in its test matrix, which conflicts with `requires-python = ">=3.9"` in `pyproject.toml`. |
 | 3 | **Low** | Disabled CI workflow uses `flake8` for linting, but the project is configured for `ruff` and `black` in `pyproject.toml` and `dev-requirements.txt`. |
 | 4 | **Low** | `get_unique_relative_spins()` has no test coverage (requires optional `healpy` dependency). |
@@ -127,7 +129,7 @@ The library exports four classes via `spinstep/__init__.py`:
 
 | # | Relates to Issue | Action | Details |
 |---|-----------------|--------|---------|
-| 1 | Issue 1 | Re-enable CI workflow | Move `.github/workflows_disabled` to `.github/workflows/ci.yml` as a valid YAML workflow file. |
+| 1 | Issue 1 | Re-enable CI workflow | Rename `.github/workflows_disabled` to `.github/workflows/ci.yml` so GitHub Actions picks it up as an active workflow. |
 | 2 | Issue 2 | Update Python test matrix | Remove `3.8` from the matrix; add `3.12` to match pyproject.toml classifiers. Use `['3.9', '3.10', '3.11', '3.12']`. |
 | 3 | Issue 3 | Replace `flake8` with `ruff` in CI | Change the lint step from `flake8` to `ruff check spinstep/` to match the project's configured linter. |
 | 4 | Issue 4 | Add conditional `healpy` test | Add a test for `get_unique_relative_spins()` guarded by `pytest.importorskip("healpy")`, following the same pattern used for CuPy tests. |
