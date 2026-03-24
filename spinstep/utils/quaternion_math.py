@@ -6,10 +6,13 @@
 
 from __future__ import annotations
 
+from types import ModuleType
 from typing import Any
 
+__all__ = ["batch_quaternion_angle"]
 
-def batch_quaternion_angle(qs1: Any, qs2: Any, xp: Any) -> Any:
+
+def batch_quaternion_angle(qs1: Any, qs2: Any, xp: ModuleType) -> Any:
     """Compute pairwise angular distances between two sets of quaternions.
 
     Parameters

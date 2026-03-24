@@ -6,6 +6,8 @@
 
 from __future__ import annotations
 
+__all__ = ["DiscreteQuaternionIterator"]
+
 from typing import Iterator, List, Set, Tuple
 
 import numpy as np

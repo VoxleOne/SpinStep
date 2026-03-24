@@ -6,6 +6,8 @@
 
 from __future__ import annotations
 
+__all__ = ["DiscreteOrientationSet"]
+
 from typing import Any
 
 import numpy as np
