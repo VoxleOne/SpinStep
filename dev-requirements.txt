@@ -1,16 +1,7 @@
-# Optional scientific stack
-matplotlib>=3.7
-numba>=0.57
-cython>=0.29
-cupy
-
-# Optional GPU tooling
-pycuda
-
 # Testing
 pytest
 
-# Optional Code quality / tooling
+# Code quality / tooling
 black
 ruff
 mypy
