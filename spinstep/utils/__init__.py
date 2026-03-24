@@ -2,7 +2,7 @@
 # Author: Eraldo B. Marques <eraldo.bernardo@gmail.com> — Created: 2025-05-14
 # See LICENSE.txt for full terms. This header must be retained in redistributions.
 
-"""Internal utilities for quaternion math and array backend selection.
+"""Utilities for quaternion math and array backend selection.
 
 This sub-package provides:
 
