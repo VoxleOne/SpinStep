@@ -25,16 +25,29 @@ class QuaternionDepthIterator:
     *angle_threshold* of the rotated state are pushed onto the traversal
     stack.
 
-    Parameters
-    ----------
-    start_node:
-        Root node of the tree to traverse.
-    rotation_step_quat:
-        Quaternion ``[x, y, z, w]`` applied at every step.
-    angle_threshold:
-        Maximum angular distance (radians) between the rotated state and a
-        child's orientation for the child to be visited.  When *None* the
-        threshold is set to 30 % of the step angle (minimum 1°).
+    Args:
+        start_node: Root node of the tree to traverse.
+        rotation_step_quat: Quaternion ``[x, y, z, w]`` applied at every step.
+        angle_threshold: Maximum angular distance (radians) between the
+            rotated state and a child's orientation for the child to be
+            visited.  When ``None`` the threshold is set to 30 % of the
+            step angle (minimum 1°).
+
+    Attributes:
+        rotation_step: The rotation step as a
+            :class:`~scipy.spatial.transform.Rotation` instance.
+        angle_threshold: Angular distance threshold in radians.
+        stack: Internal traversal stack of ``(Node, Rotation)`` pairs.
+
+    Example::
+
+        from spinstep import Node, QuaternionDepthIterator
+
+        root = Node("root", [0, 0, 0, 1], [
+            Node("child", [0.2588, 0, 0, 0.9659])
+        ])
+        for node in QuaternionDepthIterator(root, [0.2588, 0, 0, 0.9659]):
+            print(node.name)
     """
 
     DEFAULT_DYNAMIC_THRESHOLD_FACTOR: float = 0.3

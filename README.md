@@ -1,221 +1,200 @@
-# SpinStep - [Read the Docs](https://github.com/VoxLeone/SpinStep/tree/main/docs/index.md)
+# SpinStep
 
-**SpinStep** is a proof-of-concept quaternion-driven traversal framework for trees and orientation-based data structures.
-
-By leveraging the power of 3D rotation math, SpinStep enables traversal based not on position or order, but on orientation. This makes it ideal for spatial reasoning, robotics, 3D scene graphs, and anywhere quaternion math naturally applies.
+**SpinStep** is a quaternion-driven traversal framework for trees and orientation-based data structures. Instead of traversing by position or order, SpinStep uses 3D rotation math to navigate trees based on orientation — making it ideal for robotics, spatial reasoning, 3D scene graphs, and anywhere quaternion math naturally applies.
 
 <div align="center">
   <img src="docs/assets/img/quaternion-tree.png" alt="A 3D Graph concept image" width="750" />
 </div>
 
----
+## Overview
 
-## Features
+SpinStep provides two traversal modes:
 
-- Quaternion-based stepping and branching  
-- Full support for yaw, pitch, and roll rotations  
-- Configurable angular thresholds for precision control  
-- Easily extendable to N-ary trees or orientation graphs  
-- Written in Python with SciPy's rotation engine  
+- **Continuous traversal** — apply a single rotation step at each node and visit children whose orientation falls within an angular threshold (`QuaternionDepthIterator`).
+- **Discrete traversal** — try every rotation from a predefined symmetry group or custom set and visit reachable children (`DiscreteQuaternionIterator` with `DiscreteOrientationSet`).
 
----
+Both modes are built on a simple `Node` class that stores a name, a unit quaternion orientation `[x, y, z, w]`, and a list of children.
 
-## Example Use Case
+## Installation
+
+**Requirements:** Python 3.9+
+
+Install from source:
+
+```bash
+git clone https://github.com/VoxleOne/SpinStep.git
+cd SpinStep
+pip install .
+```
+
+Or install in editable mode for development:
+
+```bash
+pip install -e ".[dev]"
+```
+
+## Quick Start
 
 ```python
 from spinstep import Node, QuaternionDepthIterator
 
-# Define your tree with orientation quaternions
+# Build a small tree with quaternion orientations [x, y, z, w]
 root = Node("root", [0, 0, 0, 1], [
-    Node("child", [0.2588, 0, 0, 0.9659])  # ~30 degrees around Z
+    Node("child", [0.2588, 0, 0, 0.9659])  # ~30° rotation around Z
 ])
 
-# Step using a 30-degree rotation
+# Traverse using a 30° rotation step
 iterator = QuaternionDepthIterator(root, [0.2588, 0, 0, 0.9659])
 
 for node in iterator:
     print("Visited:", node.name)
+# Output:
+# Visited: root
+# Visited: child
 ```
 
----
+## Core Concepts
 
-## Requirements
+### Node
 
-- Python 3.9+  
-- `numpy`  
-- `scipy`  
-- `scikit-learn`
-  
-Install dependencies via pip:
-
-```bash
-pip install numpy scipy scikit-learn
-```
-## Node Requirements
-
-- `.orientation`: Quaternion as `[x, y, z, w]`, always normalized.
-- `.children`: Iterable of nodes.
-- Node constructor and orientation set utilities always normalize quaternions and check for zero-norm.
-- `angle_threshold` parameters are always in radians.
-
-All core functions will raise `ValueError` or `AttributeError` if these invariants are violated.
-
----
-
-## Concepts
-
-SpinStep uses quaternion rotation to determine if a child node is reachable from a given orientation. Only children whose orientations lie within a defined angular threshold (default: 45°) of the current rotation state are traversed.
-
-This mimics rotational motion or attention in physical and virtual spaces. Ideal for:
-
-- Orientation trees  
-- 3D pose search  
-- Animation graph traversal  
-- Spatial AI and robotics
----
-
-<div align="center">
-  <img src="docs/assets/img/classical-vs-quaternion-traversal2.png" alt="A 3D Graph concept image" style="max-width: 100% style="margin: 20px;" />
-</div>
-
----
-
-## What Would It Mean to “Rotate into Branches”?
-
-### 1. Quaternion as a Branch Selector
-
-- Each node in a graph or tree encodes a rotational state (quaternion)  
-- Traversal is guided by a current quaternion state  
-- At each step, you rotate your state and select the next node based on geometric orientation  
-
-🔸 *Use Cases*: Scene graphs, spatial indexing, directional AI traversal, robot path planning  
-
----
-
-### 2. Quaternion-Based Traversal Heuristics
-
-Instead of:
+A tree node with a quaternion-based orientation. Each node stores a name, a unit quaternion `[x, y, z, w]` (automatically normalised), and a list of children.
 
 ```python
-next = left or right
+from spinstep import Node
+
+root = Node("root", [0, 0, 0, 1])
+child = Node("child", [0, 0, 0.3827, 0.9239])  # ~45° around Z
+root.children.append(child)
 ```
 
-You define:
+### QuaternionDepthIterator
+
+Depth-first iterator that applies a continuous rotation step at each node. Only children within an angular threshold of the rotated state are visited.
 
 ```python
-next_node = rotate(current_orientation, branch_orientation)
+from spinstep import Node, QuaternionDepthIterator
+
+root = Node("root", [0, 0, 0, 1], [
+    Node("close", [0.2588, 0, 0, 0.9659]),   # ~30° — will be visited
+    Node("far", [0.7071, 0, 0, 0.7071]),      # ~90° — too far
+])
+
+for node in QuaternionDepthIterator(root, [0.2588, 0, 0, 0.9659]):
+    print(node.name)
+# Output:
+# root
+# close
 ```
 
-- Rotation (quaternion multiplication) becomes the “step” function  
-- Orientation and direction are first-class traversal parameters  
+### DiscreteOrientationSet
 
-🔸 *Use Cases*: Game engines, camera control, 3D modeling, procedural generation  
+A set of discrete quaternion orientations with spatial querying. Comes with factory methods for common symmetry groups.
 
----
+```python
+from spinstep import DiscreteOrientationSet
 
-### 3. Multi-Dimensional Trees with Quaternion Keys
-
-- Use quaternion distance (angle) to decide which branches to explore or when to stop  
-- Think of it like a quaternion-aware k-d tree  
-
----
-
-### Visual Metaphor
-
-Imagine walking through a tree **not** left/right — but by **rotating** in space:
-
-- Rotate **pitch** to descend to one child  
-- Rotate **yaw** to reach another  
-- Traverse hierarchies by change in orientation, not position  
-
----
-
-## Project Structure
-
-```
-spinstep/
-├── __init__.py
-├── discrete.py
-├── discrete_iterator.py
-├── node.py
-├── traversal.py
-└── utils/
-    ├── array_backend.py
-    ├── quaternion_math.py
-    └── quaternion_utils.py
-
-benchmark/
-├── edge-cases.md
-├── INSTRUCTIONS.md
-├── qgnn_example.py
-├── README.md
-├── references.md
-└── test_qgnn_benchmark.py
-
-demos/
-├── demo1_tree_traversal.py
-├── demo2_full_depth_traversal.py
-├── demo3_spatial_traversal.py
-├── demo4_discrete_traversal.py
-└── demo.py
-
-examples/
-└── gpu_orientation_matching.py
-
-tests/
-├── test_discrete_traversal.py
-└── test_spinstep.py
-
-docs/
-├── assets/
-│   ├── img/
-│   │   └── (...)         # Images go here
-│   └── notebooks/
-│       └── (...)         # Jupyter notebooks or rendered outputs
-├── CONTRIBUTING.md
-└── index.md
-
-# Root files
-CHANGELOG.md
-LICENSE
-MANIFEST.in
-pyproject.toml
-README.md
-requirements.txt
-dev-requirements.txt
+cube_set = DiscreteOrientationSet.from_cube()          # 24 orientations
+icosa_set = DiscreteOrientationSet.from_icosahedron()   # 60 orientations
+grid_set = DiscreteOrientationSet.from_sphere_grid(200) # 200 Fibonacci-sampled
 ```
 
----
+### DiscreteQuaternionIterator
 
-## To Build and Install Locally
+Depth-first iterator that tries every rotation in a `DiscreteOrientationSet` at each node. Children reachable by any rotation within the angular threshold are visited.
 
-First, clone the repository:
+```python
+import numpy as np
+from spinstep import Node, DiscreteOrientationSet, DiscreteQuaternionIterator
+
+root = Node("root", [0, 0, 0, 1], [
+    Node("child1", [0, 0, 0.3827, 0.9239]),
+    Node("child2", [0, 0.7071, 0, 0.7071]),
+])
+
+orientation_set = DiscreteOrientationSet.from_cube()
+it = DiscreteQuaternionIterator(root, orientation_set, angle_threshold=np.pi / 4)
+
+for node in it:
+    print(node.name)
+# Output:
+# root
+# child1
+# child2
+```
+
+## Examples
+
+### Continuous Traversal with Custom Threshold
+
+```python
+import numpy as np
+from spinstep import Node, QuaternionDepthIterator
+
+root = Node("origin", [0, 0, 0, 1], [
+    Node("alpha", [0.1305, 0, 0, 0.9914]),  # ~15°
+])
+
+# Use explicit angle threshold of 20° (in radians)
+it = QuaternionDepthIterator(root, [0.1305, 0, 0, 0.9914], angle_threshold=np.deg2rad(20))
+print([n.name for n in it])
+# Output: ['origin', 'alpha']
+```
+
+### Query Orientations by Angle
+
+```python
+import numpy as np
+from spinstep import DiscreteOrientationSet
+
+dos = DiscreteOrientationSet.from_cube()
+indices = dos.query_within_angle([0, 0, 0, 1], np.deg2rad(10))
+print(f"Found {len(indices)} orientations within 10° of identity")
+```
+
+## Optional Dependencies
+
+SpinStep works out of the box with NumPy, SciPy, and scikit-learn. Two optional dependencies unlock additional features:
+
+| Package | Install | Feature |
+|---------|---------|---------|
+| [CuPy](https://cupy.dev/) | `pip install cupy-cuda12x` | GPU-accelerated orientation storage and angular distance computation |
+| [healpy](https://healpy.readthedocs.io/) | `pip install healpy` | HEALPix-based unique relative spin detection via `get_unique_relative_spins()` |
+
+GPU example:
+
+```python
+import numpy as np
+from spinstep import DiscreteOrientationSet
+
+orientations = np.random.randn(1000, 4)
+# Store orientations on GPU (requires CuPy)
+gpu_set = DiscreteOrientationSet(orientations, use_cuda=True)
+```
+
+## Development
 
 ```bash
-git clone https://github.com/VoxLeone/spinstep.git
-cd spinstep
+# Install with development dependencies
+pip install -e ".[dev]"
+
+# Run tests
+python -m pytest tests/ -v
+
+# Run linter
+ruff check spinstep/
 ```
 
-Then, install it:
+## Documentation
 
-```bash
-pip install .
-```
+Full documentation is available in the [docs/](docs/index.md) directory:
 
-To build a wheel distribution:
-
-```bash
-python -m build
-```
----
-## [Benchmark Instructions](benchmark/INSTRUCTIONS.md)
----
+- [Getting Started](docs/getting-started.md)
+- [Continuous Traversal Guide](docs/continuous-traversal.md)
+- [Discrete Traversal Guide](docs/discrete-traversal.md)
+- [FAQ](docs/faq.md)
+- [API Reference](docs/09-api-reference.md)
+- [Contributing](docs/CONTRIBUTING.md)
 
 ## License
 
-MIT — free to use, fork, and adapt.
-
-## 💬 Feedback & Contributions
-
-PRs and issues are welcome!  
-If you're using SpinStep in a cool project, let us know.
+MIT — see [LICENSE](LICENSE) for details.

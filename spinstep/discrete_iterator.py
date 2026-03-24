@@ -25,22 +25,29 @@ class DiscreteQuaternionIterator:
     *angle_threshold* of any resulting candidate orientation are pushed onto
     the traversal stack.
 
-    Parameters
-    ----------
-    start_node:
-        Root node of the tree.
-    orientation_set:
-        :class:`DiscreteOrientationSet` providing the candidate rotation steps.
-    angle_threshold:
-        Maximum angular distance (radians) for a child to be considered
-        reachable.  Defaults to π/8 (22.5°).
-    max_depth:
-        Maximum traversal depth.
+    Args:
+        start_node: Root node of the tree.
+        orientation_set: :class:`DiscreteOrientationSet` providing the
+            candidate rotation steps.
+        angle_threshold: Maximum angular distance (radians) for a child to
+            be considered reachable.  Defaults to π/8 (22.5°).
+        max_depth: Maximum traversal depth.  Defaults to 100.
 
-    Raises
-    ------
-    AttributeError
-        If *start_node* lacks ``.orientation`` or ``.children`` attributes.
+    Raises:
+        AttributeError: If *start_node* lacks ``.orientation`` or
+            ``.children`` attributes.
+
+    Example::
+
+        import numpy as np
+        from spinstep import Node, DiscreteOrientationSet, DiscreteQuaternionIterator
+
+        root = Node("root", [0, 0, 0, 1], [
+            Node("child", [0, 0, 0.3827, 0.9239])
+        ])
+        dos = DiscreteOrientationSet.from_cube()
+        for node in DiscreteQuaternionIterator(root, dos, angle_threshold=np.pi / 4):
+            print(node.name)
     """
 
     def __init__(
