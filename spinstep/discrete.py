@@ -2,6 +2,8 @@
 # Author: Eraldo B. Marques <eraldo.bernardo@gmail.com> — Created: 2025-05-14
 # See LICENSE.txt for full terms. This header must be retained in redistributions.
 
+"""Discrete orientation set with spatial querying support."""
+
 from __future__ import annotations
 
 from typing import Any, Optional, Union
