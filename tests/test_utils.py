@@ -210,3 +210,29 @@ class TestGetRelativeSpin:
         q = get_relative_spin(n1, n2)
         # Should be a unit quaternion
         assert np.linalg.norm(q) == pytest.approx(1.0, abs=1e-6)
+
+
+# ===== get_unique_relative_spins tests (requires healpy) =====
+
+
+class TestGetUniqueRelativeSpins:
+    def test_returns_list_of_unit_quaternions(self):
+        """Unique spins should be a list of unit quaternions."""
+        hp = pytest.importorskip("healpy", reason="healpy not installed")
+        from spinstep.utils.quaternion_utils import get_unique_relative_spins
+
+        nside = 1
+        npix = hp.nside2npix(nside)
+        # Build nodes with orientations derived from HEALPix pixel directions
+        nodes = []
+        for i in range(npix):
+            theta, phi = hp.pix2ang(nside, i, nest=True)
+            q = R.from_euler("yz", [theta, phi], degrees=False).as_quat()
+            nodes.append(Node(f"n{i}", q))
+
+        spins = get_unique_relative_spins(nodes, nside=nside, nest=True)
+        assert isinstance(spins, list)
+        assert len(spins) > 0
+        for q in spins:
+            assert np.linalg.norm(q) == pytest.approx(1.0, abs=1e-6)
+            assert q[3] >= 0  # canonical form (w >= 0)

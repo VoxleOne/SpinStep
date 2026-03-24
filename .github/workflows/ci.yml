@@ -6,12 +6,15 @@ on:
   pull_request:
     branches: [main, dev]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10', '3.11']
+        python-version: ['3.9', '3.10', '3.11', '3.12']
     steps:
       - uses: actions/checkout@v4
 
@@ -25,13 +28,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install .[dev]
 
-      - name: Lint with flake8
+      - name: Lint with ruff
         run: |
-          pip install flake8
-          flake8 spinstep --count --select=E9,F63,F7,F82 --show-source --statistics
-          flake8 spinstep --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          ruff check spinstep/
 
       - name: Test with pytest
         run: |
-          pip install pytest
           pytest tests/
