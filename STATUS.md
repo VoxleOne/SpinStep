@@ -1,8 +1,8 @@
 # SpinStep — Repository Status Report
 
-> **Version:** 0.1.0 (Alpha)  
-> **Date:** 2026-03-24  
-> **License:** MIT  
+> **Version:** 0.1.0 (Alpha)
+> **Date:** 2026-03-24
+> **License:** MIT
 
 ---
 
@@ -13,16 +13,19 @@
 | **Installable** | ✅ Yes (`pip install .` and `pip install -e .` both succeed) |
 | **Importable** | ✅ Yes (`import spinstep` works, exports 4 public classes) |
 | **Core functionality working** | ✅ Yes |
-| **Test status** | 46 passed / 0 failed / 4 skipped (CUDA not available) |
-| **Overall status** | The library is installable, importable, and fully functional; CI workflow is disabled and needs updating. |
+| **Test status** | 46 passed / 0 failed / 5 skipped (4 CUDA, 1 healpy) |
+| **CI status** | ✅ Active at `.github/workflows/ci.yml` — tests Python 3.9–3.12 |
+| **Linting** | ✅ `ruff check spinstep/` passes with zero warnings |
+| **Type checking** | ❌ 623 mypy errors under configured `strict = true` |
+| **Overall status** | The library is installable, importable, and fully functional. CI is active. Type checking needs work before production release. See [AUDIT.md](AUDIT.md) for full production-readiness assessment. |
 
 ---
 
 ## Table of Contents
 
 1. [Current State](#1-current-state)
-2. [Issues](#2-issues)
-3. [Suggested Changes](#3-suggested-changes)
+2. [Known Issues](#2-known-issues)
+3. [Suggested Next Steps](#3-suggested-next-steps)
 
 ---
 
@@ -33,15 +36,15 @@
 SpinStep is an alpha-stage Python library that implements quaternion-driven tree
 traversal.  Instead of traversing by position or order, SpinStep uses 3D
 orientation (quaternion rotation) to decide which branches to explore.  The core
-library is functional, well-typed, and has no import-time side effects.
+library is functional, well-documented, and has no import-time side effects.
 
 ### Repository Layout
 
 | Directory | Role | Distributed |
 |-----------|------|:-----------:|
-| `spinstep/` | Core library (≈ 680 LOC) | ✅ |
-| `tests/` | Unit & integration tests (≈ 390 LOC) | ❌ |
-| `docs/` | Markdown documentation (≈ 1 500 LOC) | ❌ |
+| `spinstep/` | Core library (≈ 725 LOC across 9 files) | ✅ |
+| `tests/` | Unit & integration tests (51 tests across 4 files) | ❌ |
+| `docs/` | Markdown documentation (16 files + assets) | ❌ |
 | `demos/` | Educational scripts (5 files) | ❌ |
 | `examples/` | Real-world examples (1 file) | ❌ |
 | `benchmark/` | Performance benchmarks & QGNN examples | ❌ |
@@ -54,43 +57,41 @@ library is functional, well-typed, and has no import-time side effects.
   `scikit-learn ≥ 1.2`.
 * **Optional extras:** `[gpu]` → `cupy-cuda12x`, `[healpy]` → `healpy`,
   `[dev]` → `pytest`, `black`, `ruff`, `mypy`.
-* **Distribution:** `MANIFEST.in` excludes benchmarks, demos, examples, tests,
-  and docs from the sdist/wheel.  `pyproject.toml` `[tool.setuptools.packages.find]`
-  also excludes them.
-* **Build:** `python -m build --sdist` succeeds.
-* **Install:** `pip install .` or `pip install -e .` works correctly.
+* **Distribution:** `MANIFEST.in` and `[tool.setuptools.packages.find]` both
+  exclude benchmarks, demos, examples, tests, and docs from sdist/wheel.
+* **Build:** Both `python -m build --sdist` and `python -m build --wheel` succeed.
+* **Install:** `pip install .` and `pip install -e .` work correctly.
 
 ### Test Suite
 
-* **Framework:** pytest (50 tests across 4 files in `tests/`).
-* **Results:** 46 passed, 0 failed, 4 skipped (CuPy/CUDA not available).
+* **Framework:** pytest (51 tests across 4 files in `tests/`).
+* **Results:** 46 passed, 0 failed, 5 skipped (4 CuPy/CUDA, 1 healpy).
 * **Covered:** `Node`, `QuaternionDepthIterator` (continuous traversal),
   `DiscreteOrientationSet` (init, factories, queries, GPU path),
   `DiscreteQuaternionIterator` (creation, traversal, depth limits), integration
   pipeline, utility functions (`quaternion_utils`, `quaternion_math`,
   `array_backend`).
-* **Not covered:** `get_unique_relative_spins` (requires optional `healpy`
-  dependency).
+* **Conditionally covered:** `get_unique_relative_spins` (guarded by
+  `pytest.importorskip("healpy")`).
 
 ### Code Quality
 
 | Metric | Status |
 |--------|--------|
-| Type hints | 100 % (all public functions/methods) |
-| Docstrings | ≈ 90 % (module + class + public function docstrings) |
+| Type hints | Present on all public functions/methods |
+| Docstrings | NumPy-style on all public classes and functions |
 | Side effects at import | None (lazy imports for cupy, sklearn, healpy) |
-| Linting config | `ruff` and `black` configured (88-char lines) |
-| Type checking config | `mypy` strict mode configured |
+| Linting | `ruff check spinstep/` — zero warnings |
+| Type checking | `mypy --strict` configured but 623 errors remain |
 
 ### CI/CD
 
-* The CI workflow content is stored in `.github/workflows_disabled`, a single
-  file outside the `.github/workflows/` directory.  Because GitHub Actions only
-  recognises workflow files inside `.github/workflows/`, no CI runs on push or
-  PR.
-* No active GitHub Actions workflows exist in `.github/workflows/`.
-* The disabled workflow still includes Python 3.8 in its test matrix, which is
-  not supported by the project (`requires-python = ">=3.9"`).
+* **Active workflow:** `.github/workflows/ci.yml`
+* **Triggers:** push to `main`, `dev`, `features/cuda`; PRs to `main`, `dev`
+* **Matrix:** Python 3.9, 3.10, 3.11, 3.12 on `ubuntu-latest`
+* **Steps:** `pip install .[dev]` → `ruff check spinstep/` → `pytest tests/`
+* **Permissions:** `contents: read` (least privilege)
+* **Not included:** mypy, code coverage, release/publish workflow
 
 ### Public API
 
@@ -113,27 +114,34 @@ The library exports four classes via `spinstep/__init__.py`:
 
 ---
 
-## 2. Issues
+## 2. Known Issues
 
 | # | Severity | Description |
 |---|----------|-------------|
-| 1 | **Medium** | CI workflow is disabled — the workflow YAML lives in `.github/workflows_disabled` instead of `.github/workflows/`, so GitHub Actions does not recognise it.  No automated testing runs on push or PR. |
-| 2 | **Medium** | Disabled CI workflow still lists Python 3.8 in its test matrix, which conflicts with `requires-python = ">=3.9"` in `pyproject.toml`. |
-| 3 | **Low** | Disabled CI workflow uses `flake8` for linting, but the project is configured for `ruff` and `black` in `pyproject.toml` and `dev-requirements.txt`. |
-| 4 | **Low** | `get_unique_relative_spins()` has no test coverage (requires optional `healpy` dependency). |
-| 5 | **Low** | `dev-requirements.txt` lists `matplotlib`, `numba`, `cython`, `pycuda` which are not used anywhere in the core library or tests. These are stale entries. |
+| 1 | **Critical** | 623 mypy errors under configured `strict = true` — mainly missing stubs for scipy/sklearn and overly broad `ArrayLike` parameter types. |
+| 2 | **Critical** | No `spinstep/py.typed` PEP 561 marker — downstream type checkers won't detect type information. |
+| 3 | **High** | CI does not run `mypy` — type regressions are undetected. |
+| 4 | **High** | No code coverage reporting in CI. |
+| 5 | **Medium** | `CONTRIBUTING.md` references `flake8` instead of the project's actual linter `ruff`. |
+| 6 | **Medium** | Missing PyPI metadata: `keywords`, `Homepage`, `Documentation`, `Bug Tracker` URLs. |
+| 7 | **Medium** | No release/publish workflow for PyPI distribution. |
+| 8 | **Medium** | No `SECURITY.md` at root for GitHub vulnerability reporting. |
+| 9 | **Low** | `dev-requirements.txt` duplicates `pyproject.toml [dev]` extras — single source of truth preferred. |
+| 10 | **Low** | README contains broken link (`VoxLeone` vs `VoxleOne`) and unclosed HTML attribute on line 78. |
 
 ---
 
-## 3. Suggested Changes
+## 3. Suggested Next Steps
 
-| # | Relates to Issue | Action | Details |
-|---|-----------------|--------|---------|
-| 1 | Issue 1 | Re-enable CI workflow | Rename `.github/workflows_disabled` to `.github/workflows/ci.yml` so GitHub Actions picks it up as an active workflow. |
-| 2 | Issue 2 | Update Python test matrix | Remove `3.8` from the matrix; add `3.12` to match pyproject.toml classifiers. Use `['3.9', '3.10', '3.11', '3.12']`. |
-| 3 | Issue 3 | Replace `flake8` with `ruff` in CI | Change the lint step from `flake8` to `ruff check spinstep/` to match the project's configured linter. |
-| 4 | Issue 4 | Add conditional `healpy` test | Add a test for `get_unique_relative_spins()` guarded by `pytest.importorskip("healpy")`, following the same pattern used for CuPy tests. |
-| 5 | Issue 5 | Clean up `dev-requirements.txt` | Remove unused entries (`matplotlib`, `numba`, `cython`, `pycuda`) or add a comment explaining they are for optional experimentation only. |
+See [AUDIT.md](AUDIT.md) for a detailed production-readiness audit with a
+prioritised remediation roadmap.
+
+**Summary of phases:**
+
+1. **Phase 1 (Critical):** Fix mypy errors, add `py.typed`, add mypy to CI.
+2. **Phase 2 (High):** Add coverage, fix docs references, improve metadata.
+3. **Phase 3 (Medium):** Add release workflow, SECURITY.md, dependabot, missing tests.
+4. **Phase 4 (Polish):** Fix license headers, add `__all__` to utils, pre-commit hooks.
 
 ---
 
