@@ -226,7 +226,7 @@ from types import ModuleType
 class DiscreteOrientationSet:
     _xp: ModuleType
     orientations: np.ndarray  # Keep public — users query this
-    _balltree: object  # or Optional[Any] since BallTree lacks stubs
+    _balltree: object  # BallTree or None; sklearn lacks type stubs
 ```
 
 ### 4.2 Fix mypy Issues (Non-Stub)
@@ -466,7 +466,7 @@ print(f"Set has {len(orientations)} orientations")
 
 results = orientations.query_within_angle(
     quat=[0, 0, 0, 1],
-    angle=np.pi / 4,  # or angle_threshold after Stage 5
+    angle_threshold=np.pi / 4,  # renamed from 'angle' in Stage 5
 )
 print(f"Found {len(results)} orientations within 45°")
 
