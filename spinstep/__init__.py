@@ -20,7 +20,7 @@ Example usage::
         print(node.name)
 """
 
-__version__ = "0.1.0"
+__version__ = "0.3.0a0"
 
 from .node import Node
 from .traversal import QuaternionDepthIterator
