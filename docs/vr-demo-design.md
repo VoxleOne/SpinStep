@@ -161,10 +161,12 @@ Usage:    Panels placed at known orientations; user rotates into their cone to r
 
 ### Design Principles
 
-1. **No modification to existing SpinStep core** — VR module composes existing primitives
-2. **Pure Python with NumPy** — no VR engine dependency inside SpinStep
-3. **Engine-agnostic bridge** — JSON protocol for Unity/Unreal communication
-4. **Stateless computation** — each `update()` call is a pure function of current state
+1. **No modification to existing SpinStep core** 
+2. **SpinStep core MUST be imported made into module**
+3. **VR module imports existing primitives**
+4. **Pure Python with NumPy** — no VR engine dependency inside SpinStep
+5. **Engine-agnostic bridge** — JSON protocol for Unity/Unreal communication
+6. **Stateless computation** — each `update()` call is a pure function of current state
 
 ---
 
