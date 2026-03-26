@@ -9,12 +9,20 @@ and uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+---
+
+## [0.3.0a0] – 2026-03-26
+
 ### Added
 - Module-level docstrings to all core and utility modules
 - Test suite for `QuaternionDepthIterator` (continuous traversal) — 10 new tests
 - Test suite for utility functions (`quaternion_utils`, `quaternion_math`,
   `array_backend`) — 20 new tests
 - `healpy` declared as optional dependency in `pyproject.toml`
+- PEP 561 `py.typed` marker file for downstream type-checking support
+- `__all__` exports in all public modules for explicit API surface control
+- GitHub Actions publish workflow for automated PyPI releases
+- Release readiness report (`RELEASE_READINESS.md`)
 
 ### Fixed
 - `DiscreteQuaternionIterator` erroneously multiplied `magnitude()` by 2,
@@ -30,6 +38,7 @@ and uses [Semantic Versioning](https://semver.org/).
   exist
 
 ### Changed
+- Version bumped to `0.3.0a0` (PEP 440 pre-release alpha)
 - Restructured branch strategy: `main`, `dev`, `features/cuda`
 - Clarified setup instructions in `README.md`
 
