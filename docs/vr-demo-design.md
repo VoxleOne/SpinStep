@@ -162,7 +162,7 @@ Usage:    Panels placed at known orientations; user rotates into their cone to r
 ### Design Principles
 
 1. **No modification to existing SpinStep core** 
-2. **SpinStep core MUST be imported made into module**
+2. **SpinStep core MUST be imported into module**
 3. **VR module imports existing primitives**
 4. **Pure Python with NumPy** — no VR engine dependency inside SpinStep
 5. **Engine-agnostic bridge** — JSON protocol for Unity/Unreal communication
