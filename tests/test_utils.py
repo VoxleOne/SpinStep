@@ -18,6 +18,9 @@ from spinstep.utils.quaternion_utils import (
     rotate_quaternion,
     rotation_matrix_to_quaternion,
     get_relative_spin,
+    forward_vector_from_quaternion,
+    direction_to_quaternion,
+    angle_between_directions,
 )
 
 
@@ -236,3 +239,89 @@ class TestGetUniqueRelativeSpins:
         for q in spins:
             assert np.linalg.norm(q) == pytest.approx(1.0, abs=1e-6)
             assert q[3] >= 0  # canonical form (w >= 0)
+
+
+# ===== forward_vector_from_quaternion tests =====
+
+
+class TestForwardVectorFromQuaternion:
+    def test_identity_forward(self):
+        """Identity quaternion forward is [0, 0, -1]."""
+        fwd = forward_vector_from_quaternion([0, 0, 0, 1])
+        assert np.allclose(fwd, [0, 0, -1], atol=1e-6)
+
+    def test_180_yaw(self):
+        """180° yaw flips forward to [0, 0, 1]."""
+        q = R.from_euler("y", 180, degrees=True).as_quat()
+        fwd = forward_vector_from_quaternion(q)
+        assert np.allclose(fwd, [0, 0, 1], atol=1e-6)
+
+    def test_unit_length(self):
+        """Forward vector is always unit length."""
+        q = R.random().as_quat()
+        fwd = forward_vector_from_quaternion(q)
+        assert np.linalg.norm(fwd) == pytest.approx(1.0, abs=1e-6)
+
+
+# ===== direction_to_quaternion tests =====
+
+
+class TestDirectionToQuaternion:
+    def test_forward_direction(self):
+        """Direction [0, 0, -1] gives identity-like quaternion."""
+        q = direction_to_quaternion([0, 0, -1])
+        fwd = R.from_quat(q).apply([0, 0, -1])
+        assert np.allclose(fwd, [0, 0, -1], atol=1e-6)
+
+    def test_roundtrip(self):
+        """direction_to_quaternion → forward_vector_from_quaternion roundtrip."""
+        direction = np.array([1.0, 2.0, -3.0])
+        direction = direction / np.linalg.norm(direction)
+        q = direction_to_quaternion(direction)
+        fwd = forward_vector_from_quaternion(q)
+        assert np.allclose(fwd, direction, atol=1e-6)
+
+    def test_unit_quaternion(self):
+        """Returned quaternion is a unit quaternion."""
+        q = direction_to_quaternion([1, 0, 0])
+        assert np.linalg.norm(q) == pytest.approx(1.0, abs=1e-6)
+
+    def test_zero_vector(self):
+        """Zero vector returns identity quaternion."""
+        q = direction_to_quaternion([0, 0, 0])
+        assert np.allclose(q, [0, 0, 0, 1], atol=1e-6)
+
+
+# ===== angle_between_directions tests =====
+
+
+class TestAngleBetweenDirections:
+    def test_same_direction(self):
+        """Angle between identical directions is zero."""
+        d = [1, 0, 0]
+        assert angle_between_directions(d, d) == pytest.approx(0.0, abs=1e-7)
+
+    def test_opposite_directions(self):
+        """Angle between opposite directions is π."""
+        assert angle_between_directions(
+            [0, 0, 1], [0, 0, -1]
+        ) == pytest.approx(np.pi, abs=1e-6)
+
+    def test_perpendicular_directions(self):
+        """Angle between perpendicular directions is π/2."""
+        assert angle_between_directions(
+            [1, 0, 0], [0, 1, 0]
+        ) == pytest.approx(np.pi / 2, abs=1e-6)
+
+    def test_unnormalized_inputs(self):
+        """Works with non-unit direction vectors."""
+        assert angle_between_directions(
+            [3, 0, 0], [0, 4, 0]
+        ) == pytest.approx(np.pi / 2, abs=1e-6)
+
+    def test_zero_vector(self):
+        """Zero vector returns 0.0."""
+        assert angle_between_directions([0, 0, 0], [1, 0, 0]) == pytest.approx(
+            0.0, abs=1e-7
+        )
+

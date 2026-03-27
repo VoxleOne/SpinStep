@@ -16,6 +16,9 @@ __all__ = [
     "rotation_matrix_to_quaternion",
     "get_relative_spin",
     "get_unique_relative_spins",
+    "forward_vector_from_quaternion",
+    "direction_to_quaternion",
+    "angle_between_directions",
 ]
 
 from typing import List, Sequence
@@ -104,6 +107,63 @@ def rotation_matrix_to_quaternion(m: ArrayLike) -> np.ndarray:
     q = np.array([qx, qy, qz, qw])
     n = np.linalg.norm(q)
     return q / n if n > 1e-8 else np.array([0.0, 0.0, 0.0, 1.0])
+
+
+def forward_vector_from_quaternion(q: ArrayLike) -> np.ndarray:
+    """Extract the forward (look) direction from a quaternion.
+
+    The forward direction is defined as ``[0, 0, -1]`` rotated by the
+    quaternion, following the convention where negative-Z is "forward".
+
+    Args:
+        q: Quaternion ``[x, y, z, w]``.
+
+    Returns:
+        Unit direction vector ``(3,)`` pointing forward.
+    """
+    return R.from_quat(q).apply([0, 0, -1])
+
+
+def direction_to_quaternion(direction: ArrayLike) -> np.ndarray:
+    """Convert a 3D direction vector to an orientation quaternion.
+
+    The returned quaternion represents the rotation that aligns the
+    default forward axis ``[0, 0, -1]`` with the given *direction*.
+
+    Args:
+        direction: Target direction vector (does not need to be normalised).
+
+    Returns:
+        Unit quaternion ``[x, y, z, w]``.
+    """
+    d = np.asarray(direction, dtype=float)
+    norm = np.linalg.norm(d)
+    if norm < 1e-8:
+        return np.array([0.0, 0.0, 0.0, 1.0])
+    d = d / norm
+    rot, _ = R.align_vectors([d], [[0, 0, -1]])
+    return rot.as_quat()
+
+
+def angle_between_directions(d1: ArrayLike, d2: ArrayLike) -> float:
+    """Compute the angular distance (radians) between two direction vectors.
+
+    Args:
+        d1: First direction vector.
+        d2: Second direction vector.
+
+    Returns:
+        Angle in radians in the range ``[0, π]``.
+    """
+    v1 = np.asarray(d1, dtype=float)
+    v2 = np.asarray(d2, dtype=float)
+    n1 = np.linalg.norm(v1)
+    n2 = np.linalg.norm(v2)
+    if n1 < 1e-8 or n2 < 1e-8:
+        return 0.0
+    cos_angle = np.dot(v1 / n1, v2 / n2)
+    cos_angle = np.clip(cos_angle, -1.0, 1.0)
+    return float(np.arccos(cos_angle))
 
 
 def get_relative_spin(nf: object, nt: object) -> np.ndarray:
