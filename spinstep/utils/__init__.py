@@ -24,11 +24,17 @@ __all__ = [
     "rotation_matrix_to_quaternion",
     "get_relative_spin",
     "get_unique_relative_spins",
+    "forward_vector_from_quaternion",
+    "direction_to_quaternion",
+    "angle_between_directions",
 ]
 
 from .array_backend import get_array_module
 from .quaternion_math import batch_quaternion_angle
 from .quaternion_utils import (
+    angle_between_directions,
+    direction_to_quaternion,
+    forward_vector_from_quaternion,
     get_relative_spin,
     get_unique_relative_spins,
     is_within_angle_threshold,
