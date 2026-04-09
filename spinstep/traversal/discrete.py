@@ -14,7 +14,7 @@ import numpy as np
 from numpy.typing import ArrayLike
 from scipy.spatial.transform import Rotation as R
 
-from spinstep.utils.array_backend import get_array_module
+from ..utils.array_backend import get_array_module
 
 
 class DiscreteOrientationSet:

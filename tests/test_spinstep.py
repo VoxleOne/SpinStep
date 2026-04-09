@@ -11,10 +11,10 @@ try:
 except ImportError:
     HAS_CUPY = False
 
-from spinstep.discrete import DiscreteOrientationSet
+from spinstep.traversal.discrete import DiscreteOrientationSet
 # If you have continuous traversal classes, import them here
-# from spinstep.continuous import QuaternionDepthIterator
-from spinstep.node import Node
+# from spinstep.traversal.continuous import QuaternionDepthIterator
+from spinstep.traversal.node import Node
 
 @pytest.fixture
 def simple_tree():

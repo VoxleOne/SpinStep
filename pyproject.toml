@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "spinstep"
-version = "0.3.1a1"
-description = "Quaternion-based tree traversal for orientation-aware structures."
+version = "0.4.0a0"
+description = "Quaternion-based orientation control and traversal in observer-centered spherical coordinates."
 authors = [{ name = "Eraldo Marques", email = "eraldo.bernardo@gmail.com" }]
 readme = "README.md"
 license = "MIT"

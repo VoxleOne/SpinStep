@@ -6,8 +6,8 @@ import pytest
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
-from spinstep.node import Node
-from spinstep.traversal import QuaternionDepthIterator
+from spinstep.traversal.node import Node
+from spinstep.traversal.continuous import QuaternionDepthIterator
 
 
 class TestQuaternionDepthIterator:

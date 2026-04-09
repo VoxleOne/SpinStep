@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 from scipy.spatial.transform import Rotation as R
 
-from spinstep.node import Node
+from spinstep.traversal.node import Node
 from spinstep.utils.array_backend import get_array_module
 from spinstep.utils.quaternion_math import batch_quaternion_angle
 from spinstep.utils.quaternion_utils import (

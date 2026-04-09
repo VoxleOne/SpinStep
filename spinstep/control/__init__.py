@@ -2,11 +2,17 @@
 # Author: Eraldo B. Marques <eraldo.bernardo@gmail.com> — Created: 2025-05-14
 # See LICENSE.txt for full terms. This header must be retained in redistributions.
 
-"""Orientation control: state, controllers, and trajectory tracking.
+"""Observer-centered orientation control: state, controllers, and trajectories.
+
+The SpinStep control model places the observer at the origin.  Every
+guided vehicle (node) is located by a quaternion (direction from observer)
+and a radial distance (layer).  Controllers produce commands with both
+angular and radial velocity components.
 
 Sub-modules:
 
-- :mod:`~.state` — :class:`OrientationState`, integration, error computation
+- :mod:`~.state` — :class:`OrientationState`, :class:`ControlCommand`,
+  integration, error computation
 - :mod:`~.controllers` — proportional and PID orientation controllers
 - :mod:`~.trajectory` — waypoint trajectories and trajectory tracking
 """
@@ -14,7 +20,8 @@ Sub-modules:
 __all__ = [
     # state
     "OrientationState",
-    "integrate_orientation",
+    "ControlCommand",
+    "integrate_state",
     "compute_orientation_error",
     # controllers
     "OrientationController",
@@ -27,9 +34,10 @@ __all__ = [
 ]
 
 from .state import (
+    ControlCommand,
     OrientationState,
     compute_orientation_error,
-    integrate_orientation,
+    integrate_state,
 )
 from .controllers import (
     OrientationController,

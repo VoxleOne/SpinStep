@@ -4,7 +4,7 @@
 
 """Tree traversal using quaternion orientation.
 
-This sub-package contains the original traversal classes:
+This sub-package contains the traversal classes:
 
 - :class:`Node` — tree node with quaternion orientation
 - :class:`QuaternionDepthIterator` — continuous rotation-step depth-first traversal
@@ -19,7 +19,7 @@ __all__ = [
     "DiscreteQuaternionIterator",
 ]
 
-from ..node import Node
-from ..traversal import QuaternionDepthIterator
-from ..discrete import DiscreteOrientationSet
-from ..discrete_iterator import DiscreteQuaternionIterator
+from .node import Node
+from .continuous import QuaternionDepthIterator
+from .discrete import DiscreteOrientationSet
+from .discrete_iterator import DiscreteQuaternionIterator

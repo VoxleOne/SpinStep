@@ -11,8 +11,6 @@ __all__ = [
     "squad",
 ]
 
-from typing import Sequence
-
 import numpy as np
 from numpy.typing import ArrayLike
 

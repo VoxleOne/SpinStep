@@ -14,8 +14,8 @@ import numpy as np
 from scipy.spatial.transform import Rotation as R
 
 # Import the modules under test
-from spinstep.discrete import DiscreteOrientationSet
-from spinstep.discrete_iterator import DiscreteQuaternionIterator
+from spinstep.traversal.discrete import DiscreteOrientationSet
+from spinstep.traversal.discrete_iterator import DiscreteQuaternionIterator
 
 # Simple node class for testing
 class Node:
