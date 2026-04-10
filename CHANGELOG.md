@@ -38,7 +38,7 @@ and uses [Semantic Versioning](https://semver.org/).
   replacing `object` type hints in `get_relative_spin()` and
   `get_unique_relative_spins()`
 - `Node.add_child()` method for ergonomic tree building
-- Comprehensive API stability tests (`test_api.py`) — 92+ parametrized tests
+- Comprehensive API stability tests (`test_api.py`) — 97 parametrized tests
   covering all subpackage exports and backward compatibility
 - `Typing :: Typed` classifier in `pyproject.toml`
 - `Changelog` and `Documentation` project URLs
