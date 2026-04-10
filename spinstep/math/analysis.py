@@ -14,12 +14,23 @@ __all__ = [
 ]
 
 from types import ModuleType
-from typing import Any, List, Sequence
+from typing import Any, List, Protocol, Sequence, runtime_checkable
 
 import numpy as np
 from numpy.typing import ArrayLike
 
 from .core import quaternion_conjugate, quaternion_multiply
+
+
+@runtime_checkable
+class NodeProtocol(Protocol):
+    """Structural type for objects accepted by :func:`get_relative_spin`.
+
+    Any object with an ``orientation`` attribute holding a quaternion
+    ``[x, y, z, w]`` satisfies this protocol.
+    """
+
+    orientation: np.ndarray
 
 
 def batch_quaternion_angle(qs1: Any, qs2: Any, xp: ModuleType) -> Any:
@@ -69,7 +80,7 @@ def angular_velocity_from_quaternions(
     return rotvec / dt
 
 
-def get_relative_spin(nf: object, nt: object) -> np.ndarray:
+def get_relative_spin(nf: NodeProtocol, nt: NodeProtocol) -> np.ndarray:
     """Return the relative quaternion rotation from node *nf* to node *nt*.
 
     Both nodes must have an ``.orientation`` attribute storing a quaternion
@@ -82,14 +93,14 @@ def get_relative_spin(nf: object, nt: object) -> np.ndarray:
     Returns:
         Unit quaternion representing the relative rotation.
     """
-    qfc = quaternion_conjugate(nf.orientation)  # type: ignore[union-attr]
-    qr = quaternion_multiply(qfc, nt.orientation)  # type: ignore[union-attr]
+    qfc = quaternion_conjugate(nf.orientation)
+    qr = quaternion_multiply(qfc, nt.orientation)
     n = np.linalg.norm(qr)
     return qr / n if n > 1e-8 else np.array([0.0, 0.0, 0.0, 1.0])
 
 
 def get_unique_relative_spins(
-    nodes: Sequence[object],
+    nodes: Sequence[NodeProtocol],
     nside: int,
     nest: bool,
     threshold: float = 1e-3,

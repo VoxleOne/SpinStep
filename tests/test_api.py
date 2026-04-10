@@ -97,6 +97,7 @@ class TestMathSubpackageExports:
         "get_relative_spin",
         "get_unique_relative_spins",
         "clamp_rotation_angle",
+        "NodeProtocol",
     ]
 
     def test_all_defined(self) -> None:
@@ -251,3 +252,48 @@ class TestSubpackagesImportable:
     def test_importable(self, module: str) -> None:
         """Every listed module can be imported without error."""
         importlib.import_module(module)
+
+
+class TestNodeProtocol:
+    """Verify NodeProtocol structural typing works correctly."""
+
+    def test_node_satisfies_protocol(self) -> None:
+        """spinstep.traversal.Node satisfies NodeProtocol."""
+        from spinstep.math.analysis import NodeProtocol
+        from spinstep.traversal.node import Node
+
+        node = Node("test", [0, 0, 0, 1])
+        assert isinstance(node, NodeProtocol)
+
+    def test_custom_class_satisfies_protocol(self) -> None:
+        """Any class with .orientation satisfies NodeProtocol."""
+        import numpy as np
+
+        from spinstep.math.analysis import NodeProtocol
+
+        class MyNode:
+            def __init__(self) -> None:
+                self.orientation = np.array([0.0, 0.0, 0.0, 1.0])
+
+        assert isinstance(MyNode(), NodeProtocol)
+
+
+class TestNodeAddChild:
+    """Verify Node.add_child() convenience method."""
+
+    def test_add_child_appends(self) -> None:
+        from spinstep.traversal.node import Node
+
+        root = Node("root", [0, 0, 0, 1])
+        child = Node("child", [1, 0, 0, 0])
+        result = root.add_child(child)
+        assert child in root.children
+        assert result is child
+
+    def test_add_child_returns_child(self) -> None:
+        from spinstep.traversal.node import Node
+
+        root = Node("root", [0, 0, 0, 1])
+        child = root.add_child(Node("child", [0, 1, 0, 0]))
+        assert child.name == "child"
+        assert len(root.children) == 1

@@ -40,8 +40,7 @@ class Node:
         from spinstep import Node
 
         root = Node("root", [0, 0, 0, 1])
-        child = Node("child", [0.2588, 0, 0, 0.9659])
-        root.children.append(child)
+        child = root.add_child(Node("child", [0.2588, 0, 0, 0.9659]))
     """
 
     name: str
@@ -63,6 +62,18 @@ class Node:
         self.orientation = arr / norm
         self.name = name
         self.children = list(children) if children else []
+
+    def add_child(self, child: "Node") -> "Node":
+        """Append *child* to this node's children and return it.
+
+        Args:
+            child: The child node to add.
+
+        Returns:
+            The same *child* node, for convenience.
+        """
+        self.children.append(child)
+        return child
 
     def __repr__(self) -> str:
         return f"Node({self.name!r}, orientation={self.orientation.tolist()})"

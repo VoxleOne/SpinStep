@@ -42,6 +42,8 @@ __all__ = [
     "get_unique_relative_spins",
     # constraints
     "clamp_rotation_angle",
+    # protocols
+    "NodeProtocol",
 ]
 
 from .core import (
@@ -66,6 +68,7 @@ from .conversions import (
     rotation_matrix_to_quaternion,
 )
 from .analysis import (
+    NodeProtocol,
     angular_velocity_from_quaternions,
     batch_quaternion_angle,
     get_relative_spin,
