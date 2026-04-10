@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "spinstep"
-version = "0.4.0a0"
+version = "0.5.0a0"
 description = "Quaternion-based orientation control and traversal in observer-centered spherical coordinates."
 authors = [{ name = "Eraldo Marques", email = "eraldo.bernardo@gmail.com" }]
 readme = "README.md"
@@ -20,6 +20,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Mathematics",
+    "Typing :: Typed",
 ]
 dependencies = [
     "numpy>=1.22",
@@ -43,10 +44,15 @@ dev = [
 
 [project.urls]
 Repository = "https://github.com/VoxleOne/SpinStep"
+Changelog = "https://github.com/VoxleOne/SpinStep/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/VoxleOne/SpinStep/tree/main/docs"
 
 [tool.setuptools.packages.find]
 include = ["spinstep*"]
 exclude = ["benchmark*", "demos*", "examples*", "tests*", "docs*"]
+
+[tool.setuptools.package-data]
+spinstep = ["py.typed"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -56,6 +62,15 @@ line-length = 88
 
 [tool.mypy]
 strict = true
+
+[[tool.mypy.overrides]]
+module = [
+    "scipy.*",
+    "sklearn.*",
+    "healpy.*",
+    "cupy.*",
+]
+ignore_missing_imports = true
 
 [tool.ruff]
 line-length = 88

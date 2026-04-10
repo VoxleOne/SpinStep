@@ -6,7 +6,7 @@ import pytest
 import numpy as np
 
 try:
-    import cupy as cp
+    import cupy as cp  # noqa: F401
     HAS_CUPY = True
 except ImportError:
     HAS_CUPY = False

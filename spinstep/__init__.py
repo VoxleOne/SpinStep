@@ -30,7 +30,7 @@ Math layer::
     from spinstep.math import quaternion_multiply, quaternion_distance, slerp
 """
 
-__version__ = "0.4.0a0"
+__version__ = "0.5.0a0"
 
 # --- control layer (primary API) ---
 from .control.state import (
