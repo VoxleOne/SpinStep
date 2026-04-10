@@ -11,6 +11,7 @@ __all__ = [
     "angular_velocity_from_quaternions",
     "get_relative_spin",
     "get_unique_relative_spins",
+    "SpatialNodeProtocol",
 ]
 
 from types import ModuleType
@@ -31,6 +32,19 @@ class NodeProtocol(Protocol):
     """
 
     orientation: np.ndarray
+
+
+@runtime_checkable
+class SpatialNodeProtocol(Protocol):
+    """Structural type for spatial nodes with orientation, distance, and name.
+
+    Any object with ``orientation``, ``distance``, and ``name`` attributes
+    satisfies this protocol.  Used by :func:`~spinstep.control.state.compute_relative_state`.
+    """
+
+    orientation: np.ndarray
+    distance: float
+    name: str
 
 
 def batch_quaternion_angle(qs1: Any, qs2: Any, xp: ModuleType) -> Any:

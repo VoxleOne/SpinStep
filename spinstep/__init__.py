@@ -30,13 +30,14 @@ Math layer::
     from spinstep.math import quaternion_multiply, quaternion_distance, slerp
 """
 
-__version__ = "0.5.0a0"
+__version__ = "0.6.0a0"
 
 # --- control layer (primary API) ---
 from .control.state import (
     ControlCommand,
     OrientationState,
     compute_orientation_error,
+    compute_relative_state,
     integrate_state,
 )
 from .control.controllers import (
@@ -49,15 +50,22 @@ from .control.trajectory import (
     TrajectoryController,
     TrajectoryInterpolator,
 )
+from .control.frames import (
+    ReferenceFrame,
+    rebase_state,
+)
 
 # --- key math utilities at top level ---
 from .math.interpolation import slerp
 
 # --- backward-compatible traversal re-exports ---
 from .traversal.node import Node
+from .traversal.spatial_node import SpatialNode
 from .traversal.continuous import QuaternionDepthIterator
 from .traversal.discrete import DiscreteOrientationSet
 from .traversal.discrete_iterator import DiscreteQuaternionIterator
+from .traversal.scene_graph import SceneGraph
+from .traversal.graph_iterators import BreadthFirstIterator, GraphQuaternionIterator
 
 __all__ = [
     # control
@@ -65,6 +73,9 @@ __all__ = [
     "ControlCommand",
     "integrate_state",
     "compute_orientation_error",
+    "compute_relative_state",
+    "ReferenceFrame",
+    "rebase_state",
     "OrientationController",
     "ProportionalOrientationController",
     "PIDOrientationController",
@@ -75,7 +86,11 @@ __all__ = [
     "slerp",
     # traversal (backward compat)
     "Node",
+    "SpatialNode",
     "QuaternionDepthIterator",
     "DiscreteOrientationSet",
     "DiscreteQuaternionIterator",
+    "SceneGraph",
+    "BreadthFirstIterator",
+    "GraphQuaternionIterator",
 ]

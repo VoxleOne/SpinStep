@@ -22,7 +22,7 @@ class DiscreteOrientationSet:
 
     Orientations are stored as unit quaternions ``[x, y, z, w]`` and can be
     queried efficiently by angular distance.  On CPU a
-    :class:`~sklearn.neighbors.BallTree` is used for large sets; an optional
+    :class:`~scipy.spatial.KDTree` is used for large sets; an optional
     CUDA path is available via CuPy.
 
     Args:
@@ -73,10 +73,10 @@ class DiscreteOrientationSet:
         self.orientations = arr
         self.xp: Any = xp
         self.use_cuda: bool = use_cuda
-        self._balltree: Any = None
+        self._kdtree: Any = None
 
         if not use_cuda:
-            from sklearn.neighbors import BallTree
+            from scipy.spatial import KDTree
 
             if self.orientations.shape[0] > 0:
                 orientations_for_rotvec = self.orientations
@@ -86,7 +86,7 @@ class DiscreteOrientationSet:
                 if orientations_for_rotvec.shape[0] > 0:
                     self.rotvecs: np.ndarray = R.from_quat(orientations_for_rotvec).as_rotvec()
                     if len(self.orientations) > 100:
-                        self._balltree = BallTree(self.rotvecs)
+                        self._kdtree = KDTree(self.rotvecs)
                 else:
                     self.rotvecs = np.empty((0, 3))
             else:
@@ -143,8 +143,9 @@ class DiscreteOrientationSet:
             if not hasattr(self, "rotvecs") or self.rotvecs.shape[0] == 0:
                 return np.array([], dtype=int)
 
-            if self._balltree is not None:
-                inds = self._balltree.query_radius(query_rv, r=angle)[0]
+            if self._kdtree is not None:
+                inds = self._kdtree.query_ball_point(query_rv[0], r=angle)
+                inds = np.array(inds, dtype=int)
             else:
                 dists = np.linalg.norm(self.rotvecs - query_rv, axis=1)
                 inds = np.where(dists < angle)[0]

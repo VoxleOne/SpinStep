@@ -11,6 +11,53 @@ and uses [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.6.0a0] – 2026-04-10
+
+### Added
+- **Multi-Observer / Any-Node-as-Observer** — Full implementation of the
+  four-phase upgrade enabling any node to act as an observer.
+  - **Phase 1: SpatialNode & State Unification**
+    - `SpatialNode` — extends `Node` with distance, angular/radial velocity,
+      and timestamp fields for unified traversal + control workflows
+    - `SpatialNodeProtocol` — structural typing protocol for spatial nodes
+    - `Node.as_state()` / `OrientationState.as_node()` — bidirectional
+      conversion between traversal nodes and control states
+    - `compute_relative_state()` — compute target state from any observer's
+      perspective
+  - **Phase 2: Reference Frames**
+    - `ReferenceFrame` — observer-local coordinate frame with `to_local()`
+      and `to_world()` transforms
+    - `rebase_state()` — transform states between arbitrary reference frames
+  - **Phase 3: Scene Graph**
+    - `SceneGraph` — graph container for `SpatialNode` instances with
+      adjacency relationships, spatial indexing (KDTree), and the core
+      `observe_from()` method (any-node-as-observer)
+    - `BreadthFirstIterator` — BFS graph traversal with cycle handling
+    - `GraphQuaternionIterator` — quaternion-driven graph traversal
+  - **Phase 4: Multi-Agent Control**
+    - `Agent` — controlled spatial entity with own reference frame,
+      controller, and optional trajectory tracking
+    - `AgentManager` — multi-agent coordinator with deterministic stepping,
+      proximity queries, and pairwise distance computation
+    - `EventEmitter` — lightweight callback-based event system
+      (`on_state_change`, `on_trajectory_complete`, etc.)
+    - `spinstep.serialization` — JSON-compatible `to_dict()`/`from_dict()`
+      for `OrientationState`, `SpatialNode`, `SceneGraph`, and
+      `OrientationTrajectory`
+
+### Changed
+- Replaced `scikit-learn` `BallTree` with `scipy.spatial.KDTree` in
+  `DiscreteOrientationSet` — drops the ~200MB `scikit-learn` dependency
+- Removed `scikit-learn>=1.2` from core dependencies (only `numpy>=1.22`
+  and `scipy>=1.10` required)
+- Added `pytest-cov` to `[dev]` optional dependencies
+- Version bumped to `0.6.0a0`
+
+### Fixed
+- Lint warnings (unused imports, undefined name annotations) resolved
+
+---
+
 ## [0.5.0a0] – 2026-04-10
 
 ### Added

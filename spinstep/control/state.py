@@ -22,15 +22,21 @@ __all__ = [
     "ControlCommand",
     "integrate_state",
     "compute_orientation_error",
+    "compute_relative_state",
 ]
 
 from dataclasses import dataclass, field
+from typing import TYPE_CHECKING
 
 import numpy as np
 from numpy.typing import ArrayLike
 from scipy.spatial.transform import Rotation as R
 
-from ..math.core import quaternion_multiply, quaternion_normalize
+from ..math.core import quaternion_conjugate, quaternion_multiply, quaternion_normalize
+
+if TYPE_CHECKING:
+    from ..math.analysis import SpatialNodeProtocol
+    from ..traversal.spatial_node import SpatialNode
 
 
 @dataclass
@@ -113,6 +119,26 @@ class OrientationState:
             f"ω={self.angular_velocity.tolist()}, "
             f"ṙ={self.radial_velocity}, "
             f"t={self.timestamp})"
+        )
+
+    def as_node(self, name: str = "unnamed") -> "SpatialNode":
+        """Convert this state to a :class:`~spinstep.traversal.SpatialNode`.
+
+        Args:
+            name: Name for the created node.
+
+        Returns:
+            A :class:`SpatialNode` with fields matching this state.
+        """
+        from ..traversal.spatial_node import SpatialNode
+
+        return SpatialNode(
+            name=name,
+            orientation=self.quaternion.copy(),
+            distance=self.distance,
+            angular_velocity=self.angular_velocity.copy(),
+            radial_velocity=self.radial_velocity,
+            timestamp=self.timestamp,
         )
 
 
@@ -259,3 +285,49 @@ def compute_orientation_error(
     angular_error: np.ndarray = r_error.as_rotvec()
     radial_error = float(target_distance - current_distance)
     return angular_error, radial_error
+
+
+def compute_relative_state(
+    observer: "SpatialNodeProtocol",
+    target: "SpatialNodeProtocol",
+) -> OrientationState:
+    """Compute the target's state as seen from the observer's reference frame.
+
+    The relative quaternion describes the direction from the observer to
+    the target: ``q_rel = conjugate(q_observer) * q_target``.  The
+    relative distance is the Euclidean distance between the two nodes'
+    Cartesian positions on their respective concentric spheres.
+
+    Args:
+        observer: The observer node (must satisfy
+            :class:`~spinstep.math.analysis.SpatialNodeProtocol`).
+        target: The target node.
+
+    Returns:
+        An :class:`OrientationState` representing the target as seen
+        from the observer.
+
+    Example::
+
+        from spinstep import SpatialNode, compute_relative_state
+
+        obs = SpatialNode("obs", [0, 0, 0, 1], distance=5.0)
+        tgt = SpatialNode("tgt", [0, 0, 0.383, 0.924], distance=7.0)
+        rel = compute_relative_state(obs, tgt)
+    """
+    # Relative quaternion: direction from observer to target
+    q_obs_conj = quaternion_conjugate(observer.orientation)
+    q_rel = quaternion_multiply(q_obs_conj, target.orientation)
+    q_rel = quaternion_normalize(q_rel)
+
+    # Convert both positions to Cartesian for Euclidean distance
+    from ..math.geometry import forward_vector_from_quaternion
+
+    obs_pos = forward_vector_from_quaternion(observer.orientation) * observer.distance
+    tgt_pos = forward_vector_from_quaternion(target.orientation) * target.distance
+    rel_distance = float(np.linalg.norm(tgt_pos - obs_pos))
+
+    return OrientationState(
+        quaternion=q_rel,
+        distance=rel_distance,
+    )
