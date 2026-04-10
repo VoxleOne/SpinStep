@@ -2,14 +2,18 @@
 # Author: Eraldo B. Marques <eraldo.bernardo@gmail.com> — Created: 2025-05-14
 # See LICENSE.txt for full terms. This header must be retained in redistributions.
 
-"""Utilities for quaternion math and array backend selection.
+"""Utilities: array backend selection and backward-compatible quaternion re-exports.
 
-This sub-package provides:
+The ``get_array_module`` function is the primary utility provided here.
+All quaternion math functions have moved to :mod:`spinstep.math` and are
+re-exported here only for backward compatibility.
 
-- :func:`~.array_backend.get_array_module` — NumPy / CuPy backend selection.
-- :func:`~.quaternion_math.batch_quaternion_angle` — batch angular distances.
-- Quaternion helpers in :mod:`~.quaternion_utils` (conversion, distance,
-  multiplication, etc.).
+.. deprecated::
+    For quaternion operations, import from :mod:`spinstep.math` instead.
+
+Example (preferred)::
+
+    from spinstep.math import quaternion_multiply, quaternion_distance
 """
 
 __all__ = [

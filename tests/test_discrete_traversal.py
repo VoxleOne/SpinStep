@@ -11,11 +11,10 @@ except (ImportError, RuntimeError):
     cuda_available = False
 
 import numpy as np
-from scipy.spatial.transform import Rotation as R
 
 # Import the modules under test
-from spinstep.discrete import DiscreteOrientationSet
-from spinstep.discrete_iterator import DiscreteQuaternionIterator
+from spinstep.traversal.discrete import DiscreteOrientationSet
+from spinstep.traversal.discrete_iterator import DiscreteQuaternionIterator
 
 # Simple node class for testing
 class Node:
@@ -106,7 +105,7 @@ class TestDiscreteOrientationSet:
         try:
             cuda_set = DiscreteOrientationSet([[0, 0, 0, 1]], use_cuda=True)
             # If this succeeds, basic CUDA import worked
-            assert cuda_set.use_cuda == True
+            assert cuda_set.use_cuda is True
             
             # Test as_numpy() method for GPU->CPU transfer
             cpu_array = cuda_set.as_numpy()
@@ -261,8 +260,8 @@ def test_full_pipeline():
     
     # Create a simple tree
     root = Node("root", [0, 0, 0, 1])
-    node_a = root.add_child(Node("A", [1, 0, 0, 0]))
-    node_b = root.add_child(Node("B", [0, 1, 0, 0]))
+    root.add_child(Node("A", [1, 0, 0, 0]))
+    root.add_child(Node("B", [0, 1, 0, 0]))
     
     # Create iterator and traverse
     iterator = DiscreteQuaternionIterator(
