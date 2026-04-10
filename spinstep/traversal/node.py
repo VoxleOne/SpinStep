@@ -8,10 +8,13 @@ from __future__ import annotations
 
 __all__ = ["Node"]
 
-from typing import List, Optional, Sequence
+from typing import TYPE_CHECKING, List, Optional, Sequence
 
 import numpy as np
 from numpy.typing import ArrayLike
+
+if TYPE_CHECKING:
+    from ..control.state import OrientationState
 
 
 class Node:
@@ -62,6 +65,21 @@ class Node:
         self.orientation = arr / norm
         self.name = name
         self.children = list(children) if children else []
+
+    def as_state(self) -> "OrientationState":
+        """Convert this node to an :class:`OrientationState`.
+
+        Since :class:`Node` has no distance or velocity information,
+        the returned state defaults to ``distance=0.0`` and zero
+        velocities.  :class:`~spinstep.traversal.SpatialNode` overrides
+        this to include full spatial state.
+
+        Returns:
+            An :class:`OrientationState` with ``quaternion=self.orientation``.
+        """
+        from ..control.state import OrientationState
+
+        return OrientationState(quaternion=self.orientation.copy())
 
     def add_child(self, child: "Node") -> "Node":
         """Append *child* to this node's children and return it.

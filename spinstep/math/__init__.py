@@ -44,6 +44,7 @@ __all__ = [
     "clamp_rotation_angle",
     # protocols
     "NodeProtocol",
+    "SpatialNodeProtocol",
 ]
 
 from .core import (
@@ -69,6 +70,7 @@ from .conversions import (
 )
 from .analysis import (
     NodeProtocol,
+    SpatialNodeProtocol,
     angular_velocity_from_quaternions,
     batch_quaternion_angle,
     get_relative_spin,

@@ -42,6 +42,9 @@ class TestTopLevelExports:
         "ControlCommand",
         "integrate_state",
         "compute_orientation_error",
+        "compute_relative_state",
+        "ReferenceFrame",
+        "rebase_state",
         "OrientationController",
         "ProportionalOrientationController",
         "PIDOrientationController",
@@ -52,9 +55,13 @@ class TestTopLevelExports:
         "slerp",
         # traversal
         "Node",
+        "SpatialNode",
         "QuaternionDepthIterator",
         "DiscreteOrientationSet",
         "DiscreteQuaternionIterator",
+        "SceneGraph",
+        "BreadthFirstIterator",
+        "GraphQuaternionIterator",
     ]
 
     def test_all_defined(self) -> None:
@@ -98,6 +105,7 @@ class TestMathSubpackageExports:
         "get_unique_relative_spins",
         "clamp_rotation_angle",
         "NodeProtocol",
+        "SpatialNodeProtocol",
     ]
 
     def test_all_defined(self) -> None:
@@ -121,12 +129,18 @@ class TestControlSubpackageExports:
         "ControlCommand",
         "integrate_state",
         "compute_orientation_error",
+        "compute_relative_state",
         "OrientationController",
         "ProportionalOrientationController",
         "PIDOrientationController",
         "OrientationTrajectory",
         "TrajectoryInterpolator",
         "TrajectoryController",
+        "ReferenceFrame",
+        "rebase_state",
+        "Agent",
+        "AgentManager",
+        "EventEmitter",
     ]
 
     def test_all_defined(self) -> None:
@@ -147,9 +161,13 @@ class TestTraversalSubpackageExports:
 
     EXPECTED_EXPORTS = [
         "Node",
+        "SpatialNode",
         "QuaternionDepthIterator",
         "DiscreteOrientationSet",
         "DiscreteQuaternionIterator",
+        "SceneGraph",
+        "BreadthFirstIterator",
+        "GraphQuaternionIterator",
     ]
 
     def test_all_defined(self) -> None:
@@ -238,11 +256,19 @@ class TestSubpackagesImportable:
             "spinstep.control.state",
             "spinstep.control.controllers",
             "spinstep.control.trajectory",
+            "spinstep.control.frames",
+            "spinstep.control.agent",
+            "spinstep.control.agent_manager",
+            "spinstep.control.events",
             "spinstep.traversal",
             "spinstep.traversal.node",
+            "spinstep.traversal.spatial_node",
             "spinstep.traversal.continuous",
             "spinstep.traversal.discrete",
             "spinstep.traversal.discrete_iterator",
+            "spinstep.traversal.scene_graph",
+            "spinstep.traversal.graph_iterators",
+            "spinstep.serialization",
             "spinstep.utils",
             "spinstep.utils.array_backend",
             "spinstep.utils.quaternion_math",
