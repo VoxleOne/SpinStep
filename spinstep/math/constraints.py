@@ -10,7 +10,7 @@ __all__ = [
     "clamp_rotation_angle",
 ]
 
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 import numpy.typing as npt
@@ -52,4 +52,4 @@ def clamp_rotation_angle(q: ArrayLike, max_angle: float) -> npt.NDArray[np.float
 
     axis = rotvec / angle
     clamped_rotvec = axis * max_angle
-    return R.from_rotvec(clamped_rotvec).as_quat()
+    return cast(npt.NDArray[np.floating[Any]], R.from_rotvec(clamped_rotvec).as_quat())

@@ -15,7 +15,7 @@ __all__ = [
     "rotate_quaternion",
 ]
 
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 import numpy.typing as npt
@@ -68,7 +68,7 @@ def rotate_quaternion(q: ArrayLike, rotation_step: ArrayLike) -> npt.NDArray[np.
     """
     r1 = R.from_quat(q)
     step = R.from_quat(rotation_step)
-    return (r1 * step).as_quat()
+    return cast(npt.NDArray[np.floating[Any]], (r1 * step).as_quat())
 
 
 def forward_vector_from_quaternion(q: ArrayLike) -> npt.NDArray[np.floating[Any]]:
@@ -83,7 +83,7 @@ def forward_vector_from_quaternion(q: ArrayLike) -> npt.NDArray[np.floating[Any]
     Returns:
         Unit direction vector ``(3,)`` pointing forward.
     """
-    return R.from_quat(q).apply([0, 0, -1])
+    return cast(npt.NDArray[np.floating[Any]], R.from_quat(q).apply([0, 0, -1]))
 
 
 def direction_to_quaternion(direction: ArrayLike) -> npt.NDArray[np.floating[Any]]:
@@ -104,7 +104,7 @@ def direction_to_quaternion(direction: ArrayLike) -> npt.NDArray[np.floating[Any
         return np.array([0.0, 0.0, 0.0, 1.0])
     d = d / norm
     rot, _ = R.align_vectors([d], [[0, 0, -1]])
-    return rot.as_quat()
+    return cast(npt.NDArray[np.floating[Any]], rot.as_quat())
 
 
 def angle_between_directions(d1: ArrayLike, d2: ArrayLike) -> float:

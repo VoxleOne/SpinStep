@@ -11,7 +11,7 @@ __all__ = [
     "squad",
 ]
 
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 import numpy.typing as npt
@@ -49,7 +49,7 @@ def slerp(q0: ArrayLike, q1: ArrayLike, t: float) -> npt.NDArray[np.floating[Any
     # If quaternions are very close, use linear interpolation
     if dot > 0.9995:
         result = a + t * (b - a)
-        return result / np.linalg.norm(result)
+        return cast(npt.NDArray[np.floating[Any]], result / np.linalg.norm(result))
 
     theta_0 = np.arccos(dot)
     theta = theta_0 * t
@@ -60,7 +60,7 @@ def slerp(q0: ArrayLike, q1: ArrayLike, t: float) -> npt.NDArray[np.floating[Any
     s1 = sin_theta / sin_theta_0
 
     result = s0 * a + s1 * b
-    return result / np.linalg.norm(result)
+    return cast(npt.NDArray[np.floating[Any]], result / np.linalg.norm(result))
 
 
 def squad(
@@ -111,8 +111,7 @@ def _squad_intermediate(
 
     avg = -(log_prev + log_next) / 4.0
     result = quaternion_multiply(q_curr, _quat_exp(avg))
-    return result / np.linalg.norm(result)
-
+    return cast(npt.NDArray[np.floating[Any]], result / np.linalg.norm(result))
 
 def _quat_log(q: npt.NDArray[np.floating[Any]]) -> npt.NDArray[np.floating[Any]]:
     """Quaternion logarithm (returns pure-quaternion vector part)."""

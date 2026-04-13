@@ -15,7 +15,7 @@ __all__ = [
 ]
 
 from types import ModuleType
-from typing import Any, List, Protocol, Sequence, runtime_checkable
+from typing import Any, List, Protocol, Sequence, cast, runtime_checkable
 
 import numpy as np
 import numpy.typing as npt
@@ -92,7 +92,7 @@ def angular_velocity_from_quaternions(
     r2 = R.from_quat(q2)
     delta = r1.inv() * r2
     rotvec = delta.as_rotvec()
-    return rotvec / dt
+    return cast(npt.NDArray[np.floating[Any]], rotvec / dt)
 
 
 def get_relative_spin(nf: NodeProtocol, nt: NodeProtocol) -> npt.NDArray[np.floating[Any]]:

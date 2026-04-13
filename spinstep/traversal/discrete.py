@@ -8,7 +8,7 @@ from __future__ import annotations
 
 __all__ = ["DiscreteOrientationSet"]
 
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 import numpy.typing as npt
@@ -136,9 +136,9 @@ class DiscreteOrientationSet:
                 orientations_rotvecs_gpu = self.xp.array(orientations_rotvecs_np)
                 dists = self.xp.linalg.norm(orientations_rotvecs_gpu - rv_gpu, axis=1)
                 inds = self.xp.where(dists < angle)[0]
-                return inds
+                return cast(npt.NDArray[np.floating[Any]], inds)
             else:
-                return self.xp.array([], dtype=int)
+                return cast(npt.NDArray[np.floating[Any]], self.xp.array([], dtype=int))
 
         else:
             if not hasattr(self, "rotvecs") or self.rotvecs.shape[0] == 0:
@@ -150,7 +150,7 @@ class DiscreteOrientationSet:
             else:
                 dists = np.linalg.norm(self.rotvecs - query_rv, axis=1)
                 inds = np.where(dists < angle)[0]
-            return inds
+            return cast(npt.NDArray[np.floating[Any]], inds)
 
     # ------------------------------------------------------------------
     # Factory class methods
@@ -215,10 +215,10 @@ class DiscreteOrientationSet:
             The orientations as a NumPy array of shape ``(N, 4)``.
         """
         if hasattr(self.orientations, "get"):  # CuPy array
-            return self.orientations.get()
-        return np.asarray(self.orientations)
+            return cast(npt.NDArray[np.floating[Any]], self.orientations.get())
+        return cast(npt.NDArray[np.floating[Any]], np.asarray(self.orientations))
 
     def __len__(self) -> int:
         if hasattr(self, "orientations") and self.orientations is not None:
-            return self.orientations.shape[0]
+            return int(self.orientations.shape[0])
         return 0

@@ -13,7 +13,7 @@ __all__ = [
     "quaternion_inverse",
 ]
 
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 import numpy.typing as npt
@@ -71,7 +71,7 @@ def quaternion_normalize(q: ArrayLike) -> npt.NDArray[np.floating[Any]]:
     n = np.linalg.norm(a)
     if n < 1e-8:
         return np.array([0.0, 0.0, 0.0, 1.0])
-    return a / n
+    return cast(npt.NDArray[np.floating[Any]], a / n)
 
 
 def quaternion_inverse(q: ArrayLike) -> npt.NDArray[np.floating[Any]]:
@@ -90,4 +90,4 @@ def quaternion_inverse(q: ArrayLike) -> npt.NDArray[np.floating[Any]]:
     if norm_sq < 1e-16:
         return np.array([0.0, 0.0, 0.0, 1.0])
     conj = np.array([-a[0], -a[1], -a[2], a[3]])
-    return conj / norm_sq
+    return cast(npt.NDArray[np.floating[Any]], conj / norm_sq)
