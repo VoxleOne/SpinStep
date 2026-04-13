@@ -153,7 +153,7 @@ print(f"Found {len(indices)} orientations within 10° of identity")
 
 ## Optional Dependencies
 
-SpinStep works out of the box with NumPy, SciPy, and scikit-learn. Two optional dependencies unlock additional features:
+SpinStep works out of the box with NumPy and SciPy. Two optional dependencies unlock additional features:
 
 | Package | Install | Feature |
 |---------|---------|---------|
