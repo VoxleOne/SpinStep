@@ -8,9 +8,10 @@ from __future__ import annotations
 
 __all__ = ["Node"]
 
-from typing import TYPE_CHECKING, List, Optional, Sequence
+from typing import TYPE_CHECKING, Any, List, Optional, Sequence
 
 import numpy as np
+import numpy.typing as npt
 from numpy.typing import ArrayLike
 
 if TYPE_CHECKING:
@@ -47,7 +48,7 @@ class Node:
     """
 
     name: str
-    orientation: np.ndarray
+    orientation: npt.NDArray[np.floating[Any]]
     children: List["Node"]
 
     def __init__(

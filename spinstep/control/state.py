@@ -26,9 +26,10 @@ __all__ = [
 ]
 
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
+import numpy.typing as npt
 from numpy.typing import ArrayLike
 from scipy.spatial.transform import Rotation as R
 
@@ -72,11 +73,11 @@ class OrientationState:
         state = OrientationState([0, 0, 0, 1], distance=5.0)
     """
 
-    quaternion: np.ndarray = field(
+    quaternion: npt.NDArray[np.floating[Any]] = field(
         default_factory=lambda: np.array([0.0, 0.0, 0.0, 1.0])
     )
     distance: float = 0.0
-    angular_velocity: np.ndarray = field(default_factory=lambda: np.zeros(3))
+    angular_velocity: npt.NDArray[np.floating[Any]] = field(default_factory=lambda: np.zeros(3))
     radial_velocity: float = 0.0
     timestamp: float = 0.0
 
@@ -162,7 +163,7 @@ class ControlCommand:
         cmd = ControlCommand(angular_velocity=[0, 0, 1.0], radial_velocity=0.5)
     """
 
-    angular_velocity: np.ndarray = field(default_factory=lambda: np.zeros(3))
+    angular_velocity: npt.NDArray[np.floating[Any]] = field(default_factory=lambda: np.zeros(3))
     radial_velocity: float = 0.0
 
     def __init__(
@@ -251,7 +252,7 @@ def compute_orientation_error(
     target_q: ArrayLike,
     current_distance: float = 0.0,
     target_distance: float = 0.0,
-) -> tuple[np.ndarray, float]:
+) -> tuple[npt.NDArray[np.floating[Any]], float]:
     """Compute the full spherical error: angular + radial.
 
     The angular error is expressed in the body frame of *current_q* as a
@@ -282,7 +283,7 @@ def compute_orientation_error(
     r_current = R.from_quat(current_q)
     r_target = R.from_quat(target_q)
     r_error = r_current.inv() * r_target
-    angular_error: np.ndarray = r_error.as_rotvec()
+    angular_error: npt.NDArray[np.floating[Any]] = r_error.as_rotvec()
     radial_error = float(target_distance - current_distance)
     return angular_error, radial_error
 

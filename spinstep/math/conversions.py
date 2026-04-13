@@ -13,9 +13,10 @@ __all__ = [
     "quaternion_to_rotvec",
 ]
 
-from typing import Sequence
+from typing import Any, Sequence
 
 import numpy as np
+import numpy.typing as npt
 from numpy.typing import ArrayLike
 from scipy.spatial.transform import Rotation as R
 
@@ -24,7 +25,7 @@ def quaternion_from_euler(
     angles: Sequence[float],
     order: str = "zyx",
     degrees: bool = True,
-) -> np.ndarray:
+) -> npt.NDArray[np.floating[Any]]:
     """Convert Euler angles to a quaternion ``[x, y, z, w]``.
 
     Args:
@@ -38,7 +39,7 @@ def quaternion_from_euler(
     return R.from_euler(order, angles, degrees=degrees).as_quat()
 
 
-def rotation_matrix_to_quaternion(m: ArrayLike) -> np.ndarray:
+def rotation_matrix_to_quaternion(m: ArrayLike) -> npt.NDArray[np.floating[Any]]:
     """Convert a 3×3 rotation matrix to a unit quaternion ``[x, y, z, w]``.
 
     Args:
@@ -78,7 +79,7 @@ def rotation_matrix_to_quaternion(m: ArrayLike) -> np.ndarray:
     return q / n if n > 1e-8 else np.array([0.0, 0.0, 0.0, 1.0])
 
 
-def quaternion_from_rotvec(rotvec: ArrayLike) -> np.ndarray:
+def quaternion_from_rotvec(rotvec: ArrayLike) -> npt.NDArray[np.floating[Any]]:
     """Convert a rotation vector (axis × angle) to a quaternion.
 
     Args:
@@ -90,7 +91,7 @@ def quaternion_from_rotvec(rotvec: ArrayLike) -> np.ndarray:
     return R.from_rotvec(np.asarray(rotvec, dtype=float)).as_quat()
 
 
-def quaternion_to_rotvec(q: ArrayLike) -> np.ndarray:
+def quaternion_to_rotvec(q: ArrayLike) -> npt.NDArray[np.floating[Any]]:
     """Convert a quaternion to a rotation vector (axis × angle).
 
     Args:

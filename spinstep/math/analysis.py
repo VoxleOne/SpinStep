@@ -18,6 +18,7 @@ from types import ModuleType
 from typing import Any, List, Protocol, Sequence, runtime_checkable
 
 import numpy as np
+import numpy.typing as npt
 from numpy.typing import ArrayLike
 
 from .core import quaternion_conjugate, quaternion_multiply
@@ -31,7 +32,7 @@ class NodeProtocol(Protocol):
     ``[x, y, z, w]`` satisfies this protocol.
     """
 
-    orientation: np.ndarray
+    orientation: npt.NDArray[np.floating[Any]]
 
 
 @runtime_checkable
@@ -42,7 +43,7 @@ class SpatialNodeProtocol(Protocol):
     satisfies this protocol.  Used by :func:`~spinstep.control.state.compute_relative_state`.
     """
 
-    orientation: np.ndarray
+    orientation: npt.NDArray[np.floating[Any]]
     distance: float
     name: str
 
@@ -66,7 +67,7 @@ def batch_quaternion_angle(qs1: Any, qs2: Any, xp: ModuleType) -> Any:
 
 def angular_velocity_from_quaternions(
     q1: ArrayLike, q2: ArrayLike, dt: float
-) -> np.ndarray:
+) -> npt.NDArray[np.floating[Any]]:
     """Estimate angular velocity from two quaternions separated by *dt* seconds.
 
     Computes the rotation from *q1* to *q2*, converts to a rotation vector
@@ -94,7 +95,7 @@ def angular_velocity_from_quaternions(
     return rotvec / dt
 
 
-def get_relative_spin(nf: NodeProtocol, nt: NodeProtocol) -> np.ndarray:
+def get_relative_spin(nf: NodeProtocol, nt: NodeProtocol) -> npt.NDArray[np.floating[Any]]:
     """Return the relative quaternion rotation from node *nf* to node *nt*.
 
     Both nodes must have an ``.orientation`` attribute storing a quaternion
@@ -118,7 +119,7 @@ def get_unique_relative_spins(
     nside: int,
     nest: bool,
     threshold: float = 1e-3,
-) -> List[np.ndarray]:
+) -> List[npt.NDArray[np.floating[Any]]]:
     """Compute unique relative rotations between HEALPix neighbours.
 
     Requires the ``healpy`` package.
@@ -143,7 +144,7 @@ def get_unique_relative_spins(
             "healpy is required for get_unique_relative_spins(). "
             "Install it with: pip install healpy"
         )
-    spins: List[np.ndarray] = []
+    spins: List[npt.NDArray[np.floating[Any]]] = []
     NPIX = hp.nside2npix(nside)
     for i in range(NPIX):
         nf = nodes[i]

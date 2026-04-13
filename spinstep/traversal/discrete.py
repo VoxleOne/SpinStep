@@ -11,6 +11,7 @@ __all__ = ["DiscreteOrientationSet"]
 from typing import Any
 
 import numpy as np
+import numpy.typing as npt
 from numpy.typing import ArrayLike
 from scipy.spatial.transform import Rotation as R
 
@@ -84,7 +85,7 @@ class DiscreteOrientationSet:
                     orientations_for_rotvec = orientations_for_rotvec.get()
 
                 if orientations_for_rotvec.shape[0] > 0:
-                    self.rotvecs: np.ndarray = R.from_quat(orientations_for_rotvec).as_rotvec()
+                    self.rotvecs: npt.NDArray[np.floating[Any]] = R.from_quat(orientations_for_rotvec).as_rotvec()
                     if len(self.orientations) > 100:
                         self._kdtree = KDTree(self.rotvecs)
                 else:
@@ -100,7 +101,7 @@ class DiscreteOrientationSet:
         self,
         quat: ArrayLike,
         angle: float,
-    ) -> np.ndarray:
+    ) -> npt.NDArray[np.floating[Any]]:
         """Return indices of orientations within *angle* radians of *quat*.
 
         Args:
@@ -205,7 +206,7 @@ class DiscreteOrientationSet:
     # Conversion helpers
     # ------------------------------------------------------------------
 
-    def as_numpy(self) -> np.ndarray:
+    def as_numpy(self) -> npt.NDArray[np.floating[Any]]:
         """Convert orientations to a NumPy array.
 
         If stored as a CuPy array on GPU, transfers to CPU first.

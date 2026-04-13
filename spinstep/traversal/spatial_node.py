@@ -8,9 +8,10 @@ from __future__ import annotations
 
 __all__ = ["SpatialNode"]
 
-from typing import TYPE_CHECKING, Optional, Sequence
+from typing import TYPE_CHECKING, Any, Optional, Sequence
 
 import numpy as np
+import numpy.typing as npt
 from numpy.typing import ArrayLike
 
 from .node import Node
@@ -52,7 +53,7 @@ class SpatialNode(Node):
     """
 
     distance: float
-    angular_velocity: np.ndarray
+    angular_velocity: npt.NDArray[np.floating[Any]]
     radial_velocity: float
     timestamp: float
 

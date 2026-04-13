@@ -18,9 +18,10 @@ __all__ = [
 ]
 
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Any, Optional
 
 import numpy as np
+import numpy.typing as npt
 from numpy.typing import ArrayLike
 
 from .state import ControlCommand, compute_orientation_error
@@ -55,7 +56,7 @@ class OrientationController(ABC):
         self.max_angular_acceleration = max_angular_acceleration
         self.max_radial_velocity = max_radial_velocity
         self.max_radial_acceleration = max_radial_acceleration
-        self._prev_angular_cmd: Optional[np.ndarray] = None
+        self._prev_angular_cmd: Optional[npt.NDArray[np.floating[Any]]] = None
         self._prev_radial_cmd: Optional[float] = None
 
     @abstractmethod
@@ -302,9 +303,9 @@ class PIDOrientationController(OrientationController):
         self.max_integral = max_integral
         self.max_integral_radial = max_integral_radial
 
-        self._ang_integral: np.ndarray = np.zeros(3)
+        self._ang_integral: npt.NDArray[np.floating[Any]] = np.zeros(3)
         self._rad_integral: float = 0.0
-        self._prev_ang_error: Optional[np.ndarray] = None
+        self._prev_ang_error: Optional[npt.NDArray[np.floating[Any]]] = None
         self._prev_rad_error: Optional[float] = None
 
     def compute_raw_command(
