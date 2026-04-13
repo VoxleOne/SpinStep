@@ -54,6 +54,9 @@ from .control.frames import (
     ReferenceFrame,
     rebase_state,
 )
+from .control.agent import Agent
+from .control.agent_manager import AgentManager
+from .control.events import EventEmitter
 
 # --- key math utilities at top level ---
 from .math.interpolation import slerp
@@ -76,6 +79,9 @@ __all__ = [
     "compute_relative_state",
     "ReferenceFrame",
     "rebase_state",
+    "Agent",
+    "AgentManager",
+    "EventEmitter",
     "OrientationController",
     "ProportionalOrientationController",
     "PIDOrientationController",
