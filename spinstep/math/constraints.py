@@ -10,12 +10,15 @@ __all__ = [
     "clamp_rotation_angle",
 ]
 
+from typing import Any, cast
+
 import numpy as np
+import numpy.typing as npt
 from numpy.typing import ArrayLike
 from scipy.spatial.transform import Rotation as R
 
 
-def clamp_rotation_angle(q: ArrayLike, max_angle: float) -> np.ndarray:
+def clamp_rotation_angle(q: ArrayLike, max_angle: float) -> npt.NDArray[np.floating[Any]]:
     """Clamp a rotation quaternion so its angle does not exceed *max_angle*.
 
     If the rotation represented by *q* has an angle larger than *max_angle*,
@@ -49,4 +52,4 @@ def clamp_rotation_angle(q: ArrayLike, max_angle: float) -> np.ndarray:
 
     axis = rotvec / angle
     clamped_rotvec = axis * max_angle
-    return R.from_rotvec(clamped_rotvec).as_quat()
+    return cast(npt.NDArray[np.floating[Any]], R.from_rotvec(clamped_rotvec).as_quat())

@@ -9,6 +9,7 @@ from __future__ import annotations
 __all__ = ["get_array_module"]
 
 from types import ModuleType
+from typing import cast
 
 
 def get_array_module(use_cuda: bool = False) -> ModuleType:
@@ -29,7 +30,7 @@ def get_array_module(use_cuda: bool = False) -> ModuleType:
         try:
             import cupy as cp
 
-            return cp
+            return cast(ModuleType, cp)
         except ImportError:
             pass
     import numpy as np

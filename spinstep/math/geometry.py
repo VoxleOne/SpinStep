@@ -15,7 +15,10 @@ __all__ = [
     "rotate_quaternion",
 ]
 
+from typing import Any, cast
+
 import numpy as np
+import numpy.typing as npt
 from numpy.typing import ArrayLike
 from scipy.spatial.transform import Rotation as R
 
@@ -53,7 +56,7 @@ def is_within_angle_threshold(
     return quaternion_distance(q_current, q_target) < threshold_rad
 
 
-def rotate_quaternion(q: ArrayLike, rotation_step: ArrayLike) -> np.ndarray:
+def rotate_quaternion(q: ArrayLike, rotation_step: ArrayLike) -> npt.NDArray[np.floating[Any]]:
     """Apply *rotation_step* to quaternion *q* and return the result.
 
     Args:
@@ -65,10 +68,10 @@ def rotate_quaternion(q: ArrayLike, rotation_step: ArrayLike) -> np.ndarray:
     """
     r1 = R.from_quat(q)
     step = R.from_quat(rotation_step)
-    return (r1 * step).as_quat()
+    return cast(npt.NDArray[np.floating[Any]], (r1 * step).as_quat())
 
 
-def forward_vector_from_quaternion(q: ArrayLike) -> np.ndarray:
+def forward_vector_from_quaternion(q: ArrayLike) -> npt.NDArray[np.floating[Any]]:
     """Extract the forward (look) direction from a quaternion.
 
     The forward direction is defined as ``[0, 0, -1]`` rotated by the
@@ -80,10 +83,10 @@ def forward_vector_from_quaternion(q: ArrayLike) -> np.ndarray:
     Returns:
         Unit direction vector ``(3,)`` pointing forward.
     """
-    return R.from_quat(q).apply([0, 0, -1])
+    return cast(npt.NDArray[np.floating[Any]], R.from_quat(q).apply([0, 0, -1]))
 
 
-def direction_to_quaternion(direction: ArrayLike) -> np.ndarray:
+def direction_to_quaternion(direction: ArrayLike) -> npt.NDArray[np.floating[Any]]:
     """Convert a 3D direction vector to an orientation quaternion.
 
     The returned quaternion represents the rotation that aligns the
@@ -101,7 +104,7 @@ def direction_to_quaternion(direction: ArrayLike) -> np.ndarray:
         return np.array([0.0, 0.0, 0.0, 1.0])
     d = d / norm
     rot, _ = R.align_vectors([d], [[0, 0, -1]])
-    return rot.as_quat()
+    return cast(npt.NDArray[np.floating[Any]], rot.as_quat())
 
 
 def angle_between_directions(d1: ArrayLike, d2: ArrayLike) -> float:

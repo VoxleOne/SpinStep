@@ -11,11 +11,14 @@ __all__ = [
     "squad",
 ]
 
+from typing import Any, cast
+
 import numpy as np
+import numpy.typing as npt
 from numpy.typing import ArrayLike
 
 
-def slerp(q0: ArrayLike, q1: ArrayLike, t: float) -> np.ndarray:
+def slerp(q0: ArrayLike, q1: ArrayLike, t: float) -> npt.NDArray[np.floating[Any]]:
     """Spherical linear interpolation between two quaternions.
 
     Interpolates along the shortest arc on the unit quaternion hypersphere.
@@ -46,7 +49,7 @@ def slerp(q0: ArrayLike, q1: ArrayLike, t: float) -> np.ndarray:
     # If quaternions are very close, use linear interpolation
     if dot > 0.9995:
         result = a + t * (b - a)
-        return result / np.linalg.norm(result)
+        return cast(npt.NDArray[np.floating[Any]], result / np.linalg.norm(result))
 
     theta_0 = np.arccos(dot)
     theta = theta_0 * t
@@ -57,7 +60,7 @@ def slerp(q0: ArrayLike, q1: ArrayLike, t: float) -> np.ndarray:
     s1 = sin_theta / sin_theta_0
 
     result = s0 * a + s1 * b
-    return result / np.linalg.norm(result)
+    return cast(npt.NDArray[np.floating[Any]], result / np.linalg.norm(result))
 
 
 def squad(
@@ -66,7 +69,7 @@ def squad(
     q2: ArrayLike,
     q3: ArrayLike,
     t: float,
-) -> np.ndarray:
+) -> npt.NDArray[np.floating[Any]]:
     """Spherical cubic interpolation (SQUAD) between quaternion waypoints.
 
     Produces a smooth C¹-continuous curve through a sequence of orientations.
@@ -95,8 +98,8 @@ def squad(
 
 
 def _squad_intermediate(
-    q_prev: np.ndarray, q_curr: np.ndarray, q_next: np.ndarray
-) -> np.ndarray:
+    q_prev: npt.NDArray[np.floating[Any]], q_curr: npt.NDArray[np.floating[Any]], q_next: npt.NDArray[np.floating[Any]]
+) -> npt.NDArray[np.floating[Any]]:
     """Compute the SQUAD intermediate control point for *q_curr*."""
     from .core import quaternion_conjugate, quaternion_multiply
 
@@ -108,10 +111,9 @@ def _squad_intermediate(
 
     avg = -(log_prev + log_next) / 4.0
     result = quaternion_multiply(q_curr, _quat_exp(avg))
-    return result / np.linalg.norm(result)
+    return cast(npt.NDArray[np.floating[Any]], result / np.linalg.norm(result))
 
-
-def _quat_log(q: np.ndarray) -> np.ndarray:
+def _quat_log(q: npt.NDArray[np.floating[Any]]) -> npt.NDArray[np.floating[Any]]:
     """Quaternion logarithm (returns pure-quaternion vector part)."""
     q = q / np.linalg.norm(q)
     vec = q[:3]
@@ -123,7 +125,7 @@ def _quat_log(q: np.ndarray) -> np.ndarray:
     return np.array([*(vec / vec_norm * theta), 0.0])
 
 
-def _quat_exp(v: np.ndarray) -> np.ndarray:
+def _quat_exp(v: npt.NDArray[np.floating[Any]]) -> npt.NDArray[np.floating[Any]]:
     """Quaternion exponential (from pure-quaternion vector)."""
     vec = v[:3]
     theta = np.linalg.norm(vec)

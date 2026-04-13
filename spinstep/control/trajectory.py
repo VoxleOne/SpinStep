@@ -17,9 +17,10 @@ __all__ = [
     "TrajectoryController",
 ]
 
-from typing import List, Sequence, Tuple, Union
+from typing import Any, List, Sequence, Tuple, Union
 
 import numpy as np
+import numpy.typing as npt
 from numpy.typing import ArrayLike
 
 from ..math.interpolation import slerp
@@ -60,9 +61,9 @@ class OrientationTrajectory:
         ])
     """
 
-    quaternions: np.ndarray
-    distances: np.ndarray
-    times: np.ndarray
+    quaternions: npt.NDArray[np.floating[Any]]
+    distances: npt.NDArray[np.floating[Any]]
+    times: npt.NDArray[np.floating[Any]]
 
     def __init__(
         self,
@@ -73,15 +74,15 @@ class OrientationTrajectory:
                 f"At least 2 waypoints are required, got {len(waypoints)}"
             )
 
-        quats: List[np.ndarray] = []
+        quats: List[npt.NDArray[np.floating[Any]]] = []
         dists: List[float] = []
         times: List[float] = []
 
         for wp in waypoints:
             if len(wp) == 3:
-                q_raw, dist, t = wp  # type: ignore[misc]
+                q_raw, dist, t = wp
             elif len(wp) == 2:
-                q_raw, t = wp  # type: ignore[misc]
+                q_raw, t = wp
                 dist = 0.0
             else:
                 raise ValueError(
@@ -162,7 +163,7 @@ class TrajectoryInterpolator:
     def __init__(self, trajectory: OrientationTrajectory) -> None:
         self.trajectory = trajectory
 
-    def evaluate(self, t: float) -> Tuple[np.ndarray, float]:
+    def evaluate(self, t: float) -> Tuple[npt.NDArray[np.floating[Any]], float]:
         """Return the interpolated quaternion and distance at time *t*.
 
         Times before the first waypoint return the first pose; times

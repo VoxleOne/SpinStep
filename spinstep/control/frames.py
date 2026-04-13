@@ -16,9 +16,10 @@ __all__ = [
     "rebase_state",
 ]
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
+import numpy.typing as npt
 
 from ..math.core import (
     quaternion_conjugate,
@@ -58,14 +59,14 @@ class ReferenceFrame:
 
     def __init__(
         self,
-        origin_quaternion: np.ndarray,
+        origin_quaternion: npt.NDArray[np.floating[Any]],
         origin_distance: float = 0.0,
     ) -> None:
         q = np.asarray(origin_quaternion, dtype=float)
         norm = np.linalg.norm(q)
         if norm < 1e-8:
             raise ValueError("origin_quaternion must be non-zero")
-        self.origin_quaternion: np.ndarray = q / norm
+        self.origin_quaternion: npt.NDArray[np.floating[Any]] = q / norm
         self.origin_distance: float = float(origin_distance)
 
     # ------------------------------------------------------------------

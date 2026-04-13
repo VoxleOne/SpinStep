@@ -13,11 +13,14 @@ __all__ = [
     "quaternion_inverse",
 ]
 
+from typing import Any, cast
+
 import numpy as np
+import numpy.typing as npt
 from numpy.typing import ArrayLike
 
 
-def quaternion_multiply(q1: ArrayLike, q2: ArrayLike) -> np.ndarray:
+def quaternion_multiply(q1: ArrayLike, q2: ArrayLike) -> npt.NDArray[np.floating[Any]]:
     """Hamilton product of two quaternions in ``[x, y, z, w]`` order.
 
     Args:
@@ -39,7 +42,7 @@ def quaternion_multiply(q1: ArrayLike, q2: ArrayLike) -> np.ndarray:
     ])
 
 
-def quaternion_conjugate(q: ArrayLike) -> np.ndarray:
+def quaternion_conjugate(q: ArrayLike) -> npt.NDArray[np.floating[Any]]:
     """Return the conjugate of quaternion *q* ``[x, y, z, w]``.
 
     The conjugate negates the vector part while keeping the scalar part.
@@ -54,7 +57,7 @@ def quaternion_conjugate(q: ArrayLike) -> np.ndarray:
     return np.array([-a[0], -a[1], -a[2], a[3]])
 
 
-def quaternion_normalize(q: ArrayLike) -> np.ndarray:
+def quaternion_normalize(q: ArrayLike) -> npt.NDArray[np.floating[Any]]:
     """Normalize a quaternion to unit length.
 
     Args:
@@ -68,10 +71,10 @@ def quaternion_normalize(q: ArrayLike) -> np.ndarray:
     n = np.linalg.norm(a)
     if n < 1e-8:
         return np.array([0.0, 0.0, 0.0, 1.0])
-    return a / n
+    return cast(npt.NDArray[np.floating[Any]], a / n)
 
 
-def quaternion_inverse(q: ArrayLike) -> np.ndarray:
+def quaternion_inverse(q: ArrayLike) -> npt.NDArray[np.floating[Any]]:
     """Return the inverse of a unit quaternion.
 
     For unit quaternions the inverse equals the conjugate.
@@ -87,4 +90,4 @@ def quaternion_inverse(q: ArrayLike) -> np.ndarray:
     if norm_sq < 1e-16:
         return np.array([0.0, 0.0, 0.0, 1.0])
     conj = np.array([-a[0], -a[1], -a[2], a[3]])
-    return conj / norm_sq
+    return cast(npt.NDArray[np.floating[Any]], conj / norm_sq)
