@@ -56,7 +56,7 @@ The key insight illustrated is that SpinStep represents a departure from thinkin
 
 **Procedural Generation**: Perhaps most fascinating: generative algorithms could "grow" structures by following orientation-based rules rather than positional ones. This might produce more organic-looking forms that exhibit natural flow and directional coherence, similar to how biological structures often follow directional growth patterns.
 
-The common thread I see is that a quaternion approach inherently respects the continuity of movement and orientation in a way that discrete positional systems don't. This seems especially valuable anywhere that natural, fluid motion matters, whether that's virtual characters, cameras, or generative systems trying to mimic organic growth patterns.
+The common thread is that a quaternion approach inherently respects the continuity of movement and orientation in a way that discrete positional systems don't. This seems especially valuable anywhere that natural, fluid motion matters, whether that's virtual characters, cameras, or generative systems trying to mimic organic growth patterns.
 
 ## SpinStep Implications: Traversal as Transformation
 
