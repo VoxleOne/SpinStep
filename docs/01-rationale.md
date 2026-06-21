@@ -46,7 +46,7 @@ The key insight illustrated is that SpinStep represents a departure from thinkin
 
 ## Application Domains: Orientation as Primary Constraint
 
-**Scene Graphs**: Instead of simply tracking parent-child positional relationships, scene graph traversals could prioritize maintaining consistent relative orientations as objects move or animate. This could lead to more natural-looking interactions and transformations, particularly for complex articulated structures like character models.
+**Scene Graphs**: Instead of simply tracking parent-child positional relationships, scene graph traversals could prioritize maintaining consistent relative orientations as objects move or animate. This could lead to more natural-looking interactions and transformations.
 
 **Spatial Indexing**: Traditional spatial partitioning (octrees, KD-trees) focuses on positional proximity. A quaternion-enhanced spatial index could prioritize objects with similar orientations, which would be invaluable for tasks like finding all objects "facing" a particular direction - critical for visibility determination, lighting calculations, or directional queries.
 
